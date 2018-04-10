@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -21,15 +22,18 @@ public class UIMain extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
 
 
         root = new GridPane();
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.TOP_CENTER);
+        root.setVgap(10);
+        root.setHgap(10);
 
         welcomeText.setText("SemCBOW");
+        welcomeText.setFill(Color.WHITE);
         root.add(welcomeText, 0, 0);
         setID();
         Scene mainScene = new Scene(root, visualBounds.getWidth(), visualBounds.getHeight());
@@ -44,6 +48,7 @@ public class UIMain extends Application {
     public void setID(){
 
         welcomeText.setId("welcomeText");
+        root.setId("root");
 
 
     }

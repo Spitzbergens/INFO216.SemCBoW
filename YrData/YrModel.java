@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static org.apache.jena.rdf.model.ModelFactory.createDefaultModel;
 import static org.apache.jena.rdf.model.ModelFactory.createOntologyModel;
@@ -30,6 +31,8 @@ public class YrModel {
     int size = idList.size();
     // brukes kun for å sortere ut tidspunkt
     private ArrayList<Integer> period = yr.getPeriodTag();
+
+    private Iterator tempIterator = temp.iterator();
 
     public YrModel(){
 
@@ -76,6 +79,23 @@ public class YrModel {
 
             }
         }
+    }
+
+    public int getMedianTemp() {
+
+        int numOfEntries = 0;
+        int sum = 0;
+        while (tempIterator.hasNext()) {
+            Object tempValue = tempIterator.next();
+            sum += Integer.parseInt((String) tempValue);
+            numOfEntries++;
+            // String stringTemp = temp.get(j);
+            //sum = Integer.parseInt(stringTemp);
+            //sum = sum / tempSize;
+        }
+        sum = sum / numOfEntries;
+
+        return sum;
     }
 
     public void writeToFile() {

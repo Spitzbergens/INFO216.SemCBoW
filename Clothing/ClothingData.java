@@ -6,12 +6,14 @@ import org.json.simple.parser.JSONParser;
 
 
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ClothingData {
 
     private ArrayList<String> clothing = new ArrayList<>();
+    private ArrayList<String> footwear = new ArrayList<>();
 
 
     public ClothingData(){
@@ -29,10 +31,15 @@ public class ClothingData {
 
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray clothingList = (JSONArray) jsonObject.get("clothes");
+            JSONArray shoeList = (JSONArray) jsonObject.get("footwear");
 
-            Iterator<String> itr = clothingList.iterator();
-            while(itr.hasNext()){
-                clothing.add(itr.next());
+            Iterator<String> itrClothing = clothingList.iterator();
+            Iterator<String> itrShoe = shoeList.iterator();
+            while(itrClothing.hasNext()){
+                clothing.add(itrClothing.next());
+            }
+            while(itrShoe.hasNext()){
+                footwear.add(itrShoe.next());
             }
 
         }catch(Exception e){
@@ -43,6 +50,16 @@ public class ClothingData {
 
     public ArrayList<String> getClothing() {
         return clothing;
+    }
+
+    public ArrayList<String> getFootwear(){
+        return footwear;
+    }
+
+    public int totalSize(){
+        int size;
+        size = getClothing().size() + getFootwear().size();
+        return size;
     }
 }
 

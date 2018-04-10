@@ -7,6 +7,7 @@ import org.apache.jena.vocabulary.RDFS;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import static org.apache.jena.rdf.model.ModelFactory.createOntologyModel;
 
@@ -17,7 +18,11 @@ public class ClothingModel {
     InfModel rdfsModel = ModelFactory.createRDFSModel(clothingModel);
 
     private ArrayList<String> clothingType = data.getClothing();
-    private int size = data.getClothing().size();
+    private ArrayList<String> footwearType = data.getFootwear();
+    private int sizeClothing = data.getClothing().size();
+    private int sizeFootwear = data.getFootwear().size();
+
+
 
 
     public void createModel(){
@@ -25,17 +30,25 @@ public class ClothingModel {
         String semClothURI = "http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#";
         clothingModel.setNsPrefix("clo", semClothURI);
 
-        String dbrClothes = "http://dbpedia.org/resource/clothes";
+
+        String dbrClothes = "http://dbpedia.org/resource/Clothing";
         clothingModel.setNsPrefix("dbr", dbrClothes);
 
+        String dbrFootwear = "http://dbpedia.org/resource/Footwear";
+        clothingModel.setNsPrefix("dbr", dbrFootwear);
 
-        Resource clothingResource = rdfsModel.createResource(dbrClothes + "Clothing");
+
+
+
+        Resource clothingResource = rdfsModel.createResource(dbrClothes);
+        Resource shoeResource = rdfsModel.createResource(dbrFootwear);
+
         Property womensClothingResource = rdfsModel.createProperty(semClothURI + "Women's clothing");
-        Property clothingProperty = rdfsModel.createProperty(semClothURI + "isClothingType");
+        Property shoeProperty = rdfsModel.createProperty(dbrFootwear + "shoeType");
+        Property clothingProperty = rdfsModel.createProperty(semClothURI +  "clothingType");
 
-        for (int i = 0; i < this.size; i++){
+        for (int i = 0; i < this.sizeClothing; i++){
             String clothingItem = clothingType.get(i);
-
 
             Resource clothingData = rdfsModel.createResource("http://example.com/Clothing#" + clothingItem, clothingResource)
                     .addProperty(clothingProperty, clothingItem);
@@ -45,8 +58,19 @@ public class ClothingModel {
                 womensClothingResource.addProperty(RDFS.subClassOf, clothingResource);
                 clothingData.addProperty(womensClothingResource, clothingItem);
             }
+        }
+
+        for (int i = 0; i < sizeFootwear; i++){
+            String footwearItem = footwearType.get(i);
+
+            Resource footwearData = rdfsModel.createResource("http://example.com/Footwear#" + footwearItem, shoeResource)
+                    .addProperty(shoeProperty, footwearItem);
+
+            shoeResource.addProperty(RDFS.subClassOf, clothingResource);
 
         }
+
+
     }
 
     public void writeFile(){
