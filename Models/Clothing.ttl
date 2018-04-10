@@ -1,0 +1,529 @@
+@prefix dbr:   <http://dbpedia.org/resource/Footwear> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix clo:   <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+rdf:rest  a                 rdf:Property , rdfs:Resource ;
+        rdfs:domain         rdf:List ;
+        rdfs:range          rdf:List ;
+        rdfs:subPropertyOf  rdf:rest .
+
+rdf:List  a              rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:Resource .
+
+rdf:predicate  a            rdf:Property , rdfs:Resource ;
+        rdfs:domain         rdf:Statement ;
+        rdfs:subPropertyOf  rdf:predicate .
+
+rdf:Property  a          rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:Resource , rdf:Property .
+
+rdfs:label  a       rdf:Property , rdfs:Resource ;
+        rdfs:range  rdfs:Literal .
+
+rdf:Statement  a         rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:Resource .
+
+rdfs:Class  a            rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:Resource , rdfs:Class .
+
+rdf:type  a         rdf:Property , rdfs:Resource ;
+        rdfs:range  rdfs:Class .
+
+rdfs:Resource  a  rdfs:Class , rdfs:Resource .
+
+rdf:subject  a              rdf:Property , rdfs:Resource ;
+        rdfs:domain         rdf:Statement ;
+        rdfs:subPropertyOf  rdf:subject .
+
+rdf:XMLLiteral  a  rdfs:Datatype , rdfs:Class , rdfs:Resource .
+
+rdfs:comment  a     rdf:Property , rdfs:Resource ;
+        rdfs:range  rdfs:Literal .
+
+rdfs:range  a        rdf:Property , rdfs:Resource ;
+        rdfs:domain  rdf:Property ;
+        rdfs:range   rdfs:Class .
+
+rdfs:subPropertyOf  a  rdf:Property , rdfs:Resource ;
+        rdfs:domain  rdf:Property ;
+        rdfs:range   rdf:Property .
+
+rdf:object  a               rdf:Property , rdfs:Resource ;
+        rdfs:domain         rdf:Statement ;
+        rdfs:subPropertyOf  rdf:object .
+
+rdf:nil  a      rdf:List , rdfs:Resource .
+
+rdfs:domain  a       rdf:Property , rdfs:Resource ;
+        rdfs:domain  rdf:Property ;
+        rdfs:range   rdfs:Class .
+
+rdfs:Literal  a          rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:Resource .
+
+rdf:first  a                rdf:Property , rdfs:Resource ;
+        rdfs:domain         rdf:List ;
+        rdfs:subPropertyOf  rdf:first .
+
+rdfs:subClassOf  a   rdf:Property , rdfs:Resource ;
+        rdfs:domain  rdfs:Class ;
+        rdfs:range   rdfs:Class .
+
+<http://example.com/Clothing#t-shirt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "t-shirt" .
+
+<http://example.com/Clothing#nightgown>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "nightgown" .
+
+<http://example.com/Clothing#sandals>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "sandals" .
+
+<http://example.com/Footwear#hiking shoes>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "hiking shoes" .
+
+<http://example.com/Footwear#slippers>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "slippers" .
+
+<http://example.com/Clothing#swimwear>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "swimwear" .
+
+<http://example.com/Clothing#raincoat>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "raincoat" .
+
+<http://example.com/Clothing#cummerbund>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "cummerbund" .
+
+<http://example.com/Clothing#zip>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "zip" .
+
+<http://example.com/Clothing#flannel>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "flannel" .
+
+<http://example.com/Clothing#knickers>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "knickers" .
+
+<http://example.com/Clothing#swimming trunks>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "swimming trunks" .
+
+<http://example.com/Footwear#trainers>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "trainers" .
+
+<http://example.com/Clothing#shawl>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "shawl" .
+
+<http://example.com/Clothing#tracksuit>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "tracksuit" .
+
+<http://example.com/Clothing#underclothes>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "underclothes" .
+
+<http://example.com/Clothing#ball gown>
+        a                     <http://dbpedia.org/resource/Clothing> ;
+        <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Women's clothing>
+                "ball gown" ;
+        clo:clothingType      "ball gown" .
+
+<http://example.com/Clothing#belt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "belt" .
+
+<http://example.com/Clothing#boxers>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "boxers" .
+
+<http://example.com/Clothing#bra & knicker set>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "bra & knicker set" .
+
+<http://example.com/Footwear#boots>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "boots" .
+
+<http://example.com/Clothing#tie>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "tie" .
+
+<http://example.com/Clothing#sweatshirt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "sweatshirt" .
+
+<http://example.com/Clothing#shellsuit>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "shellsuit" .
+
+<http://example.com/Clothing#cargos>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "cargos" .
+
+<http://example.com/Clothing#tights>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "tights" .
+
+<http://example.com/Clothing#briefs>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "briefs" .
+
+<http://example.com/Clothing#catsuit>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "catsuit" .
+
+<http://example.com/Clothing#corset>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "corset" .
+
+<http://example.com/Clothing#jacket>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "jacket" .
+
+<http://example.com/Clothing#swimming shorts>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "swimming shorts" .
+
+<http://example.com/Clothing#hoody>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "hoody" .
+
+<http://example.com/Clothing#kilt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "kilt" .
+
+<http://example.com/Clothing#vest>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "vest" .
+
+<http://example.com/Clothing#jeans>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "jeans" .
+
+<http://example.com/Footwear#climbing shoes>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "climbing shoes" .
+
+<http://example.com/Footwear#derby shoe>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "derby shoe" .
+
+<http://example.com/Clothing#suit>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "suit" .
+
+<http://example.com/Footwear#dress shoes>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "dress shoes" .
+
+<http://example.com/Clothing#romper>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "romper" .
+
+<http://example.com/Clothing#sunglasses>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "sunglasses" .
+
+<http://example.com/Clothing#skirt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "skirt" .
+
+<http://example.com/Clothing#waistcoat>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "waistcoat" .
+
+<http://example.com/Clothing#tankini>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "tankini" .
+
+<http://example.com/Clothing#underwear>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "underwear" .
+
+<http://example.com/Clothing#trousers>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "trousers" .
+
+<http://example.com/Clothing#socks>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "socks" .
+
+<http://example.com/Clothing#robe>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "robe" .
+
+<http://example.com/Footwear#rainboots>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "rainboots" .
+
+<http://example.com/Clothing#kurta>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "kurta" .
+
+<http://example.com/Clothing#bra>
+        a                     <http://dbpedia.org/resource/Clothing> ;
+        <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Women's clothing>
+                "bra" ;
+        clo:clothingType      "bra" .
+
+<http://example.com/Clothing#cap>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "cap" .
+
+<http://example.com/Clothing#dress>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "dress" .
+
+<http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Women's clothing>
+        a                rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  <http://dbpedia.org/resource/Clothing> , <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Women's clothing> .
+
+<http://example.com/Clothing#baby grow>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "baby grow" .
+
+<http://example.com/Clothing#top>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "top" .
+
+<http://example.com/Clothing#tailcoat>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "tailcoat" .
+
+<http://example.com/Clothing#pants>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "pants" .
+
+<http://example.com/Clothing#stockings>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "stockings" .
+
+<http://example.com/Clothing#polo shirt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "polo shirt" .
+
+<http://example.com/Clothing#cravat>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "cravat" .
+
+<http://example.com/Footwear#insulated boots>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "insulated boots" .
+
+<http://example.com/Clothing#waterproof>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "waterproof" .
+
+<http://example.com/Clothing#dungarees>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "dungarees" .
+
+<http://example.com/Clothing#fleece>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "fleece" .
+
+<http://example.com/Clothing#hat>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "hat" .
+
+<http://example.com/Clothing#blouse>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "blouse" .
+
+<http://example.com/Clothing#lingerie>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "lingerie" .
+
+<http://example.com/Clothing#thong>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "thong" .
+
+<http://example.com/Clothing#cufflinks>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "cufflinks" .
+
+<http://example.com/Clothing#jumper>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "jumper" .
+
+<http://example.com/Clothing#shirt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "shirt" .
+
+<http://example.com/Clothing#kaftan>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "kaftan" .
+
+<http://example.com/Footwear#waterproof>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "waterproof" .
+
+<http://example.com/Clothing#pyjamas>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "pyjamas" .
+
+<http://example.com/Footwear#running shoes>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "running shoes" .
+
+<http://example.com/Clothing#poncho>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "poncho" .
+
+dbr:    a                rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  <http://dbpedia.org/resource/Clothing> , dbr: .
+
+<http://example.com/Clothing#underpants>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "underpants" .
+
+<http://example.com/Clothing#cardigan>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "cardigan" .
+
+<http://example.com/Clothing#gloves>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "gloves" .
+
+<http://example.com/Footwear#sneakers>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "sneakers" .
+
+<http://example.com/Clothing#winter jacket>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "winter jacket" .
+
+<http://example.com/Clothing#dressing gown>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "dressing gown" .
+
+<http://example.com/Clothing#dinner jacket>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "dinner jacket" .
+
+<http://example.com/Clothing#windbreaker>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "windbreaker" .
+
+<http://example.com/Clothing#sarong>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "sarong" .
+
+<http://example.com/Clothing#blazer>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "blazer" .
+
+<http://example.com/Clothing#sweater>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "sweater" .
+
+<http://example.com/Clothing#camisole>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "camisole" .
+
+<http://example.com/Footwear#sandals>
+        a             dbr: , <http://dbpedia.org/resource/Clothing> ;
+        dbr:shoeType  "sandals" .
+
+<http://example.com/Clothing#bikini>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "bikini" .
+
+<http://example.com/Clothing#spring jacket>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "spring jacket" .
+
+<http://example.com/Clothing#undershirt>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "undershirt" .
+
+<http://example.com/Clothing#nightwear>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "nightwear" .
+
+<http://example.com/Clothing#bow tie>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "bow tie" .
+
+<http://example.com/Clothing#jogging suit>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "jogging suit" .
+
+<http://example.com/Clothing#vest underwear>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "vest underwear" .
+
+<http://example.com/Clothing#trainers>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "trainers" .
+
+<http://example.com/Clothing#coat>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "coat" .
+
+<http://example.com/Clothing#slacks>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "slacks" .
+
+<http://example.com/Clothing#chemise>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "chemise" .
+
+<http://example.com/Clothing#swimming costume>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "swimming costume" .
+
+<http://example.com/Clothing#shorts>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "shorts" .
+
+<http://example.com/Clothing#pashmina>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "pashmina" .
+
+<http://example.com/Clothing#scarf>
+        a                 <http://dbpedia.org/resource/Clothing> ;
+        clo:clothingType  "scarf" .
+
+rdf:Bag  a               rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdf:Bag , rdfs:Container .
+
+rdf:Seq  a               rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdf:Seq , rdfs:Container .
+
+rdfs:Datatype  a         rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:Datatype , rdfs:Class .
+
+<http://dbpedia.org/resource/Clothing>
+        a                rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  <http://dbpedia.org/resource/Clothing> .
+
+rdf:Alt  a               rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdf:Alt , rdfs:Container .
+
+rdfs:Container  a        rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:Container .
+
+rdfs:ContainerMembershipProperty
+        a                rdfs:Class , rdfs:Resource ;
+        rdfs:subClassOf  rdfs:ContainerMembershipProperty , rdf:Property .
+
+rdfs:isDefinedBy  a         rdf:Property , rdfs:Resource ;
+        rdfs:subPropertyOf  rdfs:isDefinedBy , rdfs:seeAlso .
+
+rdfs:seeAlso  a             rdf:Property , rdfs:Resource ;
+        rdfs:subPropertyOf  rdfs:seeAlso .

@@ -1,0 +1,96 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wo:    <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix w3time: <http://www.w3.org/2006/time#> .
+
+<http://example.com/weather#2018-04-11>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-11" ;
+        wo:Temperature          "4" , "11" , "12" , "6" ;
+        wo:Wind                 "Flau vind" , "Svak vind" ;
+        wo:hasObservationTime   "06:00:00" , "12:00:00" , "18:00:00" , "00:00:00" ;
+        wo:hasWeatherCondition  "Skyet" , "Klarvær" , "Delvis skyet" ;
+        wo:hasWind              "1.7" , "1.5" , "1.9" .
+
+<http://example.com/weather#2018-04-16>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-16" ;
+        wo:Temperature          "10" , "13" , "6" , "5" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "02:00:00" , "08:00:00" , "14:00:00" , "20:00:00" ;
+        wo:hasWeatherCondition  "Delvis skyet" , "Skyet" ;
+        wo:hasWind              "2.2" , "2.3" , "2.5" , "1.6" .
+
+<http://example.com/weather#2018-04-14>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-14" ;
+        wo:Temperature          "4" , "5" , "13" , "9" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "14:00:00" , "20:00:00" , "02:00:00" , "08:00:00" ;
+        wo:hasWeatherCondition  "Klarvær" , "Delvis skyet" , "Skyet" ;
+        wo:hasWind              "1.6" , "2.9" , "2.7" , "1.8" .
+
+<http://example.com/weather#2018-04-19>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-19" ;
+        wo:Temperature          "7" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "02:00:00" ;
+        wo:hasWeatherCondition  "Delvis skyet" ;
+        wo:hasWind              "2.0" .
+
+<http://example.com/weather#2018-04-12>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-12" ;
+        wo:Temperature          "5" , "11" , "6" , "12" ;
+        wo:Wind                 "Svak vind" , "Flau vind" ;
+        wo:hasObservationTime   "12:00:00" , "00:00:00" , "06:00:00" , "20:00:00" ;
+        wo:hasWeatherCondition  "Klarvær" ;
+        wo:hasWind              "1.1" , "2.3" , "2.2" , "1.9" .
+
+<http://example.com/weather#2018-04-17>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-17" ;
+        wo:Temperature          "12" , "10" , "6" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "02:00:00" , "20:00:00" , "08:00:00" , "14:00:00" ;
+        wo:hasWeatherCondition  "Skyet" , "Delvis skyet" ;
+        wo:hasWind              "2.6" , "2.0" , "2.4" .
+
+<http://example.com/weather#2018-04-10>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-10" ;
+        wo:Temperature          "6" , "11" , "7" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "18:00:00" , "11:00:00" , "12:00:00" ;
+        wo:hasWeatherCondition  "Klarvær" , "Delvis skyet" ;
+        wo:hasWind              "3.2" , "2.7" , "1.8" .
+
+<http://example.com/weather#2018-04-15>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-15" ;
+        wo:Temperature          "12" , "10" , "6" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "02:00:00" , "08:00:00" , "20:00:00" , "14:00:00" ;
+        wo:hasWeatherCondition  "Delvis skyet" ;
+        wo:hasWind              "2.0" , "2.2" , "1.9" , "1.6" .
+
+<http://example.com/weather#2018-04-13>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-13" ;
+        wo:Temperature          "4" , "10" , "13" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "02:00:00" , "08:00:00" , "20:00:00" , "14:00:00" ;
+        wo:hasWeatherCondition  "Klarvær" , "Lettskyet" ;
+        wo:hasWind              "3.0" , "2.9" , "3.1" .
+
+<http://example.com/weather#2018-04-18>
+        a                       wo:WeatherCondition ;
+        w3time:inDateTime       "2018-04-18" ;
+        wo:Temperature          "11" , "13" , "7" , "6" ;
+        wo:Wind                 "Svak vind" ;
+        wo:hasObservationTime   "02:00:00" , "08:00:00" , "14:00:00" , "20:00:00" ;
+        wo:hasWeatherCondition  "Delvis skyet" ;
+        wo:hasWind              "2.7" , "2.2" , "3.3" , "1.6" .
