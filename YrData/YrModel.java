@@ -75,8 +75,6 @@ public class YrModel {
                         .addProperty(weatherProperty, weatherConditionItem)
                         .addProperty(dateProperty, dateItem)
                         .addProperty(observedAtProperty, timeItem);
-
-
             }
         }
     }

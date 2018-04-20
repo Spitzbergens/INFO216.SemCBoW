@@ -19,8 +19,10 @@ public class ClothingModel {
 
     private ArrayList<String> clothingType = data.getClothing();
     private ArrayList<String> footwearType = data.getFootwear();
+    private ArrayList<String> outerwear = data.getOuterwear();
     private int sizeClothing = data.getClothing().size();
     private int sizeFootwear = data.getFootwear().size();
+    private int sizeOuterwear = data.getOuterwear().size();
 
 
 
@@ -38,10 +40,9 @@ public class ClothingModel {
         clothingModel.setNsPrefix("dbr", dbrFootwear);
 
 
-
-
         Resource clothingResource = rdfsModel.createResource(dbrClothes);
         Resource shoeResource = rdfsModel.createResource(dbrFootwear);
+
 
         Property womensClothingResource = rdfsModel.createProperty(semClothURI + "Women's clothing");
         Property shoeProperty = rdfsModel.createProperty(dbrFootwear + "shoeType");
@@ -51,13 +52,9 @@ public class ClothingModel {
             String clothingItem = clothingType.get(i);
 
             Resource clothingData = rdfsModel.createResource("http://example.com/Clothing#" + clothingItem, clothingResource)
-                    .addProperty(clothingProperty, clothingItem);
+                    .addProperty(clothingProperty, clothingItem)
+                    .addProperty(RDFS.label, clothingItem);
 
-
-            if (clothingType.get(i).equals("bra") || clothingType.get(i).equals("ball gown")){
-                womensClothingResource.addProperty(RDFS.subClassOf, clothingResource);
-                clothingData.addProperty(womensClothingResource, clothingItem);
-            }
         }
 
         for (int i = 0; i < sizeFootwear; i++){
@@ -67,6 +64,7 @@ public class ClothingModel {
                     .addProperty(shoeProperty, footwearItem);
 
             shoeResource.addProperty(RDFS.subClassOf, clothingResource);
+            shoeResource.addProperty(RDFS.label, footwearItem);
 
         }
 
@@ -78,7 +76,7 @@ public class ClothingModel {
         OntModel clothingOntModel = createOntologyModel(OntModelSpec.OWL_MEM, rdfsModel);
 
         try{
-            clothingOntModel.write(new FileOutputStream("Clothing.ttl"), "Turtle");
+            clothingOntModel.write(new FileOutputStream("/Users/Mats/IdeaProjects/INFO216.SemCBOW/src/Models/ClothingModel.ttl"), "Turtle");
         }catch (Exception e){
             e.printStackTrace();
         }

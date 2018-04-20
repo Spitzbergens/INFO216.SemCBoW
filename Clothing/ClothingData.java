@@ -14,6 +14,7 @@ public class ClothingData {
 
     private ArrayList<String> clothing = new ArrayList<>();
     private ArrayList<String> footwear = new ArrayList<>();
+    private ArrayList<String> outerwear = new ArrayList<>();
 
 
     public ClothingData(){
@@ -32,14 +33,19 @@ public class ClothingData {
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray clothingList = (JSONArray) jsonObject.get("clothes");
             JSONArray shoeList = (JSONArray) jsonObject.get("footwear");
+            JSONArray outerwearList = (JSONArray) jsonObject.get("outerwear");
 
             Iterator<String> itrClothing = clothingList.iterator();
             Iterator<String> itrShoe = shoeList.iterator();
+            Iterator<String> itrOuterwear = outerwearList.iterator();
             while(itrClothing.hasNext()){
                 clothing.add(itrClothing.next());
             }
             while(itrShoe.hasNext()){
                 footwear.add(itrShoe.next());
+            }
+            while(itrOuterwear.hasNext()){
+                outerwear.add(itrOuterwear.next());
             }
 
         }catch(Exception e){
@@ -54,6 +60,10 @@ public class ClothingData {
 
     public ArrayList<String> getFootwear(){
         return footwear;
+    }
+
+    public ArrayList<String> getOuterwear(){
+        return outerwear;
     }
 
     public int totalSize(){
