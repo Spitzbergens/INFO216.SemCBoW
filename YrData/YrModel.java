@@ -1,5 +1,7 @@
 package YrData;
 
+import Queries.WeatherQueries;
+import RDF.RDFController;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.Model;
@@ -34,49 +36,18 @@ public class YrModel {
 
     private Iterator tempIterator = temp.iterator();
 
-    public YrModel(){
 
-    }
+    public static void main(String[] args){
+        YrModel model = new YrModel();
+        model.createModel();
+        model.writeToFile();
 
-
-    public void createModel(){
-
-        String ontoURI = "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#";
-        model.setNsPrefix("wo", ontoURI);
-
-        String w3TimeResource = "http://www.w3.org/2006/time#";
-        model.setNsPrefix("w3time", w3TimeResource);
-
-
-        Property weatherProperty = model.createProperty(ontoURI + "hasWeatherCondition");
-        Property tempProperty = model.createProperty(ontoURI + "Temperature");
-        Property windSpeedProperty = model.createProperty(ontoURI + "Wind");
-        Property windSpeedValueProperty = model.createProperty(ontoURI + "hasWind");
-        Property observedAtProperty = model.createProperty(ontoURI + "hasObservationTime");
-        Property dateProperty = model.createProperty(w3TimeResource + "inDateTime");
-
-        Resource weatherResource = model.createResource(ontoURI + "WeatherCondition");
-
-
-        for (int i = 0; i < size; i++){
-            // Sjekker at tidsrommet er mellom 12 - 18 eller 18 - 00
-            if (period.contains(2) || period.contains(3)){
-                String temperatureItem = temp.get(i);
-                String windSpeedNameItem = windSpeedName.get(i);
-                String windSpeedValueItem = windSpeedValue.get(i);
-                String weatherConditionItem = weatherName.get(i);
-                String dateItem = date.get(i);
-                String timeItem = observedAt.get(i);
-
-                Resource weatherData = model.createResource("http://example.com/weather#" + dateItem, weatherResource)
-                        .addProperty(tempProperty, temperatureItem)
-                        .addProperty(windSpeedProperty, windSpeedNameItem)
-                        .addProperty(windSpeedValueProperty, windSpeedValueItem)
-                        .addProperty(weatherProperty, weatherConditionItem)
-                        .addProperty(dateProperty, dateItem)
-                        .addProperty(observedAtProperty, timeItem);
-            }
-        }
+        RDFController controller = new RDFController();
+        WeatherQueries queries = new WeatherQueries(controller);
+        Model weatherModel = model.parse();
+        controller.addModel(weatherModel);
+        queries.getWeeklyWeather();
+        queries.getWeatherByDay("2018-04-22");
     }
 
     public int getMedianTemp() {
@@ -113,6 +84,45 @@ public class YrModel {
         return model;
     }
 
+    public void createModel(){
+
+        String ontoURI = "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#";
+        model.setNsPrefix("wo", ontoURI);
+
+        String schemaDate = "http://schema.org/Date#";
+        model.setNsPrefix("schema", schemaDate);
+
+
+        Property weatherProperty = model.createProperty(ontoURI + "hasWeatherCondition");
+        Property tempProperty = model.createProperty(ontoURI + "hasTemperature");
+        Property windSpeedProperty = model.createProperty(ontoURI + "windType");
+        Property windSpeedValueProperty = model.createProperty(ontoURI + "hasWind");
+        Property observedAtProperty = model.createProperty(ontoURI + "hasObservationTime");
+        Property dateProperty = model.createProperty(schemaDate + "inDateTime");
+
+        Resource weatherResource = model.createResource(ontoURI + "WeatherCondition");
+
+
+        for (int i = 0; i < size; i++){
+            // Sjekker at tidsrommet er mellom 12 - 18 eller 18 - 00
+            if (period.contains(2) || period.contains(3)){
+                String temperatureItem = temp.get(i);
+                String windSpeedNameItem = windSpeedName.get(i);
+                String windSpeedValueItem = windSpeedValue.get(i);
+                String weatherConditionItem = weatherName.get(i);
+                String dateItem = date.get(i);
+                String timeItem = observedAt.get(i);
+
+                Resource weatherData = model.createResource(schemaDate + dateItem, weatherResource)
+                        .addProperty(tempProperty, temperatureItem)
+                        .addProperty(windSpeedProperty, windSpeedNameItem)
+                        .addProperty(windSpeedValueProperty, windSpeedValueItem)
+                        .addProperty(weatherProperty, weatherConditionItem)
+                        .addProperty(dateProperty, dateItem)
+                        .addProperty(observedAtProperty, timeItem);
+            }
+        }
+    }
 
 
     public ArrayList<String> getTemp() {

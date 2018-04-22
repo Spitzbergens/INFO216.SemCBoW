@@ -1,5 +1,4 @@
 {
-  "description": "List of clothing types",
   "Outerwear": [
     {"jacket": ["wr:", 30]},
     "gloves",

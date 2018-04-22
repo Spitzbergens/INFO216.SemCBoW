@@ -89,16 +89,14 @@ public class Yr {
 
         NodeList timeNodeList = nodelist.getElementsByTagName("time");
 
-        Element tempNodeList = (Element)doc.getElementsByTagName("temperature").item(0);
+        NodeList weekDayList = nodelist.getElementsByTagName("title");
 
 
 
         for (int i = 0; i < timeNodeList.getLength(); i++) {
 
-
             Node node = timeNodeList.item(i);
             Element eElement = (Element) node;
-
 
             Node symbolNode = eElement.getElementsByTagName("symbol").item(0);
             Element symbolElement = (Element) symbolNode;

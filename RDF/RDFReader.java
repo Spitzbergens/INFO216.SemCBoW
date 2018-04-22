@@ -14,29 +14,5 @@ import java.util.List;
 
 public class RDFReader<E> {
 
-    Model model = ModelFactory.createDefaultModel();
-    ArrayList<Resource> GarmentObject = new ArrayList<>();
-    ArrayList<String> predicate = new ArrayList<>();
-    ArrayList<String> ontClass = new ArrayList<>();
-    RDFController rdfcont = null;
-
-
-    public RDFReader(RDFController rdfcont){
-        rdfcont = this.rdfcont;
-    }
-
-
-
-
-    public ResultSet queryClothingClasses(){
-        String resultClasses = ""
-                + "SELECT ?o" +
-                "WHERE " + " {?o rdfs:subClassOf dbr:Clothing ." +
-                "}";
-       return rdfcont.runSparql(resultClasses);
-
-    }
-
-
 
 }

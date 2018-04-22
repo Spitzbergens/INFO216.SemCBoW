@@ -35,6 +35,7 @@ public class ClothingData {
             JSONArray shoeList = (JSONArray) jsonObject.get("footwear");
             JSONArray outerwearList = (JSONArray) jsonObject.get("outerwear");
 
+
             Iterator<String> itrClothing = clothingList.iterator();
             Iterator<String> itrShoe = shoeList.iterator();
             Iterator<String> itrOuterwear = outerwearList.iterator();
