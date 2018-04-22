@@ -31,7 +31,6 @@ public class RDFController {
 
     public ResultSet runSparql(String queryString){
         queryString = prefix + queryString;
-
         Query query = null;
         try {
            query = QueryFactory.create(queryString);
@@ -39,10 +38,10 @@ public class RDFController {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-
         QueryExecution qe = QueryExecutionFactory.create(query, model);
         ResultSet results = qe.execSelect();
-        ResultSetFormatter.out(System.out, results, query);
+        //ResultSetFormatter.out(results);
+
         return results;
     }
 

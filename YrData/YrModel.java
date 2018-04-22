@@ -1,5 +1,6 @@
 package YrData;
 
+import Models.Weather;
 import Queries.WeatherQueries;
 import RDF.RDFController;
 import org.apache.jena.ontology.OntModel;
@@ -13,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import static org.apache.jena.rdf.model.ModelFactory.createDefaultModel;
 import static org.apache.jena.rdf.model.ModelFactory.createOntologyModel;
@@ -46,26 +48,13 @@ public class YrModel {
         WeatherQueries queries = new WeatherQueries(controller);
         Model weatherModel = model.parse();
         controller.addModel(weatherModel);
-        queries.getWeeklyWeather();
-        queries.getWeatherByDay("2018-04-22");
+
+
+        Weather weather = queries.queryToObject("2018-04-22");
+
+
     }
 
-    public int getMedianTemp() {
-
-        int numOfEntries = 0;
-        int sum = 0;
-        while (tempIterator.hasNext()) {
-            Object tempValue = tempIterator.next();
-            sum += Integer.parseInt((String) tempValue);
-            numOfEntries++;
-            // String stringTemp = temp.get(j);
-            //sum = Integer.parseInt(stringTemp);
-            //sum = sum / tempSize;
-        }
-        sum = sum / numOfEntries;
-
-        return sum;
-    }
 
     public void writeToFile() {
        OntModel ontmodel = createOntologyModel(OntModelSpec.OWL_MEM, model);
@@ -75,7 +64,6 @@ public class YrModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -122,6 +110,7 @@ public class YrModel {
                         .addProperty(observedAtProperty, timeItem);
             }
         }
+
     }
 
 

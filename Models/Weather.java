@@ -9,13 +9,17 @@ public class Weather {
     private String dateTime;
     private String condition;
 
-    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime, String condition) {
+    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.wind = wind;
         this.weatherType = weatherType;
         this.dateTime = dateTime;
-        this.condition = condition;
+
+    }
+
+    public Weather(){
+
     }
 
     public String getTemperature() {
@@ -58,11 +62,5 @@ public class Weather {
         this.dateTime = dateTime;
     }
 
-    public String getCondition() {
-        return condition;
-    }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
 }
