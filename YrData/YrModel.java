@@ -38,7 +38,10 @@ public class YrModel {
 
     private Iterator tempIterator = temp.iterator();
 
-
+    /**
+     * Brukes for testing
+     * @param args
+     */
     public static void main(String[] args){
         YrModel model = new YrModel();
         model.createModel();
@@ -49,8 +52,20 @@ public class YrModel {
         Model weatherModel = model.parse();
         controller.addModel(weatherModel);
 
+        //TODO: Sjekk om du ikke kan lage en superklasse som går over dato
 
-        Weather weather = queries.queryToObject("2018-04-22");
+
+        List<Weather> test = queries.getWeatherListWeek();
+
+        Weather weather = test.get(0);
+        Weather weather2 = test.get(1);
+        System.out.println(weather.getDate());
+        System.out.println(weather2.getDate());
+
+
+
+
+
 
 
     }

@@ -6,6 +6,8 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class WeatherQueries {
 
@@ -19,14 +21,15 @@ public class WeatherQueries {
 
     public ResultSet getWeeklyWeather() {
 
-        String query = "SELECT ?date ?time ?temperature ?windCondition ?windSpeed ?weatherCondition " +
+        String query = "SELECT ?dateTime ?time ?temperature ?windCondition ?windSpeed ?weatherCondition " +
                 "WHERE {" +
                 "?date a we:WeatherCondition." +
-                "?date we:windType ?windCondition;" +
+                "?date we:windType ?windType;" +
                 "      we:hasTemperature ?temperature;" +
                 "      we:hasObservationTime ?time;" +
-                "      we:hasWeatherCondition ?weatherCondition; " +
-                "      we:hasWind ?windSpeed ." +
+                "      we:hasWeatherCondition ?condition; " +
+                "      we:hasWind ?windSpeed;" +
+                "      schema:inDateTime ?dateTime" +
                 "} ORDER BY ?date ?time ";
 
         return controller.runSparql(query);
@@ -41,33 +44,57 @@ public class WeatherQueries {
                 "we:hasTemperature ?temperature; " +
                 "we:hasWeatherCondition ?condition; " +
                 "we:hasWind ?windSpeed;" +
-                "we:windType ?windType. " +
+                "we:windType ?windType; " +
+                "schema:inDateTime ?dateTime. " +
                 "}";
         return controller.runSparql(query);
-        
+    }
+
+    public ResultSet getWeatherDates(){
+        String query = "SELECT ?datetime " +
+                "WHERE { " +
+                "?date a we:WeatherCondition; " +
+                "schema:inDateTime ?datetime." +
+                "} ORDER BY ?datetime";
+        return controller.runSparql(query);
+    }
+
+    public List<Weather> getWeatherListWeek(){
+
+        List<Weather> list = new LinkedList<>();
+        ResultSet weekDates = getWeatherDates();
+        while (weekDates.hasNext()) {
+            QuerySolution qs = weekDates.nextSolution();
+            Weather weather = queryToObject(qs.getLiteral("datetime").toString());
+            list.add(weather);
+        }
+        return list;
     }
 
     public Weather queryToObject(String date) {
         // 
 
         Weather weather = null;
-        ResultSet weatherSet = getWeatherByDay(date);
-        QuerySolution qs = null;
+            ResultSet weatherSet = getWeatherByDay(date);
+            QuerySolution qs = null;
+            if (weatherSet.hasNext()) {
+                try {
+                    qs = weatherSet.nextSolution();
 
-        if (weatherSet.hasNext()) {
-            try {
-                qs = weatherSet.nextSolution();
-            }catch (NullPointerException e){
-                e.printStackTrace();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                weather = new Weather();
+                weather.setDateTime(qs.getLiteral("time").toString());
+                weather.setTemperature(qs.getLiteral("temperature").toString());
+                weather.setWeatherType(qs.getLiteral("condition").toString());
+                weather.setWindSpeed(qs.getLiteral("windSpeed").toString());
+                weather.setWind(qs.getLiteral("windType").toString());
+                weather.setDate(qs.getLiteral("dateTime").toString());
+
             }
-            //weather = new Weather(qs.getLiteral("temperature").toString(), qs.getLiteral("windSpeed").toString(),
-            weather = new Weather();
-            weather.setDateTime(qs.getLiteral("time").toString());
-           //        qs.getLiteral("windType").toString(), qs.getLiteral("condition").toString(), qs.getLiteral("time").toString());
-            System.out.println(qs.getLiteral("time").getString());
+        return weather;
         }
 
-        //    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime, String condition
-        return weather;
     }
-}
+

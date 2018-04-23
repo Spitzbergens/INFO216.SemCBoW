@@ -7,15 +7,25 @@ public class Weather {
     private String wind;
     private String weatherType;
     private String dateTime;
-    private String condition;
+    private String date;
 
-    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime) {
+    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime, String date) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.wind = wind;
         this.weatherType = weatherType;
         this.dateTime = dateTime;
+        this.date = date;
 
+
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Weather(){
