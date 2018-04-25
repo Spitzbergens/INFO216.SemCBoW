@@ -45,6 +45,7 @@ public class WeatherQueries {
                 "we:hasWeatherCondition ?condition; " +
                 "we:hasWind ?windSpeed;" +
                 "we:windType ?windType; " +
+                "we:hasPrecipitation ?precipitation;" +
                 "schema:inDateTime ?dateTime. " +
                 "} ORDER BY ?dateTime ?time";
         return controller.runQuery(query);
@@ -90,6 +91,7 @@ public class WeatherQueries {
                 weather.setWindSpeed(qs.getLiteral("windSpeed").toString());
                 weather.setWind(qs.getLiteral("windType").toString());
                 weather.setDate(qs.getLiteral("dateTime").toString());
+                weather.setPrecipitation(qs.getLiteral("precipitation").toString());
 
             }
         return weather;

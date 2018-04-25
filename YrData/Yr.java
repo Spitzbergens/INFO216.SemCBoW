@@ -29,13 +29,11 @@ public class Yr {
     private ArrayList<String> weatherType = new ArrayList<String>();
     private ArrayList<String> dateObserved = new ArrayList<String>();
     private ArrayList<String> timeObserved = new ArrayList<>();
-
-
-
-
     private ArrayList<String> windspeedType = new ArrayList<String>();
     private ArrayList<String> windSpeedValue = new ArrayList<>();
     private ArrayList<String> temperature = new ArrayList<String>();
+    private ArrayList<String> precipitation = new ArrayList<>();
+    private ArrayList<String> precipitationMax = new ArrayList<>();
     private ArrayList<Integer> idList = new ArrayList<Integer>();
 
 
@@ -104,12 +102,17 @@ public class Yr {
             Node windNode = eElement.getElementsByTagName("windSpeed").item(0);
             Element windTypeElement = (Element) windNode;
 
+            Node precipitationNode = eElement.getElementsByTagName("precipitation").item(0);
+            Element precipitationElement = (Element) precipitationNode;
+
             Node windSpeedNode = eElement.getElementsByTagName("windSpeed").item(0);
             Element windspeedElement = (Element) windSpeedNode;
 
             weatherType.add(symbolElement.getAttribute("name"));
             dateObserved.add(StringUtils.left(eElement.getAttribute("from"), 10));
             timeObserved.add(StringUtils.right(eElement.getAttribute("from"), 8));
+            precipitation.add(precipitationElement.getAttribute("value"));
+            precipitationMax.add(precipitationElement.getAttribute("maxvalue"));
             temperature.add(tempElement.getAttribute("value"));
             windspeedType.add(windTypeElement.getAttribute("name"));
             windSpeedValue.add(windspeedElement.getAttribute("mps"));
@@ -119,6 +122,22 @@ public class Yr {
         System.out.println("All OK");
     }
 
+
+    public ArrayList<String> getPrecipitation() {
+        return precipitation;
+    }
+
+    public void setPrecipitation(ArrayList<String> precipitation) {
+        this.precipitation = precipitation;
+    }
+
+    public ArrayList<String> getPrecipitationMax() {
+        return precipitationMax;
+    }
+
+    public void setPrecipitationMax(ArrayList<String> precipitationMax) {
+        this.precipitationMax = precipitationMax;
+    }
 
     public ArrayList<String> getNametag() {
         return weatherType;

@@ -25,7 +25,8 @@ public class GUIMainController implements Initializable {
     @FXML
     private HBox dateId1, dateId2, dateId3, dateId4, tempCol1, tempCol2, tempCol3, tempCol4,
     conditionCol1, conditionCol2, conditionCol3, conditionCol4, windCol1, windCol2, windCol3, windCol4,
-    windtypeCol1, windtypeCol2, windtypeCol3, windtypeCol4, timeId1, timeId2, timeId3, timeId4;
+    windtypeCol1, windtypeCol2, windtypeCol3, windtypeCol4, timeId1, timeId2, timeId3, timeId4, precipId1, precipId2,
+    precipId3, precipId4;
 
     @FXML
     private Text dateTextId, tempId;
@@ -92,6 +93,10 @@ public class GUIMainController implements Initializable {
         windCol1.getChildren().add(windspeed);
         windspeed.setFill(Color.rgb(58, 58, 58));
 
+        Text precipitation = new Text("Nedbør: " + list.get(0).getPrecipitation() + "mm");
+        precipId1.getChildren().add(precipitation);
+        precipitation.setFill(Color.rgb(58,58,58));
+
      setImageIcon(list, 0);
 
       //  Image image = null;
@@ -130,6 +135,10 @@ public class GUIMainController implements Initializable {
         windCol2.getChildren().add(windspeed);
         windspeed.setFill(Color.rgb(58, 58, 58));
 
+        Text precipitation = new Text("Nedbør: " + list.get(1).getPrecipitation() + "mm");
+        precipId2.getChildren().add(precipitation);
+        precipitation.setFill(Color.rgb(58,58,58));
+
         setImageIcon(list,1);
     }
 
@@ -158,6 +167,10 @@ public class GUIMainController implements Initializable {
         Text windspeed = new Text("Vindstyrke: " + list.get(2).getWindSpeed() + "ms");
         windCol3.getChildren().add(windspeed);
         windspeed.setFill(Color.rgb(58, 58, 58));
+
+        Text precipitation = new Text("Nedbør: " + list.get(2).getPrecipitation() + "mm");
+        precipId3.getChildren().add(precipitation);
+        precipitation.setFill(Color.rgb(58,58,58));
 
         setImageIcon(list, 2);
 
@@ -190,6 +203,10 @@ public class GUIMainController implements Initializable {
         windCol4.getChildren().add(windspeed);
         windspeed.setFill(Color.rgb(58, 58, 58));
 
+        Text precipitation = new Text("Nedbør: " + list.get(3).getPrecipitation() + "mm");
+        precipId4.getChildren().add(precipitation);
+        precipitation.setFill(Color.rgb(58,58,58));
+
         setImageIcon(list, 3);
     }
 
@@ -203,7 +220,7 @@ public class GUIMainController implements Initializable {
         Image image = null;
 
         if (list.get(index).getWeatherType().equals("Skyet")) {
-         image = setImage("GUI/Icons/rain.png");
+         image = setImage("GUI/Icons/cloudy.png");
         }
         else if (list.get(index).getWeatherType().equals("Lettskyet")) {
            image =  setImage("GUI/Icons/lightcloud.png");
@@ -213,6 +230,9 @@ public class GUIMainController implements Initializable {
         }
         else if (list.get(index).getWeatherType().equals("Delvis skyet")) {
            image = setImage("GUI/Icons/partcloud.png");
+        }
+        else if (list.get(index).getWeatherType().equals("Regn") || list.get(index).getWeatherType().equals("Regnbyger")){
+            image = setImage("GUI/Icons/rain.png");
         }
 
             switch (index) {

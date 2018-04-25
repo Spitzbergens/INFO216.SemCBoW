@@ -34,9 +34,6 @@
                   <VBox prefHeight="335.0" prefWidth="108.0">
                      <children>
                         <HBox fx:id="tempCol1" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                           <padding>
-                              <Insets top="5.0" />
-                           </padding>
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
@@ -52,6 +49,11 @@
                            </VBox.margin>
                         </HBox>
                         <HBox fx:id="windtypeCol1" prefHeight="100.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="precipId1" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
@@ -74,7 +76,7 @@
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding></HBox>
-                  <VBox prefHeight="327.0" prefWidth="178.0">
+                  <VBox prefHeight="335.0" prefWidth="178.0">
                      <children>
                         <HBox fx:id="tempCol2" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
@@ -92,6 +94,11 @@
                            </VBox.margin>
                         </HBox>
                         <HBox fx:id="windtypeCol2" prefHeight="100.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="precipId2" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
@@ -115,7 +122,7 @@
                            </HBox.margin>
                         </ImageView>
                      </children></HBox>
-                  <VBox prefHeight="323.0" prefWidth="178.0">
+                  <VBox prefHeight="335.0" prefWidth="178.0">
                      <children>
                         <HBox fx:id="tempCol3" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
@@ -133,6 +140,11 @@
                            </VBox.margin>
                         </HBox>
                         <HBox fx:id="windtypeCol3" prefHeight="100.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="precipId3" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
@@ -159,7 +171,7 @@
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding></HBox>
-                  <VBox prefHeight="323.0" prefWidth="178.0">
+                  <VBox prefHeight="335.0" prefWidth="178.0">
                      <children>
                         <HBox fx:id="tempCol4" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
@@ -177,6 +189,11 @@
                            </VBox.margin>
                         </HBox>
                         <HBox fx:id="windtypeCol4" prefHeight="100.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="precipId4" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>

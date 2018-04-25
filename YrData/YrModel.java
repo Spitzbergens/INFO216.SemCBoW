@@ -30,6 +30,7 @@ public class YrModel {
     private ArrayList<String> weatherName = yr.getNametag();
     private ArrayList<String> date = yr.getFromtag();
     private ArrayList<String> observedAt = yr.getObservedTag();
+    private ArrayList<String> precipitation = yr.getPrecipitation();
 
     // Brukes kun for å hente størrelsen på listen
     private ArrayList<Integer> idList = yr.getIdList();
@@ -53,7 +54,7 @@ public class YrModel {
 
         //TODO: Sjekk om du ikke kan lage en superklasse som går over dato
 
-
+        queries.getWeatherByDay("2018-04-25");
     }
 
 
@@ -83,7 +84,7 @@ public class YrModel {
         Property windSpeedValueProperty = model.createProperty(ontoURI + "hasWind");
         Property observedAtProperty = model.createProperty(ontoURI + "hasObservationTime");
         Property dateProperty = model.createProperty(schemaDate + "inDateTime");
-
+        Property precipitationProperty = model.createProperty(ontoURI + "hasPrecipitation");
         Resource weatherResource = model.createResource(ontoURI + "WeatherCondition");
 
 
@@ -95,6 +96,7 @@ public class YrModel {
                 String weatherConditionItem = weatherName.get(i);
                 String dateItem = date.get(i);
                 String timeItem = observedAt.get(i);
+                String precipitationItem = precipitation.get(i);
 
                 Resource weatherData = model.createResource(schemaDate + dateItem, weatherResource)
                         .addProperty(tempProperty, temperatureItem)
@@ -102,7 +104,10 @@ public class YrModel {
                         .addProperty(windSpeedValueProperty, windSpeedValueItem)
                         .addProperty(weatherProperty, weatherConditionItem)
                         .addProperty(dateProperty, dateItem)
-                        .addLiteral(observedAtProperty, timeItem);
+                        .addProperty(observedAtProperty, timeItem)
+                        .addProperty(precipitationProperty, precipitationItem);
+
+
             }
             return model;
         }

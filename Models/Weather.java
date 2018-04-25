@@ -8,14 +8,19 @@ public class Weather {
     private String weatherType;
     private String dateTime;
     private String date;
+    private String precipitation;
 
-    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime, String date) {
+
+    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime, String date, String
+                   precipitation) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.wind = wind;
         this.weatherType = weatherType;
         this.dateTime = dateTime;
         this.date = date;
+        this.precipitation = precipitation;
+
 
     }
 
@@ -29,6 +34,14 @@ public class Weather {
 
     public Weather(){
 
+    }
+
+    public String getPrecipitation() {
+        return precipitation;
+    }
+
+    public void setPrecipitation(String precipitation) {
+        this.precipitation = precipitation;
     }
 
     public String getTemperature() {
