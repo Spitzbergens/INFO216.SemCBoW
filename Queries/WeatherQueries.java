@@ -32,7 +32,7 @@ public class WeatherQueries {
                 "      schema:inDateTime ?dateTime" +
                 "} ORDER BY ?date ?time ";
 
-        return controller.runSparql(query);
+        return controller.runQuery(query);
 
     }
 
@@ -46,8 +46,8 @@ public class WeatherQueries {
                 "we:hasWind ?windSpeed;" +
                 "we:windType ?windType; " +
                 "schema:inDateTime ?dateTime. " +
-                "}";
-        return controller.runSparql(query);
+                "} ORDER BY ?dateTime ?time";
+        return controller.runQuery(query);
     }
 
     public ResultSet getWeatherDates(){
@@ -56,7 +56,7 @@ public class WeatherQueries {
                 "?date a we:WeatherCondition; " +
                 "schema:inDateTime ?datetime." +
                 "} ORDER BY ?datetime";
-        return controller.runSparql(query);
+        return controller.runQuery(query);
     }
 
     public List<Weather> getWeatherListWeek(){
@@ -72,7 +72,6 @@ public class WeatherQueries {
     }
 
     public Weather queryToObject(String date) {
-        // 
 
         Weather weather = null;
             ResultSet weatherSet = getWeatherByDay(date);

@@ -24,14 +24,15 @@ import java.util.HashMap;
 
 public class Yr {
 
-    public ArrayList<HashMap<String,String>> dataStruct = new ArrayList<HashMap<String, String>>();
     private File file = new File("varsel.xml");
-    long diff = new Date().getTime() - file.lastModified();
+    long difference = new Date().getTime() - file.lastModified();
     private ArrayList<String> weatherType = new ArrayList<String>();
-    private ArrayList<String> weatherTypeEng = new ArrayList<String>();
     private ArrayList<String> dateObserved = new ArrayList<String>();
     private ArrayList<String> timeObserved = new ArrayList<>();
-    private ArrayList<Integer> periodTag = new ArrayList<Integer>();
+
+
+
+
     private ArrayList<String> windspeedType = new ArrayList<String>();
     private ArrayList<String> windSpeedValue = new ArrayList<>();
     private ArrayList<String> temperature = new ArrayList<String>();
@@ -48,13 +49,13 @@ public class Yr {
     public void getWeatherAPI(){
         System.out.println("YR API checking for updates.. ");
 
-        if (diff > 24 * 60 * 60 * 1000){
+        // YRs krav til caching på 10 minutt
+        if (difference > 60000 * 10){
             try {
                 URL weatherAPI = new URL("http://www.yr.no/sted/Norge/Hordaland/Bergen/Bergen/varsel.xml");
                 ReadableByteChannel rbc = Channels.newChannel(weatherAPI.openStream());
                 FileOutputStream fos = new FileOutputStream(file);
                 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-                System.out.println("API updated from:\n" + weatherAPI + "\n");
 
             } catch (Exception e) {
                 System.out.println("Couldn't fint URL to API");
@@ -89,10 +90,6 @@ public class Yr {
 
         NodeList timeNodeList = nodelist.getElementsByTagName("time");
 
-        NodeList weekDayList = nodelist.getElementsByTagName("title");
-
-
-
         for (int i = 0; i < timeNodeList.getLength(); i++) {
 
             Node node = timeNodeList.item(i);
@@ -113,56 +110,15 @@ public class Yr {
             weatherType.add(symbolElement.getAttribute("name"));
             dateObserved.add(StringUtils.left(eElement.getAttribute("from"), 10));
             timeObserved.add(StringUtils.right(eElement.getAttribute("from"), 8));
-            periodTag.add(Integer.parseInt(eElement.getAttribute("period")));
             temperature.add(tempElement.getAttribute("value"));
             windspeedType.add(windTypeElement.getAttribute("name"));
             windSpeedValue.add(windspeedElement.getAttribute("mps"));
             idList.add(1+i);
 
-
-            if (weatherType.contains("Skyet")){
-                weatherTypeEng.add("Cloud");
-
-            } else if (weatherType.contains("Delvis skyet")){
-                weatherTypeEng.add("PartlyCloud");
-
-            } else if (weatherType.contains("Regn")){
-                weatherTypeEng.add("Rain");
-
-            } else if (weatherType.contains("Kraftig Regn")){
-                weatherTypeEng.add("Rain");
-
-            } else if (weatherType.contains("Tåke")){
-                weatherTypeEng.add("Fog");
-
-            } else if (weatherType.contains("Lett regn")){
-                weatherTypeEng.add("Rain");
-
-            } else if (weatherType.contains("Sol")){
-                weatherTypeEng.add("Sun");
-
-            } else if (weatherType.contains("Snø")){
-                weatherTypeEng.add("Snow");
-
-            } else if (weatherType.contains("Sludd")){
-                weatherTypeEng.add("Sleet");
-
-            } else if (weatherType.contains("Hagl")){
-                weatherTypeEng.add("Hail");
-
-            } else if (weatherType.contains("Lyn")){
-                weatherTypeEng.add("Thunder");
-
-            } else {
-                weatherTypeEng.add("Rain");
-            }
-
-
-
-
         }
         System.out.println("All OK");
     }
+
 
     public ArrayList<String> getNametag() {
         return weatherType;
@@ -192,20 +148,7 @@ public class Yr {
         return windspeedType;
     }
 
-    public ArrayList<Integer> getDateTime() {
-        return periodTag;
-    }
 
-
-    /**
-     * Getter for the periodTag arrayList
-     * which is a list containing 0-3 periods of the day.
-     * It is used to limit the weather to one day on mid day.
-     * @return
-     */
-    public ArrayList<Integer> getPeriodTag() {
-        return periodTag;
-    }
 
     /**
      * The temprature arraylist is an array
@@ -217,14 +160,6 @@ public class Yr {
         return temperature;
     }
 
-    /**
-     * the datastruct is a cleaner way of displaying the data stored
-     * in the lists if you want to see it in the terminal output.
-     * @return
-     */
-    public ArrayList<HashMap<String, String>> getDataStruct() {
-        return dataStruct;
-    }
 
     /**
      * Getter for idList, used for giving values in table a unique values.
@@ -240,9 +175,6 @@ public class Yr {
      * To use in ontology.
      * @return nametagEng - ArrayList<String>
      */
-    public ArrayList<String> getNametagEng() {
-        return weatherTypeEng;
-    }
 
     public ArrayList<String> getWindSpeedValue() {
         return windSpeedValue;

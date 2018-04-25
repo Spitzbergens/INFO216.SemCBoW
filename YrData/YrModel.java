@@ -30,13 +30,12 @@ public class YrModel {
     private ArrayList<String> weatherName = yr.getNametag();
     private ArrayList<String> date = yr.getFromtag();
     private ArrayList<String> observedAt = yr.getObservedTag();
+
     // Brukes kun for å hente størrelsen på listen
     private ArrayList<Integer> idList = yr.getIdList();
     int size = idList.size();
-    // brukes kun for å sortere ut tidspunkt
-    private ArrayList<Integer> period = yr.getPeriodTag();
 
-    private Iterator tempIterator = temp.iterator();
+
 
     /**
      * Brukes for testing
@@ -44,28 +43,15 @@ public class YrModel {
      */
     public static void main(String[] args){
         YrModel model = new YrModel();
-        model.createModel();
+        model.createAndParseModel();
         model.writeToFile();
 
         RDFController controller = new RDFController();
         WeatherQueries queries = new WeatherQueries(controller);
-        Model weatherModel = model.parse();
+        Model weatherModel = model.createAndParseModel();
         controller.addModel(weatherModel);
 
         //TODO: Sjekk om du ikke kan lage en superklasse som går over dato
-
-
-        List<Weather> test = queries.getWeatherListWeek();
-
-        Weather weather = test.get(0);
-        Weather weather2 = test.get(1);
-        System.out.println(weather.getDate());
-        System.out.println(weather2.getDate());
-
-
-
-
-
 
 
     }
@@ -82,19 +68,14 @@ public class YrModel {
     }
 
 
-    public Model parse(){
-        createModel();
-        return model;
-    }
 
-    public void createModel(){
+    public Model createAndParseModel(){
 
         String ontoURI = "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#";
         model.setNsPrefix("wo", ontoURI);
 
         String schemaDate = "http://schema.org/Date#";
         model.setNsPrefix("schema", schemaDate);
-
 
         Property weatherProperty = model.createProperty(ontoURI + "hasWeatherCondition");
         Property tempProperty = model.createProperty(ontoURI + "hasTemperature");
@@ -106,9 +87,8 @@ public class YrModel {
         Resource weatherResource = model.createResource(ontoURI + "WeatherCondition");
 
 
-        for (int i = 0; i < size; i++){
-            // Sjekker at tidsrommet er mellom 12 - 18 eller 18 - 00
-            if (period.contains(2) || period.contains(3)){
+        for (int i = 0; i < size; i++) {
+
                 String temperatureItem = temp.get(i);
                 String windSpeedNameItem = windSpeedName.get(i);
                 String windSpeedValueItem = windSpeedValue.get(i);
@@ -122,11 +102,13 @@ public class YrModel {
                         .addProperty(windSpeedValueProperty, windSpeedValueItem)
                         .addProperty(weatherProperty, weatherConditionItem)
                         .addProperty(dateProperty, dateItem)
-                        .addProperty(observedAtProperty, timeItem);
+                        .addLiteral(observedAtProperty, timeItem);
             }
+            return model;
         }
 
-    }
+
+
 
 
     public ArrayList<String> getTemp() {

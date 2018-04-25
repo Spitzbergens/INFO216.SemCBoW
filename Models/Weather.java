@@ -17,7 +17,6 @@ public class Weather {
         this.dateTime = dateTime;
         this.date = date;
 
-
     }
 
     public String getDate() {

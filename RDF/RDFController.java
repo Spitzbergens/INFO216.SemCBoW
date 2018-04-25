@@ -29,7 +29,7 @@ public class RDFController {
         this.model.add(model);
     }
 
-    public ResultSet runSparql(String queryString){
+    public ResultSet runQuery(String queryString){
         queryString = prefix + queryString;
         Query query = null;
         try {
@@ -40,21 +40,14 @@ public class RDFController {
         }
         QueryExecution qe = QueryExecutionFactory.create(query, model);
         ResultSet results = qe.execSelect();
+
+        /**
+         * Bruk denne for å skrive resultatet av en spørring til terminal.
+         * Kommenter ut hvis ikke.
+         */
         //ResultSetFormatter.out(results);
 
         return results;
     }
-
-    public void saveModel(String name, Model model){
-        FileWriter file = null;
-
-        try{
-            file = new FileWriter(name);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        model.write(file, "Turtle");
-    }
-
 
 }
