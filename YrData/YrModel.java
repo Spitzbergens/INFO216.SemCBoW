@@ -1,5 +1,6 @@
 package YrData;
 
+import Clothing.ClothingModel;
 import Models.Weather;
 import Queries.WeatherQueries;
 import RDF.RDFController;
@@ -23,6 +24,7 @@ public class YrModel {
 
     Yr yr = new Yr();
     Model model = createDefaultModel();
+
 
     private ArrayList<String> temp = yr.getTemprature();
     private ArrayList<String> windSpeedValue =  yr.getWindSpeedValue();
@@ -51,6 +53,7 @@ public class YrModel {
         WeatherQueries queries = new WeatherQueries(controller);
         Model weatherModel = model.createAndParseModel();
         controller.addModel(weatherModel);
+
 
         //TODO: Sjekk om du ikke kan lage en superklasse som går over dato
 

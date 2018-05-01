@@ -1,0 +1,292 @@
+{
+  "outerwear": [
+    {
+      "type": "jacket",
+      "rating": 15
+    },
+    {
+      "type": "gloves",
+      "rating": 10
+    },
+    {
+      "type": "coat",
+      "rating": 20
+    },
+    {
+      "type": "windbreaker",
+      "rating": 15
+    },
+    {
+      "type": "winter jacket",
+      "rating": 30
+    },
+    {
+      "type": "spring jacket",
+      "rating": 15
+    },
+    {
+      "type": "insulated flannel",
+      "rating": 10
+    },
+    {
+      "type": "light jacket",
+      "rating": 10
+    },
+    {
+      "type": "light jacket",
+      "rating": 10
+    },
+    {
+      "type": "sunglasses",
+      "rating": 0
+    },
+    {
+      "type": "cap",
+      "rating": 0
+    },
+    {
+      "type": "scarf",
+      "rating": 7
+    }
+  ],
+  "clothes": [
+    {
+      "type": "belt",
+      "rating": 1
+    },
+    {
+      "type": "blazer",
+      "rating": 8
+    },
+    {
+      "type": "blouse",
+      "rating": 3
+    },
+    {
+      "type": "cap",
+      "rating": 3
+    },
+    {
+      "type": "cardigan",
+      "rating": 5
+    },
+    {
+      "type": "cargos" ,
+      "rating": 2
+    },
+    {
+      "type": "coat",
+      "rating": 10
+    },
+    {
+      "type": "dress",
+      "rating": 5
+    },
+    {
+      "type": "dungarees",
+      "rating": 5
+    },
+    {
+      "type": "fleece",
+      "rating": 10
+    },
+    {
+      "type": "hat",
+      "rating": 2
+    },
+    {
+      "type": "hoody",
+      "rating": 7
+    },
+    {
+      "type": "jeans",
+      "rating": 5
+    },
+    {
+      "type": "jogging suit",
+      "rating": 4
+    },
+    {
+      "type": "jumper",
+      "rating": 5
+    },
+    {
+      "type": "pants",
+      "rating": 5
+    },
+    {
+      "type": "polo shirt",
+      "rating": 2
+    },
+    {
+      "type": "poncho",
+      "rating": 5
+    },
+    {
+      "type": "raincoat",
+      "rating": 5
+    },
+    {
+      "type": "romper",
+      "rating": 5
+    },
+    {
+      "type": "shawl",
+      "rating": 2
+    },
+    {
+      "type": "shirt",
+      "rating": 5
+    },
+    {
+      "type": "slacks",
+      "rating": 4
+    },
+    {
+      "type": "socks",
+      "rating": 2
+    },
+    {
+      "type": "wool socks",
+      "rating": 5
+    },
+    {
+      "type": "suit",
+      "rating": 15
+    },
+    {
+      "type": "sunglasses",
+      "rating": 1
+    },
+    {
+      "type": "sweater",
+      "rating": 5
+    },
+    {
+      "type": "sweatshirt",
+      "rating": 7
+    },
+    {
+      "type": "swimming shorts",
+      "rating": 2
+    },
+    {
+      "type": "swimwear",
+      "rating": 2
+    },
+    {
+      "type": "t-shirt",
+      "rating": 3
+    },
+    {
+      "type": "tights",
+      "rating": 4
+    },
+    {
+      "type": "top",
+      "rating": 2
+    },
+    {
+      "type": "trousers",
+      "rating": 1
+    },
+    {
+      "type": "flannel",
+      "rating": 7
+    },
+    {
+      "type": "underclothes",
+      "rating": 5
+    },
+    {
+      "type": "wool underclothes",
+      "rating": 10
+    },
+    {
+      "type": "underpants",
+      "rating": 2
+    },
+    {
+      "type": "underwear",
+      "rating": 2
+    },
+    {
+      "type": "waistcoat",
+      "rating": 4
+    },
+    {
+      "type": "waterproof",
+      "rating": 1
+    },
+    {
+      "type": "zip",
+      "rating": 1
+    }
+  ],
+  "footwear": [
+    {
+      "type": "sneakers",
+      "rating": 5
+    },
+    {
+      "type": "boots",
+      "rating": 10
+    },
+    {
+      "type": "waterproof",
+      "rating": 1
+    },
+    {
+      "type": "dress shoes",
+      "rating": 5
+    },
+    {
+      "type": "slippers",
+      "rating": 5
+    },
+    {
+      "type": "sandals",
+      "rating": 2
+    },
+    {
+      "type": "trainers",
+      "rating": 5
+    },
+    {
+      "type": "running shoes",
+      "rating": 5
+    },
+    {
+      "type": "insulated boots",
+      "rating": 15
+    },
+    {
+      "type": "derby shoes",
+      "rating": 5
+    },
+    {
+      "type": "climbing shoes",
+      "rating": 5
+    },
+    {
+      "type": "hiking shoes",
+      "rating": 10
+    },
+    {
+      "type": "rainboots",
+      "rating": 7
+    },
+    {
+      "type": "winter boots",
+      "rating": 15
+    },
+    {
+      "type": "low top",
+      "rating": 1
+    },
+    {
+      "type": "high top",
+      "rating": 1
+    }
+  ]
+}

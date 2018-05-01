@@ -226,7 +226,7 @@ public class GUIMainController implements Initializable {
            image =  setImage("GUI/Icons/lightcloud.png");
         }
         else if (list.get(index).getWeatherType().equals("Klarvær")) {
-           image = setImage("GUI/Icons/Clear");
+           image = setImage("GUI/Icons/clear.png");
         }
         else if (list.get(index).getWeatherType().equals("Delvis skyet")) {
            image = setImage("GUI/Icons/partcloud.png");

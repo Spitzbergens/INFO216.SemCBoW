@@ -1,35 +1,11 @@
-import Clothing.ClothingData;
-import Clothing.ClothingModel;
-import Queries.WeatherQueries;
-import RDF.RDFController;
-import YrData.Yr;
-import YrData.YrModel;
-import org.apache.jena.rdf.model.Model;
+
+import com.github.jsonldjava.core.JsonLdError;
+
+import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-        Git test
-         */
-
-
-
-
 
 
     }
