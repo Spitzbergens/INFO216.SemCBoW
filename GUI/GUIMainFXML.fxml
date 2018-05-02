@@ -58,7 +58,7 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="210.0" prefWidth="200.0">
+                        <HBox fx:id="clothingRec1" prefHeight="210.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
@@ -103,7 +103,7 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="210.0" prefWidth="200.0">
+                        <HBox fx:id="clothingRec2" prefHeight="210.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
@@ -149,7 +149,7 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="210.0" prefWidth="200.0">
+                        <HBox fx:id="clothingRec3" prefHeight="210.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
@@ -198,7 +198,7 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="210.0" prefWidth="200.0">
+                        <HBox fx:id="clothingRec4" prefHeight="210.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>

@@ -2,16 +2,16 @@ package Models;
 
 public class Weather {
 
-    private String temperature;
-    private String windSpeed;
+    private Integer temperature;
+    private Float windSpeed;
     private String wind;
     private String weatherType;
     private String dateTime;
     private String date;
-    private String precipitation;
+    private Float precipitation;
 
 
-    public Weather(String temperature, String windSpeed, String wind, String weatherType, String dateTime, String date, String
+    public Weather(Integer temperature, Float windSpeed, String wind, String weatherType, String dateTime, String date, Float
                    precipitation) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
@@ -36,27 +36,27 @@ public class Weather {
 
     }
 
-    public String getPrecipitation() {
+    public Float getPrecipitation() {
         return precipitation;
     }
 
-    public void setPrecipitation(String precipitation) {
+    public void setPrecipitation(Float precipitation) {
         this.precipitation = precipitation;
     }
 
-    public String getTemperature() {
+    public Integer getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(Integer temperature) {
         this.temperature = temperature;
     }
 
-    public String getWindSpeed() {
+    public Float getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(String windSpeed) {
+    public void setWindSpeed(Float windSpeed) {
         this.windSpeed = windSpeed;
     }
 

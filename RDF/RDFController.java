@@ -58,7 +58,7 @@ public class RDFController {
          * Bruk denne for å skrive resultatet av en spørring til terminal.
          * Kommenter ut hvis ikke.
          */
-        ResultSetFormatter.out(results);
+        //ResultSetFormatter.out(results);
 
         return results;
     }

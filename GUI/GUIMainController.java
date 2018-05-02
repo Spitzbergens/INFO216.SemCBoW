@@ -1,6 +1,9 @@
 package GUI;
 
 import Models.Weather;
+import Models.Clothing;
+import Clothing.ClothingModel;
+import Queries.ClothingQueries;
 import Queries.WeatherQueries;
 import RDF.RDFController;
 import YrData.YrModel;
@@ -12,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.apache.jena.atlas.iterator.Iter;
 import org.apache.jena.rdf.model.Model;
 
 import java.net.URL;
@@ -26,7 +30,7 @@ public class GUIMainController implements Initializable {
     private HBox dateId1, dateId2, dateId3, dateId4, tempCol1, tempCol2, tempCol3, tempCol4,
     conditionCol1, conditionCol2, conditionCol3, conditionCol4, windCol1, windCol2, windCol3, windCol4,
     windtypeCol1, windtypeCol2, windtypeCol3, windtypeCol4, timeId1, timeId2, timeId3, timeId4, precipId1, precipId2,
-    precipId3, precipId4;
+    precipId3, precipId4, clothingRec1, clothingRec2, clothingRec3, clothingRec4;
 
     @FXML
     private Text dateTextId, tempId;
@@ -38,24 +42,27 @@ public class GUIMainController implements Initializable {
 
 
 
-    private YrModel model = new YrModel();
+    private YrModel yrModel = new YrModel();
+    private ClothingModel clothingModel = new ClothingModel();
     private RDFController controller = new RDFController();
-    private WeatherQueries queries = new WeatherQueries(controller);
-
-
+    private WeatherQueries weatherQueries = new WeatherQueries(controller);
+    private ClothingQueries clothingQueries = new ClothingQueries(controller);
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model.createAndParseModel();
-        model.writeToFile();
+        yrModel.createAndParseModel();
+        yrModel.writeToFile();
 
 
 
-        Model weatherModel = model.createAndParseModel();
+        Model cloModel = clothingModel.readModel();
+        Model weatherModel = yrModel.createAndParseModel();
         controller.addModel(weatherModel);
-        displayElements(queries.getWeatherListWeek());
+        controller.addModel(cloModel);
+        displayElements(weatherQueries.getWeatherListWeek());
+
 
     }
 
@@ -89,23 +96,21 @@ public class GUIMainController implements Initializable {
         windtypeCol1.getChildren().add(wind);
         wind.setFill(Color.rgb(58, 58, 58));
 
-        Text windspeed = new Text("Vindstyrke: " + list.get(0).getWindSpeed() + "ms");
+        Text windspeed = new Text("Vindstyrke: " + list.get(0).getWindSpeed() + " ms");
         windCol1.getChildren().add(windspeed);
         windspeed.setFill(Color.rgb(58, 58, 58));
 
-        Text precipitation = new Text("Nedbør: " + list.get(0).getPrecipitation() + "mm");
+        Text precipitation = new Text("Nedbør: " + list.get(0).getPrecipitation() + " mm");
         precipId1.getChildren().add(precipitation);
         precipitation.setFill(Color.rgb(58,58,58));
 
      setImageIcon(list, 0);
 
-      //  Image image = null;
-       // String conditions = list.get(0).getWeatherType();
-       // if (list.get(0).getWeatherType().equals("skyet")){
-         //   image = new Image("GUI/Icons/rain.png");
-       // }if (conditions.equals("lett skyet")){
-         //   image = new Image("GUI/Icons/lightcloud.png");
-//        }if (conditions.equals())
+     Clothing clothing = setClothingRecommendation(list, 0);
+     Text clothingType = new Text(clothing.getClothingName());
+     clothingRec1.getChildren().add(clothingType);
+
+
 
     }
 
@@ -119,7 +124,7 @@ public class GUIMainController implements Initializable {
         timeId2.getChildren().add(time);
         time.setFill(Color.rgb(58, 58, 58));
 
-        Text temp = new Text("Temperatur " + list.get(1).getTemperature() + " grader");
+        Text temp = new Text("Temperatur: " + list.get(1).getTemperature() + " grader");
         tempCol2.getChildren().add(temp);
         temp.setFill(Color.rgb(58, 58, 58));
 
@@ -152,7 +157,7 @@ public class GUIMainController implements Initializable {
         timeId3.getChildren().add(time);
         time.setFill(Color.rgb(58, 58, 58));
 
-        Text temp = new Text("Temperatur " + list.get(2).getTemperature() + " grader");
+        Text temp = new Text("Temperatur: " + list.get(2).getTemperature() + " grader");
         tempCol3.getChildren().add(temp);
         temp.setFill(Color.rgb(58, 58, 58));
 
@@ -174,6 +179,32 @@ public class GUIMainController implements Initializable {
 
         setImageIcon(list, 2);
 
+        Clothing clothing = setClothingRecommendation(list, 2);
+
+        Text clothingType = new Text("Klær: " + clothing.getClothingName());
+        clothingRec3.getChildren().add(clothingType);
+        clothingType.setFill(Color.rgb(58, 58, 58));
+
+
+    }
+
+    public Clothing setClothingRecommendation(List<Weather> wList,  int index){
+        Clothing clothing = null;
+
+            if (wList.get(index).getWeatherType().equals("Skyet") || wList.get(index).getWeatherType().equals("Lettskyet")){
+                clothing = clothingQueries.queryToObject("Cloudy");
+            }else if(wList.get(index).getWeatherType().equals("Klarvær")){
+                clothing = clothingQueries.queryToObject("Clear");
+            }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger")){
+                clothing = clothingQueries.queryToObject("Wet");
+            }else if(wList.get(index).getWeatherType().equals("Delvis skyet")){
+                clothing = clothingQueries.queryToObject("Dry");
+            }else if(wList.get(index).getTemperature() <= 10){
+                clothing = clothingQueries.queryToObject("Cold");
+            }else if(wList.get(index).getTemperature() >= 10){
+                clothing = clothingQueries.queryToObject("Hot");
+            }
+            return clothing;
 
     }
 
@@ -187,7 +218,7 @@ public class GUIMainController implements Initializable {
         timeId4.getChildren().add(time);
         time.setFill(Color.rgb(58, 58, 58));
 
-        Text temp = new Text("Temperatur " + list.get(3).getTemperature() + " grader");
+        Text temp = new Text("Temperatur: " + list.get(3).getTemperature() + " grader");
         tempCol4.getChildren().add(temp);
         temp.setFill(Color.rgb(58, 58, 58));
 
@@ -231,7 +262,8 @@ public class GUIMainController implements Initializable {
         else if (list.get(index).getWeatherType().equals("Delvis skyet")) {
            image = setImage("GUI/Icons/partcloud.png");
         }
-        else if (list.get(index).getWeatherType().equals("Regn") || list.get(index).getWeatherType().equals("Regnbyger")){
+        else if (list.get(index).getWeatherType().equals("Regn") || list.get(index).getWeatherType().equals("Regnbyger")
+                || list.get(index).getWeatherType().equals("Kraftig regn")){
             image = setImage("GUI/Icons/rain.png");
         }
 

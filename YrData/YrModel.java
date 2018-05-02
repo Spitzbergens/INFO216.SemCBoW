@@ -93,22 +93,22 @@ public class YrModel {
 
         for (int i = 0; i < size; i++) {
 
-                String temperatureItem = temp.get(i);
+                Integer temperatureItem = Integer.parseInt(temp.get(i));
                 String windSpeedNameItem = windSpeedName.get(i);
-                String windSpeedValueItem = windSpeedValue.get(i);
+                Float windSpeedValueItem = Float.parseFloat(windSpeedValue.get(i));
                 String weatherConditionItem = weatherName.get(i);
                 String dateItem = date.get(i);
                 String timeItem = observedAt.get(i);
-                String precipitationItem = precipitation.get(i);
+                Float precipitationItem = Float.parseFloat(precipitation.get(i));
 
                 Resource weatherData = model.createResource(schemaDate + dateItem, weatherResource)
-                        .addProperty(tempProperty, temperatureItem)
+                        .addLiteral(tempProperty, temperatureItem)
                         .addProperty(windSpeedProperty, windSpeedNameItem)
-                        .addProperty(windSpeedValueProperty, windSpeedValueItem)
+                        .addLiteral(windSpeedValueProperty, windSpeedValueItem)
                         .addProperty(weatherProperty, weatherConditionItem)
                         .addProperty(dateProperty, dateItem)
                         .addProperty(observedAtProperty, timeItem)
-                        .addProperty(precipitationProperty, precipitationItem);
+                        .addLiteral(precipitationProperty, precipitationItem);
 
 
             }

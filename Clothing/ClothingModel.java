@@ -1,6 +1,7 @@
 package Clothing;
 
 import Queries.ClothingQueries;
+import Models.Clothing;
 import RDF.RDFController;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -22,7 +23,8 @@ public class ClothingModel {
         ClothingQueries queries = new ClothingQueries(controller);
         Model clothingModel = model.readModel();
         controller.addModel(clothingModel);
-        queries.queryClothingForWeather();
+        Clothing clothing = queries.queryToObject("Hot");
+
 
 
     }

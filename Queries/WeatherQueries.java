@@ -86,12 +86,12 @@ public class WeatherQueries {
                 }
                 weather = new Weather();
                 weather.setDateTime(qs.getLiteral("time").toString());
-                weather.setTemperature(qs.getLiteral("temperature").toString());
+                weather.setTemperature(qs.getLiteral("temperature").getInt());
                 weather.setWeatherType(qs.getLiteral("condition").toString());
-                weather.setWindSpeed(qs.getLiteral("windSpeed").toString());
+                weather.setWindSpeed(qs.getLiteral("windSpeed").getFloat());
                 weather.setWind(qs.getLiteral("windType").toString());
                 weather.setDate(qs.getLiteral("dateTime").toString());
-                weather.setPrecipitation(qs.getLiteral("precipitation").toString());
+                weather.setPrecipitation(qs.getLiteral("precipitation").getFloat());
 
             }
         return weather;

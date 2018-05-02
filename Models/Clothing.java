@@ -5,8 +5,8 @@ import java.util.List;
 public class Clothing {
 
     private String clothingName;
-    private List<String> fitsSeasons;
-    private List<String> fitsCondition;
+    private String fitsSeasons;
+    private String fitsCondition;
     private Integer warmthValue;
 
     public Clothing(String clothingName, Integer warmthValue) {
@@ -15,19 +15,23 @@ public class Clothing {
         this.warmthValue = warmthValue;
     }
 
-    public List<String> getFitsSeasons() {
+    public Clothing(){
+
+    }
+
+    public String getFitsSeasons() {
         return fitsSeasons;
     }
 
-    public void setFitsSeasons(List<String> fitsSeasons) {
+    public void setFitsSeasons(String fitsSeasons) {
         this.fitsSeasons = fitsSeasons;
     }
 
-    public List<String> getFitsCondition() {
+    public String getFitsCondition() {
         return fitsCondition;
     }
 
-    public void setFitsCondition(List<String> fitsCondition) {
+    public void setFitsCondition(String fitsCondition) {
         this.fitsCondition = fitsCondition;
     }
 
