@@ -13,28 +13,25 @@ import java.io.FileNotFoundException;
 public class ClothingModel {
 
     public ClothingModel(){
-        readAndWriteModel();
+        readModel();
     }
 
     public static void main(String[] args){
         ClothingModel model = new ClothingModel();
         RDFController controller = new RDFController();
         ClothingQueries queries = new ClothingQueries(controller);
-        Model clothingModel = model.readAndWriteModel();
+        Model clothingModel = model.readModel();
         controller.addModel(clothingModel);
-        queries.queryAll();
+        queries.queryClothingForWeather();
 
 
     }
 
-    public Model readAndWriteModel(){
+    public Model readModel(){
         Model model = ModelFactory.createDefaultModel();
-        try {
-            model.read(new FileInputStream("/Users/Mats/IdeaProjects/INFO216.SemCBOW/src/ClothingOntology/semantic-clothing.ttl"), "http://ex.org/", "TURTLE");
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
+        model.read("Clothing/semcloth.ttl", "Turtle");
         return model;
-
     }
 }
+
+//"/Users/Mats/IdeaProjects/INFO216.SemCBOW/src/ClothingOntology/semcloth.ttl"), "http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#", "TURTLE"

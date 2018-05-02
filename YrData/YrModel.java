@@ -57,7 +57,7 @@ public class YrModel {
 
         //TODO: Sjekk om du ikke kan lage en superklasse som går over dato
 
-        queries.getWeatherByDay("2018-04-25");
+        queries.getWeatherByDay("2018-05-02");
     }
 
 
