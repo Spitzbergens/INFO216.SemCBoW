@@ -48,6 +48,8 @@ public class GUIMainController implements Initializable {
     private RDFController controller = new RDFController();
     private WeatherQueries weatherQueries = new WeatherQueries(controller);
     private ClothingQueries clothingQueries = new ClothingQueries(controller);
+    private ResourceBundle labels = ResourceBundle.getBundle("langProp", Locale.forLanguageTag("no"));
+
 
 
 
@@ -97,28 +99,29 @@ public class GUIMainController implements Initializable {
         windtypeCol1.getChildren().add(wind);
         wind.setFill(Color.rgb(58, 58, 58));
 
-        Text windspeed = new Text("Vindstyrke: " + list.get(0).getWindSpeed() + " ms");
+        Text windspeed = new Text("Vindstyrke: " + list.get(0).getWindSpeed() + "ms");
         windCol1.getChildren().add(windspeed);
         windspeed.setFill(Color.rgb(58, 58, 58));
 
-        Text precipitation = new Text("Nedbør: " + list.get(0).getPrecipitation() + " mm");
+        Text precipitation = new Text("Nedbør: " + list.get(0).getPrecipitation() + "mm");
         precipId1.getChildren().add(precipitation);
         precipitation.setFill(Color.rgb(58,58,58));
 
      setImageIcon(list, 0);
 
      MensClothing clothing = setMensClothingRecommendation(list, 0);
-     Text clothingType = new Text("Forslag menn: " +clothing.getGarment() + "\n" +
-     "Skotøy: " + clothing.getShoe());
-
      WomensClothing womensClothing = setWomensClothingRecommendation(list, 0);
-     Text womensClothingText = new Text("Forslag kvinner: " + womensClothing.getGarment() + "\n" +
-     "Skotøy: " + clothing.getShoe());
+
+     Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+     "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+
+     Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+     "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
 
      Accessories accessories = setAccessoriesRecommendation(list, 0);
-     Text accessoriesText = new Text("Kan lurt å ta med " + accessories.getAccessory());
+     Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
 
-     mensRec1.getChildren().add(clothingType);
+     mensRec1.getChildren().add(mensClothingText);
      womensRec1.getChildren().add(womensClothingText);
      accRec1.getChildren().add(accessoriesText);
 
@@ -159,6 +162,23 @@ public class GUIMainController implements Initializable {
         precipitation.setFill(Color.rgb(58,58,58));
 
         setImageIcon(list,1);
+
+
+        MensClothing clothing = setMensClothingRecommendation(list, 1);
+        WomensClothing womensClothing = setWomensClothingRecommendation(list, 1);
+        Accessories accessories = setAccessoriesRecommendation(list, 1);
+
+        Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+
+        Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+                "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+
+        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+
+        mensRec2.getChildren().add(mensClothingText);
+        womensRec2.getChildren().add(womensClothingText);
+        accRec2.getChildren().add(accessoriesText);
     }
 
     public void setInfoToCol3(List<Weather> list){
@@ -193,11 +213,21 @@ public class GUIMainController implements Initializable {
 
         setImageIcon(list, 2);
 
-        Clothing clothing = setClothingRecommendation(list, 2);
+        MensClothing clothing = setMensClothingRecommendation(list, 2);
+        WomensClothing womensClothing = setWomensClothingRecommendation(list, 2);
+        Accessories accessories = setAccessoriesRecommendation(list, 2);
 
-        Text clothingType = new Text("Klær: " + clothing.getClothingName());
+        Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
 
-        clothingType.setFill(Color.rgb(58, 58, 58));
+        Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+                "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+
+        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+
+        mensRec3.getChildren().add(mensClothingText);
+        womensRec3.getChildren().add(womensClothingText);
+        accRec3.getChildren().add(accessoriesText);
 
     }
 
@@ -256,7 +286,7 @@ public class GUIMainController implements Initializable {
              accessories = clothingQueries.accessoriesToObject("Cloudy", getSeasons(wList, index));
          }else if(wList.get(index).getWeatherType().equals("Klarvær")){
              accessories = clothingQueries.accessoriesToObject("Clear", getSeasons(wList, index));
-         }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn")){
+         }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")){
              accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
          }else if(wList.get(index).getTemperature() <= 8){
              accessories = clothingQueries.accessoriesToObject("Cold" , getSeasons(wList, index));
@@ -274,7 +304,7 @@ public class GUIMainController implements Initializable {
                 clothing = clothingQueries.queryToObject("Cloudy");
             }else if(wList.get(index).getWeatherType().equals("Klarvær")){
                 clothing = clothingQueries.queryToObject("Clear");
-            }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger")){
+            }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Lett regn")){
                 clothing = clothingQueries.queryToObject("Wet");
             }else if(wList.get(index).getWeatherType().equals("Delvis skyet")){
                 clothing = clothingQueries.queryToObject("Dry");
@@ -318,6 +348,22 @@ public class GUIMainController implements Initializable {
         precipitation.setFill(Color.rgb(58,58,58));
 
         setImageIcon(list, 3);
+
+        MensClothing clothing = setMensClothingRecommendation(list, 3);
+        WomensClothing womensClothing = setWomensClothingRecommendation(list, 3);
+        Accessories accessories = setAccessoriesRecommendation(list, 3);
+
+        Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+
+        Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+                "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+
+        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+
+        mensRec4.getChildren().add(mensClothingText);
+        womensRec4.getChildren().add(womensClothingText);
+        accRec4.getChildren().add(accessoriesText);
     }
 
     public Image setImage(String url){
@@ -357,6 +403,8 @@ public class GUIMainController implements Initializable {
                     imageId4.setImage(image);
             }
         }
+
+
     }
 
 

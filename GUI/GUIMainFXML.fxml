@@ -22,7 +22,7 @@
       </Label>
       <HBox alignment="CENTER" layoutX="6.0" layoutY="245.0" prefHeight="424.0" prefWidth="1097.0" spacing="15.0">
          <children>
-            <VBox prefHeight="0.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #cccccc#cccccc;">
                <children>
                   <VBox fx:id="iconbox1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -31,7 +31,7 @@
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding></VBox>
-                  <VBox prefHeight="335.0" prefWidth="108.0">
+                  <VBox prefHeight="302.0" prefWidth="250.0">
                      <children>
                         <HBox fx:id="tempCol1" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <VBox.margin>
@@ -58,16 +58,16 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="clothingRec1" prefHeight="210.0" prefWidth="200.0">
+                        <HBox fx:id="clothingRec1" alignment="CENTER" prefHeight="210.0" prefWidth="221.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
                            <children>
-                              <VBox prefHeight="142.0" prefWidth="246.0">
+                              <VBox alignment="CENTER" prefHeight="145.0" prefWidth="243.0">
                                  <children>
                                     <HBox fx:id="mensRec1" prefHeight="100.0" prefWidth="200.0" />
                                     <HBox fx:id="womensRec1" prefHeight="100.0" prefWidth="200.0" />
-                                    <HBox fx:id="accRec1" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="accRec1" prefHeight="100.0" prefWidth="243.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -76,7 +76,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #cccccc#cccccc;">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -125,7 +125,7 @@
                                  <children>
                                     <HBox fx:id="mensRec2" prefHeight="100.0" prefWidth="208.0" />
                                     <HBox fx:id="womensRec2" prefHeight="100.0" prefWidth="200.0" />
-                                    <HBox fx:id="AccRec2" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="accRec2" prefHeight="100.0" prefWidth="200.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -134,7 +134,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #cccccc#cccccc;">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -189,7 +189,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #cccccc#cccccc;">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
