@@ -1,12 +1,12 @@
 package GUI;
 
-import Models.Weather;
-import Models.Clothing;
+import Models.*;
 import Clothing.ClothingModel;
 import Queries.ClothingQueries;
 import Queries.WeatherQueries;
 import RDF.RDFController;
 import YrData.YrModel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -30,7 +30,8 @@ public class GUIMainController implements Initializable {
     private HBox dateId1, dateId2, dateId3, dateId4, tempCol1, tempCol2, tempCol3, tempCol4,
     conditionCol1, conditionCol2, conditionCol3, conditionCol4, windCol1, windCol2, windCol3, windCol4,
     windtypeCol1, windtypeCol2, windtypeCol3, windtypeCol4, timeId1, timeId2, timeId3, timeId4, precipId1, precipId2,
-    precipId3, precipId4, clothingRec1, clothingRec2, clothingRec3, clothingRec4;
+    precipId3, precipId4, mensRec1, womensRec1, mensRec2, womensRec2, mensRec3, womensRec3, mensRec4, womensRec4,
+            accRec1, accRec2, accRec3, accRec4;
 
     @FXML
     private Text dateTextId, tempId;
@@ -106,9 +107,22 @@ public class GUIMainController implements Initializable {
 
      setImageIcon(list, 0);
 
-     Clothing clothing = setClothingRecommendation(list, 0);
-     Text clothingType = new Text(clothing.getClothingName());
-     clothingRec1.getChildren().add(clothingType);
+     MensClothing clothing = setMensClothingRecommendation(list, 0);
+     Text clothingType = new Text("Forslag menn: " +clothing.getGarment() + "\n" +
+     "Skotøy: " + clothing.getShoe());
+
+     WomensClothing womensClothing = setWomensClothingRecommendation(list, 0);
+     Text womensClothingText = new Text("Forslag kvinner: " + womensClothing.getGarment() + "\n" +
+     "Skotøy: " + clothing.getShoe());
+
+     Accessories accessories = setAccessoriesRecommendation(list, 0);
+     Text accessoriesText = new Text("Kan lurt å ta med " + accessories.getAccessory());
+
+     mensRec1.getChildren().add(clothingType);
+     womensRec1.getChildren().add(womensClothingText);
+     accRec1.getChildren().add(accessoriesText);
+
+
 
 
 
@@ -182,11 +196,76 @@ public class GUIMainController implements Initializable {
         Clothing clothing = setClothingRecommendation(list, 2);
 
         Text clothingType = new Text("Klær: " + clothing.getClothingName());
-        clothingRec3.getChildren().add(clothingType);
+
         clothingType.setFill(Color.rgb(58, 58, 58));
 
+    }
+
+    public String getSeasons(List<Weather> wList, int index){
+
+        String seasons = null;
+        if (wList.get(index).getDate().substring(5,7).equals("01") || wList.get(index).getDate().substring(5,7).equals("02") || wList.get(index).getDate().substring(5,7).equals("12")){
+            seasons = "Winter";
+        }else if( wList.get(index).getDate().substring(5,7).equals("04") || wList.get(index).getDate().substring(5,7).equals("05") || wList.get(index).getDate().substring(5,7).equals("03")){
+            seasons = "Spring";
+        }else if(wList.get(index).getDate().substring(5,7).equals("06") || wList.get(index).getDate().substring(5,7).equals("07") || wList.get(index).getDate().substring(5,7).equals("08")){
+            seasons = "Summer";
+        }else if(wList.get(index).getDate().substring(5,7).equals("09") || wList.get(index).getDate().substring(5,7).equals("10") || wList.get(index).getDate().substring(5,7).equals("11")){
+            seasons = "Autumn";
+        }
+        return seasons;
 
     }
+
+    public MensClothing setMensClothingRecommendation(List<Weather> wList, int index){
+        MensClothing mensClothing = null;
+
+        if (wList.get(index).getWeatherType().equals("Skyet") || wList.get(index).getWeatherType().equals("Lettskyet") || wList.get(index).getWeatherType().equals("Delvis skyet")){
+            mensClothing = clothingQueries.mensToObject("Cloudy", getSeasons(wList, index));
+        }else if(wList.get(index).getWeatherType().equals("Klarvær")){
+            mensClothing = clothingQueries.mensToObject("Clear", getSeasons(wList, index));
+        }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn")){
+            mensClothing = clothingQueries.mensToObject("Wet", getSeasons(wList, index));
+        }else if(wList.get(index).getTemperature() <= 8){
+            mensClothing = clothingQueries.mensToObject("Cold" , getSeasons(wList, index));
+        }else if (wList.get(index).getTemperature() >= 15){
+            mensClothing = clothingQueries.mensToObject("Hot" , getSeasons(wList, index));
+        }
+        return mensClothing;
+    }
+     public WomensClothing setWomensClothingRecommendation(List<Weather> wList, int index){
+        WomensClothing womensClothing = null;
+
+         if (wList.get(index).getWeatherType().equals("Skyet") || wList.get(index).getWeatherType().equals("Lettskyet") || wList.get(index).getWeatherType().equals("Delvis skyet")){
+             womensClothing = clothingQueries.womensToObject("Cloudy", getSeasons(wList, index));
+         }else if(wList.get(index).getWeatherType().equals("Klarvær")){
+             womensClothing = clothingQueries.womensToObject("Clear", getSeasons(wList, index));
+         }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")){
+             womensClothing = clothingQueries.womensToObject("Wet", getSeasons(wList, index));
+         }else if(wList.get(index).getTemperature() <= 8){
+             womensClothing = clothingQueries.womensToObject("Cold" , getSeasons(wList, index));
+         }else if (wList.get(index).getTemperature() >= 15){
+             womensClothing = clothingQueries.womensToObject("Hot" , getSeasons(wList, index));
+         }
+         return womensClothing;
+     }
+
+     public Accessories setAccessoriesRecommendation(List<Weather> wList, int index){
+        Accessories accessories = null;
+         if (wList.get(index).getWeatherType().equals("Skyet") || wList.get(index).getWeatherType().equals("Lettskyet") || wList.get(index).getWeatherType().equals("Delvis skyet")){
+             accessories = clothingQueries.accessoriesToObject("Cloudy", getSeasons(wList, index));
+         }else if(wList.get(index).getWeatherType().equals("Klarvær")){
+             accessories = clothingQueries.accessoriesToObject("Clear", getSeasons(wList, index));
+         }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn")){
+             accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+         }else if(wList.get(index).getTemperature() <= 8){
+             accessories = clothingQueries.accessoriesToObject("Cold" , getSeasons(wList, index));
+         }else if (wList.get(index).getTemperature() >= 15){
+             accessories = clothingQueries.accessoriesToObject("Hot" , getSeasons(wList, index));
+         }
+         return accessories;
+
+     }
 
     public Clothing setClothingRecommendation(List<Weather> wList,  int index){
         Clothing clothing = null;
@@ -263,7 +342,7 @@ public class GUIMainController implements Initializable {
            image = setImage("GUI/Icons/partcloud.png");
         }
         else if (list.get(index).getWeatherType().equals("Regn") || list.get(index).getWeatherType().equals("Regnbyger")
-                || list.get(index).getWeatherType().equals("Kraftig regn")){
+                || list.get(index).getWeatherType().equals("Kraftig regn") || list.get(index).getWeatherType().equals("Lett regn")){
             image = setImage("GUI/Icons/rain.png");
         }
 

@@ -1,5 +1,6 @@
 package Clothing;
 
+import Models.MensClothing;
 import Queries.ClothingQueries;
 import Models.Clothing;
 import RDF.RDFController;
@@ -23,7 +24,11 @@ public class ClothingModel {
         ClothingQueries queries = new ClothingQueries(controller);
         Model clothingModel = model.readModel();
         controller.addModel(clothingModel);
-        Clothing clothing = queries.queryToObject("Hot");
+        MensClothing mensClothing = queries.mensToObject("Wet", "Spring");
+
+
+        System.out.println(mensClothing.getGarment());
+        System.out.println(mensClothing.getShoe());
 
 
 

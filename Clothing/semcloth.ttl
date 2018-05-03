@@ -1093,9 +1093,14 @@ sc:Boots rdf:type owl:NamedIndividual ,
                   sc:Shoes ;
          sc:isSuitableToBeDressedByGenre dbr:Female ,
                                          dbr:Male ;
-         sc:isSuitableToBeDressedInSeason dbr:Winter ;
+         sc:isSuitableToBeDressedInSeason dbr:Autumn ,
+                                          dbr:Spring ,
+                                          dbr:Summer ,
+                                          dbr:Winter ;
          sc:isSuitableToBeDressedOnWeather dbr:Cold ,
+                                           sc:Clear ,
                                            sc:Cloudy ,
+                                           sc:Dry ,
                                            sc:Wet ;
          sc:hasWarmth 10 .
 
@@ -1144,9 +1149,11 @@ sc:Coat rdf:type owl:NamedIndividual ;
         sc:isSuitableToBeDressedByGenre dbr:Female ,
                                         dbr:Male ;
         sc:isSuitableToBeDressedInSeason dbr:Autumn ,
+                                         dbr:Spring ,
                                          dbr:Winter ;
         sc:isSuitableToBeDressedOnWeather dbr:Cold ,
                                           sc:Clear ,
+                                          sc:Cloudy ,
                                           sc:Dry ;
         sc:hasWarmth 15 .
 
@@ -1361,7 +1368,8 @@ sc:Scarf rdf:type owl:NamedIndividual ;
                                          dbr:Male ;
          sc:isSuitableToBeDressedInSeason dbr:Autumn ,
                                           dbr:Winter ;
-         sc:isSuitableToBeDressedOnWeather dbr:Cold .
+         sc:isSuitableToBeDressedOnWeather dbr:Cold ,
+                                           sc:Dry .
 
 
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Shirt
@@ -1402,6 +1410,7 @@ sc:Sneakers rdf:type owl:NamedIndividual ;
                                              dbr:Spring ,
                                              dbr:Summer ;
             sc:isSuitableToBeDressedOnWeather sc:Clear ,
+                                              sc:Cloudy ,
                                               sc:Dry ,
                                               sc:Hot ;
             sc:hasWarmth 5 .
@@ -1430,14 +1439,16 @@ sc:Suit rdf:type owl:NamedIndividual ;
 sc:Sunglasses rdf:type owl:NamedIndividual ;
               sc:isSuitableToBeDressedByGenre dbr:Female ,
                                               dbr:Male ;
-              sc:isSuitableToBeDressedInSeason dbr:Summer ;
+              sc:isSuitableToBeDressedInSeason dbr:Autumn ,
+                                               dbr:Spring ,
+                                               dbr:Summer ,
+                                               dbr:Winter ;
               sc:isSuitableToBeDressedOnWeather sc:Clear ,
                                                 sc:Hot .
 
 
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#T-shirt
-sc:T-shirt rdf:type owl:NamedIndividual ,
-                    sc:TShirt ;
+sc:T-shirt rdf:type owl:NamedIndividual ;
            sc:isSuitableToBeDressedByGenre dbr:Female ,
                                            dbr:Male ;
            sc:isSuitableToBeDressedInSeason dbr:Spring ,
@@ -1445,7 +1456,7 @@ sc:T-shirt rdf:type owl:NamedIndividual ,
            sc:isSuitableToBeDressedOnWeather sc:Clear ,
                                              sc:Dry ,
                                              sc:Hot ;
-           rdfs:label "T-Shirt" .
+           rdfs:label "T-shirt" .
 
 
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Thin_Jacket

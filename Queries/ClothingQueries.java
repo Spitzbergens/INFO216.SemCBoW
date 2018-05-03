@@ -1,7 +1,11 @@
 package Queries;
 
+import Models.Accessories;
 import Models.Clothing;
+import Models.MensClothing;
+import Models.WomensClothing;
 import RDF.RDFController;
+import org.apache.jena.query.Query;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
@@ -48,6 +52,75 @@ public class ClothingQueries {
         return controller.runQuery(query);
     }
 
+    public ResultSet queryMensClothing(String condition, String season){
+        String query = "SELECT ?mensClothing ?shoeLabel ?conditionLabel ?seasonLabel " +
+                "WHERE { " +
+                "  " +
+                "  ?garment rdfs:subClassOf dbr:Clothing;         " +
+                "     sc:isSuitableToBeDressedInSeason ?season; " +
+                "            rdfs:label ?mensClothing; " +
+                "            sc:isSuitableToBeDressedOnWeather ?condition; " +
+                "            sc:isSuitableToBeDressedByGenre dbr:Male. " +
+                "   " +
+                "  ?shoes rdfs:subClassOf sc:Shoes; " +
+                "         rdfs:label ?shoeLabel; " +
+                "         sc:isSuitableToBeDressedByGenre dbr:Male; " +
+                "         sc:isSuitableToBeDressedOnWeather ?condition; " +
+                "         sc:isSuitableToBeDressedInSeason ?season. " +
+                "            " +
+                "  ?season rdfs:label ?seasonLabel. " +
+                "  ?condition rdfs:label ?conditionLabel. " +
+                " " +
+                "    FILTER (?conditionLabel = \"" + condition + "\" && ?seasonLabel = \"" + season + "\") " +
+                "}";
+
+        return controller.runQuery(query);
+    }
+
+    public ResultSet queryWomensClothing(String condition, String season){
+        String query = "SELECT ?womensClothing ?shoeLabel ?conditionLabel ?seasonLabel " +
+                "WHERE { " +
+                "            " +
+                "?garment rdfs:subClassOf dbr:Clothing;  " +
+                "         sc:isSuitableToBeDressedInSeason ?season; " +
+                "         rdfs:label ?womensClothing; " +
+                "         sc:isSuitableToBeDressedOnWeather ?condition;" +
+                "         sc:isSuitableToBeDressedByGenre dbr:Female. " +
+                "        " +
+                "?shoes rdfs:subClassOf sc:Shoes; " +
+                "       rdfs:label ?shoeLabel; " +
+                "       sc:isSuitableToBeDressedByGenre dbr:Female; " +
+                "       sc:isSuitableToBeDressedOnWeather ?condition;  " +
+                "       sc:isSuitableToBeDressedInSeason ?season. " +
+                "               " +
+                "?season rdfs:label ?seasonLabel. " +
+                "?condition rdfs:label ?conditionLabel. " +
+                "               " +
+                "  " +
+                "  FILTER (?conditionLabel = \"" + condition +"\" && ?seasonLabel = \"" + season + "\") " +
+                "}";
+
+        return controller.runQuery(query);
+
+    }
+
+    public ResultSet queryAccessories(String weatherCondition, String season){
+        String query = "SELECT ?accessoryLabel ?conditionLabel ?seasonLabel " +
+                "WHERE { " +
+                "   " +
+                "  ?accessory rdfs:subClassOf sc:Accessory; " +
+                "             rdfs:label ?accessoryLabel; " +
+                "             sc:isSuitableToBeDressedOnWeather ?weather; " +
+                "             sc:isSuitableToBeDressedInSeason ?season. " +
+                "  ?weather rdfs:label ?conditionLabel. " +
+                "  ?season rdfs:label ?seasonLabel. " +
+                "   " +
+                "  FILTER (?conditionLabel = \""+ weatherCondition + "\" " + " && ?seasonLabel = \"" + season + "\") " +
+                "  " +
+                "}";
+        return controller.runQuery(query);
+    }
+
     public List<Clothing> getClothingByWeather(String weatherCondition){
         List<Clothing> list = new LinkedList<>();
         ResultSet ObjectSet = queryClothingForWeather(weatherCondition);
@@ -57,6 +130,64 @@ public class ClothingQueries {
             list.add(clothing);
         }
         return list;
+    }
+
+    public MensClothing mensToObject(String weatherCondition, String season){
+        MensClothing mensClothing = null;
+        ResultSet clothingSet = queryMensClothing(weatherCondition, season);
+        QuerySolution qs = null;
+        if (clothingSet.hasNext()){
+            try{
+                qs = clothingSet.nextSolution();
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            mensClothing = new MensClothing();
+            mensClothing.setGarment(qs.getLiteral("mensClothing").toString());
+            mensClothing.setShoe(qs.getLiteral("shoeLabel").toString());
+            mensClothing.setFitsCondition(qs.getLiteral("conditionLabel").toString());
+            mensClothing.setFitsSeason(qs.getLiteral("seasonLabel").toString());
+        }
+        return mensClothing;
+    }
+
+    public WomensClothing womensToObject(String weatherCondition, String season){
+        WomensClothing womensClothing = null;
+        ResultSet clothingSet = queryWomensClothing(weatherCondition, season);
+        QuerySolution qs = null;
+        if (clothingSet.hasNext()){
+            try{
+                qs = clothingSet.nextSolution();
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            // ?womensClothing ?shoeLabel ?conditionLabel ?seasonLabel
+            womensClothing = new WomensClothing();
+            womensClothing.setGarment(qs.getLiteral("womensClothing").toString());
+            womensClothing.setShoe(qs.getLiteral("shoeLabel").toString());
+            womensClothing.setFitsCondition(qs.getLiteral("conditionLabel").toString());
+            womensClothing.setFitsSeason(qs.getLiteral("seasonLabel").toString());
+        }
+        return womensClothing;
+    }
+
+    public Accessories accessoriesToObject(String weatherCondition, String season){
+        Accessories accessories = null;
+        ResultSet accessorySet = queryAccessories(weatherCondition, season);
+        QuerySolution qs = null;
+        if (accessorySet.hasNext()){
+            try{
+                qs = accessorySet.nextSolution();
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            // ?accessoryLabel ?conditionLabel ?seasonLabel
+            accessories = new Accessories();
+            accessories.setAccessory(qs.getLiteral("accessoryLabel").toString());
+            accessories.setFitsCondition(qs.getLiteral("conditionLabel").toString());
+            accessories.setFitsSeason(qs.getLiteral("seasonLabel").toString());
+        }
+        return accessories;
     }
 
     public Clothing queryToObject(String weatherCondition){

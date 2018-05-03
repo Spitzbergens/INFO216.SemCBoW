@@ -57,7 +57,9 @@ public class YrModel {
 
         //TODO: Sjekk om du ikke kan lage en superklasse som går over dato
 
-        queries.getWeatherByDay("2018-05-02");
+        Weather weather = queries.queryToObject("2018-05-03");
+        System.out.println(weather.getDate().substring(5,7));
+
     }
 
 

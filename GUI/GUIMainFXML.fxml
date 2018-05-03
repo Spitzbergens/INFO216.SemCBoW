@@ -22,7 +22,7 @@
       </Label>
       <HBox alignment="CENTER" layoutX="6.0" layoutY="245.0" prefHeight="424.0" prefWidth="1097.0" spacing="15.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="0.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
                <children>
                   <VBox fx:id="iconbox1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -62,16 +62,29 @@
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
+                           <children>
+                              <VBox prefHeight="142.0" prefWidth="246.0">
+                                 <children>
+                                    <HBox fx:id="mensRec1" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="womensRec1" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="accRec1" prefHeight="100.0" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="imageId2" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageId2" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
@@ -107,12 +120,21 @@
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
+                           <children>
+                              <VBox prefHeight="142.0" prefWidth="241.0">
+                                 <children>
+                                    <HBox fx:id="mensRec2" prefHeight="100.0" prefWidth="208.0" />
+                                    <HBox fx:id="womensRec2" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="AccRec2" prefHeight="100.0" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -153,12 +175,21 @@
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
+                           <children>
+                              <VBox prefHeight="142.0" prefWidth="248.0">
+                                 <children>
+                                    <HBox fx:id="mensRec3" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="womensRec3" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="accRec3" prefHeight="100.0" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #757575#757575;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #757575#757575;">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -202,6 +233,15 @@
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin>
+                           <children>
+                              <VBox prefHeight="142.0" prefWidth="243.0">
+                                 <children>
+                                    <HBox fx:id="mensRec4" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="womensRec4" prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox fx:id="accRec4" prefHeight="100.0" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </children>
                         </HBox>
                      </children>
                   </VBox>
@@ -212,20 +252,20 @@
             <Insets top="54.0" />
          </opaqueInsets>
       </HBox>
-      <HBox alignment="CENTER" layoutX="129.0" layoutY="178.0" prefHeight="29.0" prefWidth="845.0" spacing="15.0">
+      <HBox alignment="CENTER" layoutX="35.0" layoutY="147.0" prefHeight="29.0" prefWidth="1043.0" spacing="15.0">
          <children>
-            <HBox fx:id="dateId1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <HBox fx:id="dateId2" alignment="CENTER" prefHeight="41.0" prefWidth="200.0" />
-            <HBox fx:id="dateId3" alignment="CENTER" prefHeight="41.0" prefWidth="200.0" />
-            <HBox fx:id="dateId4" alignment="CENTER" prefHeight="41.0" prefWidth="200.0" />
+            <HBox fx:id="dateId1" alignment="CENTER" prefHeight="100.0" prefWidth="250.0" />
+            <HBox fx:id="dateId2" alignment="CENTER" prefHeight="41.0" prefWidth="250.0" />
+            <HBox fx:id="dateId3" alignment="CENTER" prefHeight="41.0" prefWidth="250.0" />
+            <HBox fx:id="dateId4" alignment="CENTER" prefHeight="41.0" prefWidth="250.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="131.0" layoutY="220.0" prefHeight="29.0" prefWidth="845.0" spacing="15.0">
+      <HBox alignment="CENTER" layoutX="34.0" layoutY="189.0" prefHeight="29.0" prefWidth="1041.0" spacing="15.0">
          <children>
-            <HBox fx:id="timeId1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <HBox fx:id="timeId2" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <HBox fx:id="timeId3" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <HBox fx:id="timeId4" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+            <HBox fx:id="timeId1" alignment="CENTER" prefHeight="100.0" prefWidth="250.0" />
+            <HBox fx:id="timeId2" alignment="CENTER" prefHeight="100.0" prefWidth="250.0" />
+            <HBox fx:id="timeId3" alignment="CENTER" prefHeight="100.0" prefWidth="250.0" />
+            <HBox fx:id="timeId4" alignment="CENTER" prefHeight="100.0" prefWidth="250.0" />
          </children>
       </HBox>
    </children>
