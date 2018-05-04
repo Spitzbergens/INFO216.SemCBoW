@@ -55,8 +55,6 @@ public class YrModel {
         controller.addModel(weatherModel);
 
 
-        //TODO: Sjekk om du ikke kan lage en superklasse som går over dato
-
         Weather weather = queries.queryToObject("2018-05-03");
         System.out.println(weather.getDate().substring(5,7));
 
@@ -101,7 +99,7 @@ public class YrModel {
                 String weatherConditionItem = weatherName.get(i);
                 String dateItem = date.get(i);
                 String timeItem = observedAt.get(i);
-                Float precipitationItem = Float.parseFloat(precipitation.get(i));
+                Double precipitationItem = Double.parseDouble(precipitation.get(i));
 
                 Resource weatherData = model.createResource(schemaDate + dateItem, weatherResource)
                         .addLiteral(tempProperty, temperatureItem)

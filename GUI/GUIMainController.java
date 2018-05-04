@@ -6,7 +6,6 @@ import Queries.ClothingQueries;
 import Queries.WeatherQueries;
 import RDF.RDFController;
 import YrData.YrModel;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -15,7 +14,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.apache.jena.atlas.iterator.Iter;
 import org.apache.jena.rdf.model.Model;
 
 import java.net.URL;
@@ -76,6 +74,7 @@ public class GUIMainController implements Initializable {
         setInfoToCol4(list);
     }
 
+    @SuppressWarnings("Duplicates")
     public void setInfoToCol1(List<Weather> list){
 
         Text text = new Text(list.get(0).getDate());
@@ -109,28 +108,33 @@ public class GUIMainController implements Initializable {
 
      setImageIcon(list, 0);
 
-     MensClothing clothing = setMensClothingRecommendation(list, 0);
-     WomensClothing womensClothing = setWomensClothingRecommendation(list, 0);
+        MensClothing clothing = setMensClothingRecommendation(list, 0);
+        WomensClothing womensClothing = setWomensClothingRecommendation(list, 0);
+        Accessories accessories = setAccessoriesRecommendation(list, 0);
 
-     Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
-     "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        Text mensClothingText = null;
+        Text womensClothingText = null;
 
-     Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
-     "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+        if (clothing.getGarment().equals(womensClothing.getGarment())) {
+            mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        }else {
+            mensClothingText = new Text("Forslag for menn: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+            womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+            womensRec1.getChildren().add(womensClothingText);
+        }
 
-     Accessories accessories = setAccessoriesRecommendation(list, 0);
-     Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
 
-     mensRec1.getChildren().add(mensClothingText);
-     womensRec1.getChildren().add(womensClothingText);
-     accRec1.getChildren().add(accessoriesText);
-
-
-
+        mensRec1.getChildren().add(mensClothingText);
+        accRec1.getChildren().add(accessoriesText);
 
 
     }
 
+    @SuppressWarnings("Duplicates")
     public void setInfoToCol2(List<Weather> list){
 
         Text text = new Text(list.get(1).getDate());
@@ -162,25 +166,31 @@ public class GUIMainController implements Initializable {
         precipitation.setFill(Color.rgb(58,58,58));
 
         setImageIcon(list,1);
-
-
         MensClothing clothing = setMensClothingRecommendation(list, 1);
         WomensClothing womensClothing = setWomensClothingRecommendation(list, 1);
         Accessories accessories = setAccessoriesRecommendation(list, 1);
 
-        Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
-                "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        Text mensClothingText = null;
+        Text womensClothingText = null;
 
-        Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
-                "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+        if (clothing.getGarment().equals(womensClothing.getGarment())) {
+            mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        }else {
+            mensClothingText = new Text("Forslag for menn: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+            womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+            womensRec2.getChildren().add(womensClothingText);
+        }
 
         Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
 
         mensRec2.getChildren().add(mensClothingText);
-        womensRec2.getChildren().add(womensClothingText);
         accRec2.getChildren().add(accessoriesText);
     }
 
+    @SuppressWarnings("Duplicates")
     public void setInfoToCol3(List<Weather> list){
 
         Text text = new Text(list.get(2).getDate());
@@ -217,16 +227,23 @@ public class GUIMainController implements Initializable {
         WomensClothing womensClothing = setWomensClothingRecommendation(list, 2);
         Accessories accessories = setAccessoriesRecommendation(list, 2);
 
-        Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
-                "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        Text mensClothingText = null;
+        Text womensClothingText = null;
 
-        Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
-                "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+        if (clothing.getGarment().equals(womensClothing.getGarment())) {
+             mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                 "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        }else {
+             mensClothingText = new Text("Forslag for menn: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+             womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+            womensRec3.getChildren().add(womensClothingText);
+        }
 
         Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
 
         mensRec3.getChildren().add(mensClothingText);
-        womensRec3.getChildren().add(womensClothingText);
         accRec3.getChildren().add(accessoriesText);
 
     }
@@ -250,9 +267,9 @@ public class GUIMainController implements Initializable {
     public MensClothing setMensClothingRecommendation(List<Weather> wList, int index){
         MensClothing mensClothing = null;
 
-        if (wList.get(index).getWeatherType().equals("Skyet") || wList.get(index).getWeatherType().equals("Lettskyet") || wList.get(index).getWeatherType().equals("Delvis skyet")){
+        if (wList.get(index).getWeatherType().equals("Skyet") || wList.get(index).getWeatherType().equals("Lettskyet")){
             mensClothing = clothingQueries.mensToObject("Cloudy", getSeasons(wList, index));
-        }else if(wList.get(index).getWeatherType().equals("Klarvær")){
+        }else if(wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Delvis skyet")){
             mensClothing = clothingQueries.mensToObject("Clear", getSeasons(wList, index));
         }else if(wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn")){
             mensClothing = clothingQueries.mensToObject("Wet", getSeasons(wList, index));
@@ -316,7 +333,7 @@ public class GUIMainController implements Initializable {
             return clothing;
 
     }
-
+@SuppressWarnings("Duplicates")
     public void setInfoToCol4(List<Weather> list){
 
         Text text = new Text(list.get(3).getDate());
@@ -348,21 +365,27 @@ public class GUIMainController implements Initializable {
         precipitation.setFill(Color.rgb(58,58,58));
 
         setImageIcon(list, 3);
-
         MensClothing clothing = setMensClothingRecommendation(list, 3);
         WomensClothing womensClothing = setWomensClothingRecommendation(list, 3);
         Accessories accessories = setAccessoriesRecommendation(list, 3);
 
-        Text mensClothingText = new Text("Forslag for menn: " +labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
-                "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        Text mensClothingText = null;
+        Text womensClothingText = null;
 
-        Text womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
-                "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+        if (clothing.getGarment().equals(womensClothing.getGarment())) {
+            mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+        }else {
+            mensClothingText = new Text("Forslag for menn: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
+            womensClothingText = new Text("Forslag for kvinner: " + labels.getString(womensClothing.getGarment()).toLowerCase() + "\n" +
+                    "Skotøy: " + labels.getString(womensClothing.getShoe()).toLowerCase());
+            womensRec4.getChildren().add(womensClothingText);
+        }
 
         Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
 
         mensRec4.getChildren().add(mensClothingText);
-        womensRec4.getChildren().add(womensClothingText);
         accRec4.getChildren().add(accessoriesText);
     }
 

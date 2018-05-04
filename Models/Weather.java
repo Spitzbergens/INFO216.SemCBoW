@@ -8,10 +8,10 @@ public class Weather {
     private String weatherType;
     private String dateTime;
     private String date;
-    private Float precipitation;
+    private Double precipitation;
 
 
-    public Weather(Integer temperature, Float windSpeed, String wind, String weatherType, String dateTime, String date, Float
+    public Weather(Integer temperature, Float windSpeed, String wind, String weatherType, String dateTime, String date, Double
                    precipitation) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
@@ -36,11 +36,11 @@ public class Weather {
 
     }
 
-    public Float getPrecipitation() {
+    public Double getPrecipitation() {
         return precipitation;
     }
 
-    public void setPrecipitation(Float precipitation) {
+    public void setPrecipitation(Double precipitation) {
         this.precipitation = precipitation;
     }
 

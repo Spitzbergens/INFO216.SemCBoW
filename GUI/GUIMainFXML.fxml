@@ -22,7 +22,7 @@
       </Label>
       <HBox alignment="CENTER" layoutX="6.0" layoutY="245.0" prefHeight="424.0" prefWidth="1097.0" spacing="15.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #cccccc#cccccc;">
+            <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #cccccc#cccccc; -fx-background-radius: 5;">
                <children>
                   <VBox fx:id="iconbox1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -75,6 +75,9 @@
                      </children>
                   </VBox>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: #cccccc#cccccc;">
                <children>

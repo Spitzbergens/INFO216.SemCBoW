@@ -37,17 +37,20 @@ public class WeatherQueries {
     }
 
     public ResultSet getWeatherByDay(String date) {
-        String query = "SELECT * " +
-                "WHERE { " +
-                "schema:" + date + " a we:WeatherCondition; " +
-                "we:hasObservationTime ?time; " +
-                "we:hasTemperature ?temperature; " +
-                "we:hasWeatherCondition ?condition; " +
-                "we:hasWind ?windSpeed;" +
-                "we:windType ?windType; " +
-                "we:hasPrecipitation ?precipitation;" +
-                "schema:inDateTime ?dateTime. " +
-                "} ORDER BY ?dateTime ?time";
+        String query = "  SELECT ?time ?temperature ?condition ?windSpeed ?windType ?precipitation ?dateTime\n" +
+                "            WHERE {\n" +
+                "               schema:"+date+ " a we:WeatherCondition;\n" +
+                "                            we:hasObservationTime ?time;\n" +
+                "                            we:hasTemperature ?temperature;\n" +
+                "                            we:hasWeatherCondition ?condition;\n" +
+                "                            we:hasWind ?windSpeed;\n" +
+                "                            we:windType ?windType;\n" +
+                "                            schema:inDateTime ?dateTime.\n" +
+                "             OPTIONAL {schema:"+date+" we:hasPrecipitation ?precipitation" +
+                "               FILTER (?precipitation > 0.0)}\n" +
+                "\n" +
+                "              FILTER (?time != \"00:00:00\")\n" +
+                "            } ORDER BY ?time";
         return controller.runQuery(query);
     }
 
@@ -91,8 +94,11 @@ public class WeatherQueries {
                 weather.setWindSpeed(qs.getLiteral("windSpeed").getFloat());
                 weather.setWind(qs.getLiteral("windType").toString());
                 weather.setDate(qs.getLiteral("dateTime").toString());
-                weather.setPrecipitation(qs.getLiteral("precipitation").getFloat());
-
+                if (qs.getLiteral("precipitation") != null) {
+                    weather.setPrecipitation(qs.getLiteral("precipitation").getDouble());
+                }else{
+                    weather.setPrecipitation(0.0);
+                }
             }
         return weather;
         }
