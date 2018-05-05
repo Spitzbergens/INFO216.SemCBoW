@@ -1098,9 +1098,11 @@ sc:Boots rdf:type owl:NamedIndividual ,
                                           dbr:Summer ,
                                           dbr:Winter ;
          sc:isSuitableToBeDressedOnWeather dbr:Cold ,
-                                           sc:Clear ,
                                            sc:Cloudy ,
                                            sc:Dry ,
+                                           sc:ModeratelyCold ,
+                                           sc:ModeratelyHot ,
+                                           sc:PartlyCloudy ,
                                            sc:Wet ;
          sc:hasWarmth 10 .
 
@@ -1154,7 +1156,11 @@ sc:Coat rdf:type owl:NamedIndividual ;
         sc:isSuitableToBeDressedOnWeather dbr:Cold ,
                                           sc:Clear ,
                                           sc:Cloudy ,
-                                          sc:Dry ;
+                                          sc:Dry ,
+                                          sc:ModeratelyCold ,
+                                          sc:ModeratelyHot ,
+                                          sc:PartlyCloudy ,
+                                          sc:Wet ;
         sc:hasWarmth 15 .
 
 
@@ -1186,7 +1192,8 @@ sc:Dress rdf:type owl:NamedIndividual ;
          sc:isSuitableToBeDressedInSeason dbr:Spring ,
                                           dbr:Summer ;
          sc:isSuitableToBeDressedOnWeather sc:Clear ,
-                                           sc:Hot ;
+                                           sc:Hot ,
+                                           sc:PartlyCloudy ;
          sc:hasWarmth 5 .
 
 
@@ -1292,14 +1299,32 @@ sc:M rdf:type owl:NamedIndividual ,
 sc:Moccasins rdf:type owl:NamedIndividual ;
              sc:isSuitableToBeDressedByGenre dbr:Female ,
                                              dbr:Male ;
-             sc:isSuitableToBeDressedInSeason dbr:Spring ,
-                                              dbr:Summer ;
-             sc:isSuitableToBeDressedOnWeather sc:Clear .
+             sc:isSuitableToBeDressedInSeason dbr:Spring .
+
+
+###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#ModeratelyCold
+sc:ModeratelyCold rdf:type owl:NamedIndividual ,
+                           dbr:Weather ;
+                  rdfs:comment "6-12 degrees celcius" ;
+                  rdfs:label "Moderately Cold" .
+
+
+###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#ModeratelyHot
+sc:ModeratelyHot rdf:type owl:NamedIndividual ,
+                          dbr:Weather ;
+                 rdfs:comment "13-19 degrees celcius" ;
+                 rdfs:label "Moderately Hot" .
 
 
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Necklace
 sc:Necklace rdf:type owl:NamedIndividual ;
             sc:isSuitableToBeDressedByGenre dbr:Female .
+
+
+###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#PartlyCloudy
+sc:PartlyCloudy rdf:type owl:NamedIndividual ,
+                         dbr:Weather ;
+                rdfs:label "Partly Cloudy" .
 
 
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Pear
@@ -1322,7 +1347,9 @@ sc:Raincoat rdf:type owl:NamedIndividual ;
                                              dbr:Spring ,
                                              dbr:Summer ,
                                              dbr:Winter ;
-            sc:isSuitableToBeDressedOnWeather sc:Cloudy ,
+            sc:isSuitableToBeDressedOnWeather sc:Hot ,
+                                              sc:ModeratelyCold ,
+                                              sc:ModeratelyHot ,
                                               sc:Wet ;
             sc:hasWarmth 5 .
 
@@ -1358,7 +1385,8 @@ sc:Sandals rdf:type owl:NamedIndividual ;
                                            dbr:Male ;
            sc:isSuitableToBeDressedInSeason dbr:Summer ;
            sc:isSuitableToBeDressedOnWeather sc:Clear ,
-                                             sc:Dry ;
+                                             sc:Dry ,
+                                             sc:Hot ;
            sc:hasWarmth 1 .
 
 
@@ -1367,6 +1395,7 @@ sc:Scarf rdf:type owl:NamedIndividual ;
          sc:isSuitableToBeDressedByGenre dbr:Female ,
                                          dbr:Male ;
          sc:isSuitableToBeDressedInSeason dbr:Autumn ,
+                                          dbr:Spring ,
                                           dbr:Winter ;
          sc:isSuitableToBeDressedOnWeather dbr:Cold ,
                                            sc:Dry .
@@ -1375,12 +1404,17 @@ sc:Scarf rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Shirt
 sc:Shirt rdf:type owl:NamedIndividual ;
          sc:isSuitableForDressingCode dbr:Casual ,
+                                      sc:Cloudy ,
                                       sc:Sport ;
          sc:isSuitableToBeDressedByGenre dbr:Female ,
                                          dbr:Male ;
-         sc:isSuitableToBeDressedInSeason dbr:Summer ;
-         sc:isSuitableToBeDressedOnWeather sc:Dry ,
-                                           sc:Hot ;
+         sc:isSuitableToBeDressedInSeason dbr:Spring ,
+                                          dbr:Summer ;
+         sc:isSuitableToBeDressedOnWeather sc:Clear ,
+                                           sc:Dry ,
+                                           sc:Hot ,
+                                           sc:ModeratelyHot ,
+                                           sc:PartlyCloudy ;
          sc:hasWarmth 5 .
 
 
@@ -1412,7 +1446,10 @@ sc:Sneakers rdf:type owl:NamedIndividual ;
             sc:isSuitableToBeDressedOnWeather sc:Clear ,
                                               sc:Cloudy ,
                                               sc:Dry ,
-                                              sc:Hot ;
+                                              sc:Hot ,
+                                              sc:ModeratelyHot ,
+                                              sc:PartlyCloudy ,
+                                              sc:Wet ;
             sc:hasWarmth 5 .
 
 
@@ -1443,8 +1480,11 @@ sc:Sunglasses rdf:type owl:NamedIndividual ;
                                                dbr:Spring ,
                                                dbr:Summer ,
                                                dbr:Winter ;
-              sc:isSuitableToBeDressedOnWeather sc:Clear ,
-                                                sc:Hot .
+              sc:isSuitableToBeDressedOnWeather dbr:Cold ,
+                                                sc:Clear ,
+                                                sc:Hot ,
+                                                sc:ModeratelyCold ,
+                                                sc:PartlyCloudy .
 
 
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#T-shirt
@@ -1509,7 +1549,8 @@ sc:Wet rdf:type owl:NamedIndividual ,
 sc:Winter_jacket rdf:type owl:NamedIndividual ;
                  sc:isSuitableToBeDressedByGenre dbr:Female ,
                                                  dbr:Male ;
-                 sc:isSuitableToBeDressedInSeason dbr:Winter ;
+                 sc:isSuitableToBeDressedInSeason dbr:Autumn ,
+                                                  dbr:Winter ;
                  sc:isSuitableToBeDressedOnWeather dbr:Cold ;
                  sc:hasWarmth 20 ;
                  rdfs:label "winter jacket" .
@@ -1579,9 +1620,11 @@ sc:size42EU rdf:type owl:NamedIndividual ,
 sc:spring_jacket rdf:type owl:NamedIndividual ;
                  sc:isSuitableToBeDressedByGenre dbr:Female ,
                                                  dbr:Male ;
-                 sc:isSuitableToBeDressedInSeason dbr:Spring ;
+                 sc:isSuitableToBeDressedInSeason dbr:Spring ,
+                                                  dbr:Summer ;
                  sc:isSuitableToBeDressedOnWeather sc:Clear ,
                                                    sc:Cloudy ,
+                                                   sc:ModeratelyHot ,
                                                    sc:Wet ;
                  sc:hasWarmth 10 ;
                  rdfs:label "spring jacket" .

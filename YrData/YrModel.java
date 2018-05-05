@@ -1,6 +1,5 @@
 package YrData;
 
-import Clothing.ClothingModel;
 import Models.Weather;
 import Queries.WeatherQueries;
 import RDF.RDFController;
@@ -11,11 +10,8 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import static org.apache.jena.rdf.model.ModelFactory.createDefaultModel;
 import static org.apache.jena.rdf.model.ModelFactory.createOntologyModel;
@@ -27,7 +23,7 @@ public class YrModel {
 
 
     private ArrayList<String> temp = yr.getTemprature();
-    private ArrayList<String> windSpeedValue =  yr.getWindSpeedValue();
+    private ArrayList<String> windSpeedValue = yr.getWindSpeedValue();
     private ArrayList<String> windSpeedName = yr.getWindSpeedName();
     private ArrayList<String> weatherName = yr.getNametag();
     private ArrayList<String> date = yr.getFromtag();
@@ -39,12 +35,12 @@ public class YrModel {
     int size = idList.size();
 
 
-
     /**
      * Brukes for testing
+     *
      * @param args
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         YrModel model = new YrModel();
         model.createAndParseModel();
         model.writeToFile();
@@ -56,13 +52,13 @@ public class YrModel {
 
 
         Weather weather = queries.queryToObject("2018-05-03");
-        System.out.println(weather.getDate().substring(5,7));
+        System.out.println(weather.getDate().substring(5, 7));
 
     }
 
 
     public void writeToFile() {
-       OntModel ontmodel = createOntologyModel(OntModelSpec.OWL_MEM, model);
+        OntModel ontmodel = createOntologyModel(OntModelSpec.OWL_MEM, model);
 
         try {
             ontmodel.write(new FileOutputStream("weatherModel.ttl"), "Turtle");
@@ -72,8 +68,7 @@ public class YrModel {
     }
 
 
-
-    public Model createAndParseModel(){
+    public Model createAndParseModel() {
 
         String ontoURI = "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#";
         model.setNsPrefix("wo", ontoURI);
@@ -93,30 +88,27 @@ public class YrModel {
 
         for (int i = 0; i < size; i++) {
 
-                Integer temperatureItem = Integer.parseInt(temp.get(i));
-                String windSpeedNameItem = windSpeedName.get(i);
-                Float windSpeedValueItem = Float.parseFloat(windSpeedValue.get(i));
-                String weatherConditionItem = weatherName.get(i);
-                String dateItem = date.get(i);
-                String timeItem = observedAt.get(i);
-                Double precipitationItem = Double.parseDouble(precipitation.get(i));
+            Integer temperatureItem = Integer.parseInt(temp.get(i));
+            String windSpeedNameItem = windSpeedName.get(i);
+            Float windSpeedValueItem = Float.parseFloat(windSpeedValue.get(i));
+            String weatherConditionItem = weatherName.get(i);
+            String dateItem = date.get(i);
+            String timeItem = observedAt.get(i);
+            Double precipitationItem = Double.parseDouble(precipitation.get(i));
 
-                Resource weatherData = model.createResource(schemaDate + dateItem, weatherResource)
-                        .addLiteral(tempProperty, temperatureItem)
-                        .addProperty(windSpeedProperty, windSpeedNameItem)
-                        .addLiteral(windSpeedValueProperty, windSpeedValueItem)
-                        .addProperty(weatherProperty, weatherConditionItem)
-                        .addProperty(dateProperty, dateItem)
-                        .addProperty(observedAtProperty, timeItem)
-                        .addLiteral(precipitationProperty, precipitationItem);
+            Resource weatherData = model.createResource(schemaDate + dateItem, weatherResource)
+                    .addLiteral(tempProperty, temperatureItem)
+                    .addProperty(windSpeedProperty, windSpeedNameItem)
+                    .addLiteral(windSpeedValueProperty, windSpeedValueItem)
+                    .addProperty(weatherProperty, weatherConditionItem)
+                    .addProperty(dateProperty, dateItem)
+                    .addProperty(observedAtProperty, timeItem)
+                    .addLiteral(precipitationProperty, precipitationItem);
 
 
-            }
-            return model;
         }
-
-
-
+        return model;
+    }
 
 
     public ArrayList<String> getTemp() {

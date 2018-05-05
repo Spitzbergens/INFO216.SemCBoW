@@ -11,7 +11,7 @@ public class Accessories {
         this.fitsSeason = fitsSeason;
     }
 
-    public Accessories(){
+    public Accessories() {
 
     }
 

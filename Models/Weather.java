@@ -12,7 +12,7 @@ public class Weather {
 
 
     public Weather(Integer temperature, Float windSpeed, String wind, String weatherType, String dateTime, String date, Double
-                   precipitation) {
+            precipitation) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.wind = wind;
@@ -32,7 +32,7 @@ public class Weather {
         this.date = date;
     }
 
-    public Weather(){
+    public Weather() {
 
     }
 

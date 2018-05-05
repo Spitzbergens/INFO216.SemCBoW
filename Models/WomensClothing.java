@@ -13,7 +13,7 @@ public class WomensClothing {
         this.shoe = shoe;
     }
 
-    public WomensClothing(){
+    public WomensClothing() {
 
     }
 

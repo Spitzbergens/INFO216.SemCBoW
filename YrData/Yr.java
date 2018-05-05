@@ -1,13 +1,11 @@
 package YrData;
 
+import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.w3c.dom.Document;
-import org.apache.commons.lang3.StringUtils;
-
-
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,7 +18,6 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 public class Yr {
 
@@ -37,18 +34,16 @@ public class Yr {
     private ArrayList<Integer> idList = new ArrayList<Integer>();
 
 
-
-
-    public Yr(){
+    public Yr() {
         getWeatherAPI();
         makeSymbolList();
     }
 
-    public void getWeatherAPI(){
+    public void getWeatherAPI() {
         System.out.println("YR API checking for updates.. ");
 
         // YRs krav til caching på 10 minutt
-        if (difference > 60000 * 10){
+        if (difference > 60000 * 10) {
             try {
                 URL weatherAPI = new URL("http://www.yr.no/sted/Norge/Hordaland/Bergen/Bergen/varsel.xml");
                 ReadableByteChannel rbc = Channels.newChannel(weatherAPI.openStream());
@@ -58,12 +53,12 @@ public class Yr {
             } catch (Exception e) {
                 System.out.println("Couldn't fint URL to API");
             }
-        }else{
+        } else {
             System.out.println("Updated");
         }
     }
 
-    public void makeSymbolList(){
+    public void makeSymbolList() {
         System.out.println("Constructing list from API");
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -71,7 +66,7 @@ public class Yr {
 
         try {
             dBuilder = dbf.newDocumentBuilder();
-        }catch (ParserConfigurationException e){
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
         Document doc = null;
@@ -84,7 +79,7 @@ public class Yr {
             e.printStackTrace();
         }
 
-        Element nodelist = (Element)doc.getElementsByTagName("tabular").item(0);
+        Element nodelist = (Element) doc.getElementsByTagName("tabular").item(0);
 
         NodeList timeNodeList = nodelist.getElementsByTagName("time");
 
@@ -116,7 +111,7 @@ public class Yr {
             temperature.add(tempElement.getAttribute("value"));
             windspeedType.add(windTypeElement.getAttribute("name"));
             windSpeedValue.add(windspeedElement.getAttribute("mps"));
-            idList.add(1+i);
+            idList.add(1 + i);
 
         }
         System.out.println("All OK");
@@ -151,6 +146,7 @@ public class Yr {
      * to specify the duration of the weather.
      * The time and date TO is the next time and date
      * in line in this array.
+     *
      * @return
      */
     public ArrayList<String> getFromtag() {
@@ -161,6 +157,7 @@ public class Yr {
      * The windspeed name is an arraylist filled with the
      * names of the windtypes that occur,
      * such as "Orkan", "Storm", etc.
+     *
      * @return
      */
     public ArrayList<String> getWindSpeedName() {
@@ -168,11 +165,11 @@ public class Yr {
     }
 
 
-
     /**
      * The temprature arraylist is an array
      * containting all the temeratures of the day
      * in celsius.
+     *
      * @return
      */
     public ArrayList<String> getTemprature() {
@@ -182,6 +179,7 @@ public class Yr {
 
     /**
      * Getter for idList, used for giving values in table a unique values.
+     *
      * @return idList
      */
     public ArrayList<Integer> getIdList() {
@@ -192,6 +190,7 @@ public class Yr {
      * Getter for english version of nameTag list.
      * Contains translated names of all weather types.
      * To use in ontology.
+     *
      * @return nametagEng - ArrayList<String>
      */
 

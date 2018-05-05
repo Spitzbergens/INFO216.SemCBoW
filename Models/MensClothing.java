@@ -2,20 +2,33 @@ package Models;
 
 public class MensClothing {
 
-   private String garment;
-   private String fitsCondition;
-   private String fitsSeason;
-   private String shoe;
+    private String garment;
+    private String fitsCondition;
+    private String fitsSeason;
+    private String fitsTemp;
+    private String shoe;
 
-    public MensClothing(String garment, String fitsCondition, String fitsSeason, String shoe) {
+
+
+    public MensClothing(String garment, String fitsCondition, String fitsSeason, String fitsTemp, String shoe) {
         this.garment = garment;
         this.fitsCondition = fitsCondition;
         this.fitsSeason = fitsSeason;
         this.shoe = shoe;
+        this.fitsTemp = fitsTemp;
+
     }
 
-    public MensClothing(){
+    public MensClothing() {
 
+    }
+
+    public String getFitsTemp() {
+        return fitsTemp;
+    }
+
+    public void setFitsTemp(String fitsTemp) {
+        this.fitsTemp = fitsTemp;
     }
 
     public String getGarment() {

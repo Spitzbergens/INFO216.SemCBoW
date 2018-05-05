@@ -3,9 +3,6 @@ package RDF;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.query.ResultSet;
-
-import java.io.*;
 
 public class RDFController {
 
@@ -25,29 +22,28 @@ public class RDFController {
             "PREFIX dbpedia: <http://dbpedia.org/> " +
             "PREFIX xml: <http://www.w3.org/XML/1998/namespace> " +
             "PREFIX skos: <http://www.w3.org/2004/02/skos/core#> " +
-            "PREFIX sc: <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#> "+
+            "PREFIX sc: <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#> " +
             "PREFIX gr: <http://purl.org/goodrelations/v1#>" +
             "PREFIX muto: <http://purl.org/muto/core#> " +
             "PREFIX sioc: <http://rdfs.org/sioc/ns#> " +
             "BASE <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl> ";
 
 
-
-    public RDFController(){
+    public RDFController() {
         this.model = ModelFactory.createDefaultModel();
     }
 
 
-    public void addModel(Model model){
+    public void addModel(Model model) {
         this.model.add(model);
     }
 
-    public ResultSet runQuery(String queryString){
+    public ResultSet runQuery(String queryString) {
         queryString = prefix + queryString;
         Query query = null;
         try {
-           query = QueryFactory.create(queryString);
-        }catch (Exception e) {
+            query = QueryFactory.create(queryString);
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }

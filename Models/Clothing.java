@@ -1,7 +1,5 @@
 package Models;
 
-import java.util.List;
-
 public class Clothing {
 
     private String clothingName;
@@ -15,7 +13,7 @@ public class Clothing {
         this.warmthValue = warmthValue;
     }
 
-    public Clothing(){
+    public Clothing() {
 
     }
 
