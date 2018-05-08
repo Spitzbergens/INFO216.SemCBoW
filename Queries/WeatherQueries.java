@@ -37,25 +37,27 @@ public class WeatherQueries {
     }
 
     public ResultSet getWeatherByDay(String date) {
-        String query = "  SELECT ?time ?temperature ?condition ?windSpeed ?windType ?precipitation ?dateTime\n" +
-                "            WHERE {\n" +
-                "               schema:" + date + " a we:WeatherCondition;\n" +
-                "                            we:hasObservationTime ?time;\n" +
-                "                            we:hasTemperature ?temperature;\n" +
-                "                            we:hasWeatherCondition ?condition;\n" +
-                "                            we:hasWind ?windSpeed;\n" +
-                "                            we:windType ?windType;\n" +
-                "                            schema:inDateTime ?dateTime.\n" +
-                "             OPTIONAL {schema:" + date + " we:hasPrecipitation ?precipitation" +
-                "               FILTER (?precipitation > 0.0)}\n" +
+        String query = "SELECT DISTINCT ?startTime ?endTime ?temperature ?condition ?windSpeed ?windType ?precipitation ?dateTime\n" +
+                "WHERE {\n" +
+                "      ?conditions a we:WeatherCondition;\n" +
+                "                  we:hasStartTime ?startTime;\n" +
+                "                  we:hasEndTime ?endTime;\n" +
+                "                  we:hasTemperature ?temperature;\n" +
+                "                  we:hasWeatherCondition ?condition;\n" +
+                "                  we:hasWind ?windSpeed;\n" +
+                "                  we:windType ?windType;\n" +
+                "                  schema:inDateTime ?dateTime.\n" +
+                "  OPTIONAL {?conditions we:hasPrecipitation ?precipitation}\n" +
+                "  FILTER (?dateTime = \"" + date + "\")" +
                 "\n" +
-                "              FILTER (?time != \"00:00:00\")\n" +
-                "            } ORDER BY ?time";
+                "            \n" +
+                "} ORDER BY ?startTime";
+
         return controller.runQuery(query);
     }
 
     public ResultSet getWeatherDates() {
-        String query = "SELECT ?datetime " +
+        String query = "SELECT DISTINCT ?datetime " +
                 "WHERE { " +
                 "?date a we:WeatherCondition; " +
                 "schema:inDateTime ?datetime." +
@@ -88,7 +90,8 @@ public class WeatherQueries {
                 e.printStackTrace();
             }
             weather = new Weather();
-            weather.setDateTime(qs.getLiteral("time").toString());
+            weather.setDateTimeStart(qs.getLiteral("startTime").toString());
+            weather.setDateTimeEnd(qs.getLiteral("endTime").toString());
             weather.setTemperature(qs.getLiteral("temperature").getInt());
             weather.setWeatherType(qs.getLiteral("condition").toString());
             weather.setWindSpeed(qs.getLiteral("windSpeed").getFloat());

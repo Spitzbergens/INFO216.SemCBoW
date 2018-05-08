@@ -1101,7 +1101,6 @@ sc:Boots rdf:type owl:NamedIndividual ,
                                            sc:Cloudy ,
                                            sc:Dry ,
                                            sc:ModeratelyCold ,
-                                           sc:ModeratelyHot ,
                                            sc:PartlyCloudy ,
                                            sc:Wet ;
          sc:hasWarmth 10 .
@@ -1406,8 +1405,7 @@ sc:Shirt rdf:type owl:NamedIndividual ;
          sc:isSuitableForDressingCode dbr:Casual ,
                                       sc:Cloudy ,
                                       sc:Sport ;
-         sc:isSuitableToBeDressedByGenre dbr:Female ,
-                                         dbr:Male ;
+         sc:isSuitableToBeDressedByGenre dbr:Male ;
          sc:isSuitableToBeDressedInSeason dbr:Spring ,
                                           dbr:Summer ;
          sc:isSuitableToBeDressedOnWeather sc:Clear ,

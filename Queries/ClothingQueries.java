@@ -73,7 +73,7 @@ public class ClothingQueries {
                 "  ?tempCondition rdfs:label ?tempConditionLabel. " +
                 " " +
                 "    FILTER (?conditionLabel = \"" + condition + "\" && ?tempConditionLabel = \"" + tempCondition + "\" && ?seasonLabel = \"" + season + "\") " +
-                "}";
+                "} LIMIT 1";
 
         return controller.runQuery(query);
     }
@@ -101,7 +101,8 @@ public class ClothingQueries {
                 "  ?tempCondition rdfs:label ?tempConditionLabel. " +
                 " " +
                 "    FILTER (?conditionLabel = \"" + condition + "\" && ?tempConditionLabel = \"" + tempCondition + "\" && ?seasonLabel = \"" + season + "\") " +
-                "}";
+                "}" +
+                "LIMIT 1";
 
         return controller.runQuery(query);
 
@@ -120,7 +121,8 @@ public class ClothingQueries {
                 "   " +
                 "  FILTER (?conditionLabel = \"" + weatherCondition + "\" " + " && ?seasonLabel = \"" + season + "\") " +
                 "  " +
-                "}";
+                "}" +
+                "LIMIT 1";
         return controller.runQuery(query);
     }
 

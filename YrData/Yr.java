@@ -10,14 +10,14 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Yr {
 
@@ -25,7 +25,11 @@ public class Yr {
     long difference = new Date().getTime() - file.lastModified();
     private ArrayList<String> weatherType = new ArrayList<String>();
     private ArrayList<String> dateObserved = new ArrayList<String>();
+    private ArrayList<String> timeAndDateStart = new ArrayList<>();
+    private ArrayList<String> timeAndDateEnd = new ArrayList<>();
     private ArrayList<String> timeObserved = new ArrayList<>();
+    private ArrayList<String> toPeriod = new ArrayList<>();
+    private ArrayList<String> fromPeriod = new ArrayList<>();
     private ArrayList<String> windspeedType = new ArrayList<String>();
     private ArrayList<String> windSpeedValue = new ArrayList<>();
     private ArrayList<String> temperature = new ArrayList<String>();
@@ -35,11 +39,11 @@ public class Yr {
 
 
     public Yr() {
-        getWeatherAPI();
-        makeSymbolList();
+        getAPI();
+        constructList();
     }
 
-    public void getWeatherAPI() {
+    public void getAPI() {
         System.out.println("YR API checking for updates.. ");
 
         // YRs krav til caching på 10 minutt
@@ -56,9 +60,10 @@ public class Yr {
         } else {
             System.out.println("Updated");
         }
+
     }
 
-    public void makeSymbolList() {
+    public void constructList() {
         System.out.println("Constructing list from API");
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -106,6 +111,9 @@ public class Yr {
             weatherType.add(symbolElement.getAttribute("name"));
             dateObserved.add(StringUtils.left(eElement.getAttribute("from"), 10));
             timeObserved.add(StringUtils.right(eElement.getAttribute("from"), 8));
+            toPeriod.add(StringUtils.right(eElement.getAttribute("to"), 8));
+            timeAndDateStart.add(eElement.getAttribute("from"));
+            timeAndDateEnd.add(eElement.getAttribute("from"));
             precipitation.add(precipitationElement.getAttribute("value"));
             precipitationMax.add(precipitationElement.getAttribute("maxvalue"));
             temperature.add(tempElement.getAttribute("value"));
@@ -116,7 +124,6 @@ public class Yr {
         }
         System.out.println("All OK");
     }
-
 
     public ArrayList<String> getPrecipitation() {
         return precipitation;
@@ -201,4 +208,37 @@ public class Yr {
     public ArrayList<String> getObservedTag() {
         return timeObserved;
     }
+
+    public ArrayList<String> getToPeriod() {
+        return toPeriod;
+    }
+
+    public void setToPeriod(ArrayList<String> toPeriod) {
+        this.toPeriod = toPeriod;
+    }
+
+    public ArrayList<String> getFromPeriod() {
+        return fromPeriod;
+    }
+
+    public void setFromPeriod(ArrayList<String> fromPeriod) {
+        this.fromPeriod = fromPeriod;
+    }
+
+    public ArrayList<String> getTimeAndDateStart() {
+        return timeAndDateStart;
+    }
+
+    public void setTimeAndDateStart(ArrayList<String> timeAndDateStart) {
+        this.timeAndDateStart = timeAndDateStart;
+    }
+
+    public ArrayList<String> getTimeAndDateEnd() {
+        return timeAndDateEnd;
+    }
+
+    public void setTimeAndDateEnd(ArrayList<String> timeAndDateEnd) {
+        this.timeAndDateEnd = timeAndDateEnd;
+    }
 }
+

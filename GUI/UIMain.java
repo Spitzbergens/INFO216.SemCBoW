@@ -22,7 +22,7 @@ public class UIMain extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("GUIMainFXML.fxml"));
-        primaryStage.setTitle("Salgssystem");
+        primaryStage.setTitle("CloRec");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

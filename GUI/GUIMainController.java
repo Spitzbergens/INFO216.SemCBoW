@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import org.apache.jena.rdf.model.Model;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -71,7 +72,7 @@ public class GUIMainController implements Initializable {
         dateId1.getChildren().add(text);
         text.setFill(Color.rgb(58, 58, 58));
 
-        Text time = new Text("Fra kl. " + list.get(0).getDateTime());
+        Text time = new Text("Fra kl. " + list.get(0).getDateTimeStart().substring(0,5) + " til kl. " + list.get(0).getDateTimeEnd().substring(0,5));
         timeId1.getChildren().add(time);
         time.setFill(Color.rgb(58, 58, 58));
 
@@ -104,7 +105,7 @@ public class GUIMainController implements Initializable {
         Text mensClothingText = null;
         Text womensClothingText = null;
 
-        if (mensClothing.getGarment().equals(womensClothing.getGarment())) {
+        if (mensClothing.getGarment().equals(womensClothing.getGarment()) && mensClothing.getShoe().equals(womensClothing.getShoe())) {
             mensClothingText = new Text("Forslag: " + labels.getString(mensClothing.getGarment()).toLowerCase() + "\n" +
                     "Skotøy: " + labels.getString(mensClothing.getShoe()).toLowerCase());
         } if(!mensClothing.getGarment().equals(womensClothing.getGarment())) {
@@ -130,7 +131,7 @@ public class GUIMainController implements Initializable {
         dateId2.getChildren().add(text);
         text.setFill(Color.rgb(58, 58, 58));
 
-        Text time = new Text("Fra kl. " + list.get(1).getDateTime());
+        Text time = new Text("Fra kl. " + list.get(1).getDateTimeStart().substring(0,5) + " til kl. " + list.get(1).getDateTimeEnd().substring(0,5));
         timeId2.getChildren().add(time);
         time.setFill(Color.rgb(58, 58, 58));
 
@@ -186,7 +187,7 @@ public class GUIMainController implements Initializable {
         dateId3.getChildren().add(text);
         text.setFill(Color.rgb(58, 58, 58));
 
-        Text time = new Text("Fra kl. " + list.get(2).getDateTime());
+        Text time = new Text("Fra kl. " + list.get(2).getDateTimeStart().substring(0,5) + " til kl. " + list.get(2).getDateTimeEnd().substring(0,5));
         timeId3.getChildren().add(time);
         time.setFill(Color.rgb(58, 58, 58));
 
@@ -219,7 +220,7 @@ public class GUIMainController implements Initializable {
         Text mensClothingText = null;
         Text womensClothingText = null;
 
-        if (clothing.getGarment().equals(womensClothing.getGarment())) {
+        if (clothing.getGarment().equals(womensClothing.getGarment()) && clothing.getShoe().equals(womensClothing.getShoe())) {
             mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
                     "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
         } else {
@@ -291,7 +292,7 @@ public class GUIMainController implements Initializable {
             womensClothing = clothingQueries.womensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
         }else if (wList.get(index).getWeatherType().equals("Delvis skyet")) {
             womensClothing = clothingQueries.womensToObject("Partly Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet")) {
+        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet") || wList.get(index).getWeatherType().equals("Sol")) {
             womensClothing = clothingQueries.womensToObject("Clear", returnWeatherString(wList, index), getSeasons(wList, index));
         }else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
@@ -321,7 +322,7 @@ public class GUIMainController implements Initializable {
         dateId4.getChildren().add(text);
         text.setFill(Color.rgb(58, 58, 58));
 
-        Text time = new Text("Fra kl. " + list.get(3).getDateTime());
+        Text time = new Text("Fra kl. " + list.get(3).getDateTimeStart().substring(0, 5) + " Til kl." + list.get(3).getDateTimeEnd().substring(0,5));
         timeId4.getChildren().add(time);
         time.setFill(Color.rgb(58, 58, 58));
 
@@ -353,7 +354,7 @@ public class GUIMainController implements Initializable {
         Text mensClothingText = null;
         Text womensClothingText = null;
 
-        if (clothing.getGarment().equals(womensClothing.getGarment())) {
+        if (clothing.getGarment().equals(womensClothing.getGarment()) && clothing.getShoe().equals(womensClothing.getShoe())) {
             mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
                     "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
         } else {
@@ -380,16 +381,28 @@ public class GUIMainController implements Initializable {
         Image image = null;
 
         if (list.get(index).getWeatherType().equals("Skyet")) {
-            image = setImage("GUI/Icons/cloudy.png");
+            image = setImage("GUI/Icons/dist/png/04.png");
         } else if (list.get(index).getWeatherType().equals("Lettskyet")) {
-            image = setImage("GUI/Icons/lightcloud.png");
-        } else if (list.get(index).getWeatherType().equals("Klarvær")) {
-            image = setImage("GUI/Icons/clear.png");
+            image = setImage("GUI/Icons/dist/png/02d.png");
+        } else if (list.get(index).getWeatherType().equals("Klarvær") || list.get(index).getWeatherType().equals("Sol")) {
+            image = setImage("GUI/Icons/dist/png/01d.png");
         } else if (list.get(index).getWeatherType().equals("Delvis skyet")) {
-            image = setImage("GUI/Icons/partcloud.png");
-        } else if (list.get(index).getWeatherType().equals("Regn") || list.get(index).getWeatherType().equals("Regnbyger")
-                || list.get(index).getWeatherType().equals("Kraftig regn") || list.get(index).getWeatherType().equals("Lett regn")) {
-            image = setImage("GUI/Icons/rain.png");
+            image = setImage("GUI/Icons/dist/png/03d.png");
+        } else if (list.get(index).getWeatherType().equals("Regn")
+                || list.get(index).getWeatherType().equals("Kraftig regn") || list.get(index).getWeatherType().equals("Lett regn")){
+            image = setImage("GUI/Icons/dist/png/09.png");
+        }else if (list.get(index).getWeatherType().equals("Regnbyger og torden") || list.get(index).getWeatherType().equals("Lette regnbyger og torden") || list.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
+            image = setImage(("GUI/Icons/dist/png/06d.png"));
+        }else if(list.get(index).getWeatherType().equals("Lette regnbyger") || list.get(index).getWeatherType().equals("Regnbyger") || list.get(index).getWeatherType().equals("Kraftige regnbyger")){
+            image = setImage("GUI/Icons/dist/png/05d.png");
+        }else if(list.get(index).getWeatherType().equals("Snøbyger") || list.get(index).getWeatherType().equals("Lette snøbyger") || list.get(index).getWeatherType().equals("Kraftige snøbyger")){
+            image = setImage("GUI/Icons/dist/png/08d.png");
+        }else if(list.get(index).getWeatherType().equals("Sluddbyger") || list.get(index).getWeatherType().equals("Lette sluddbyger") || list.get(index).getWeatherType().equals("Kraftige sluddbyger")){
+            image = setImage("GUI/Icons/dist/png/07d.png");
+        }else if (list.get(index).getWeatherType().equals("Regn og torden") || list.get(index).getWeatherType().equals("Lett regn og torden") || list.get(index).getWeatherType().equals("Kraftig regn og torden")){
+            image = setImage("GUI/Icons/dist/png/22.png");
+        }else if (list.get(index).getWeatherType().equals("Snø") || list.get(index).getWeatherType().equals("Lett snø") || list.get(index).getWeatherType().equals("Kraftig snø")){
+            image = setImage("GUI/Icons/dist/png/13.png");
         }
 
         switch (index) {
@@ -403,6 +416,8 @@ public class GUIMainController implements Initializable {
                 imageId4.setImage(image);
         }
     }
+
+
 
 
 }

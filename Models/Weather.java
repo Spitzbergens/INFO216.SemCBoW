@@ -6,18 +6,20 @@ public class Weather {
     private Float windSpeed;
     private String wind;
     private String weatherType;
-    private String dateTime;
+    private String dateTimeStart;
+    private String dateTimeEnd;
     private String date;
     private Double precipitation;
 
 
-    public Weather(Integer temperature, Float windSpeed, String wind, String weatherType, String dateTime, String date, Double
+    public Weather(Integer temperature, Float windSpeed, String wind, String weatherType, String dateTimeStart, String dateTimeEnd, String date, Double
             precipitation) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.wind = wind;
         this.weatherType = weatherType;
-        this.dateTime = dateTime;
+        this.dateTimeStart = dateTimeStart;
+        this.dateTimeEnd = dateTimeEnd;
         this.date = date;
         this.precipitation = precipitation;
 
@@ -76,12 +78,20 @@ public class Weather {
         this.weatherType = weatherType;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getDateTimeStart() {
+        return dateTimeStart;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTimeStart(String dateTime) {
+        this.dateTimeStart = dateTime;
+    }
+
+    public String getDateTimeEnd() {
+        return dateTimeEnd;
+    }
+
+    public void setDateTimeEnd(String dateTimeEnd) {
+        this.dateTimeEnd = dateTimeEnd;
     }
 
 

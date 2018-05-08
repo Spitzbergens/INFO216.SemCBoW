@@ -8,10 +8,13 @@ import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.json.*;
+import org.json.simple.JSONObject;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.apache.jena.rdf.model.ModelFactory.createDefaultModel;
 import static org.apache.jena.rdf.model.ModelFactory.createOntologyModel;
@@ -29,6 +32,9 @@ public class YrModel {
     private ArrayList<String> date = yr.getFromtag();
     private ArrayList<String> observedAt = yr.getObservedTag();
     private ArrayList<String> precipitation = yr.getPrecipitation();
+    private ArrayList<String> endTime = yr.getToPeriod();
+    private ArrayList<String> dateTimeStart = yr.getTimeAndDateStart();
+    private ArrayList<String> dateTimeEnd = yr.getTimeAndDateEnd();
 
     // Brukes kun for å hente størrelsen på listen
     private ArrayList<Integer> idList = yr.getIdList();
@@ -50,9 +56,15 @@ public class YrModel {
         Model weatherModel = model.createAndParseModel();
         controller.addModel(weatherModel);
 
+        List<Weather> list = queries.getWeatherListWeek();
 
-        Weather weather = queries.queryToObject("2018-05-03");
-        System.out.println(weather.getDate().substring(5, 7));
+        System.out.println(list.get(0).getDate() + list.get(0).getDateTimeStart());
+        System.out.println(list.get(1).getDate() + list.get(1).getDateTimeStart());
+
+
+
+
+
 
     }
 
@@ -80,9 +92,11 @@ public class YrModel {
         Property tempProperty = model.createProperty(ontoURI + "hasTemperature");
         Property windSpeedProperty = model.createProperty(ontoURI + "windType");
         Property windSpeedValueProperty = model.createProperty(ontoURI + "hasWind");
-        Property observedAtProperty = model.createProperty(ontoURI + "hasObservationTime");
+        Property observedAtProperty = model.createProperty(ontoURI + "hasStartTime");
         Property dateProperty = model.createProperty(schemaDate + "inDateTime");
         Property precipitationProperty = model.createProperty(ontoURI + "hasPrecipitation");
+        Property endsAtProperty = model.createProperty(ontoURI + "hasEndTime");
+        Property dateTimeStartProperty = model.createProperty(ontoURI + "inDateTime");
         Resource weatherResource = model.createResource(ontoURI + "WeatherCondition");
 
 
@@ -95,16 +109,18 @@ public class YrModel {
             String dateItem = date.get(i);
             String timeItem = observedAt.get(i);
             Double precipitationItem = Double.parseDouble(precipitation.get(i));
+            String endTimeItem = endTime.get(i);
+            String dateTimeStartItem = dateTimeStart.get(i);
 
-            Resource weatherData = model.createResource(schemaDate + dateItem, weatherResource)
+            Resource weatherData = model.createResource(schemaDate + dateTimeStartItem, weatherResource)
                     .addLiteral(tempProperty, temperatureItem)
                     .addProperty(windSpeedProperty, windSpeedNameItem)
                     .addLiteral(windSpeedValueProperty, windSpeedValueItem)
                     .addProperty(weatherProperty, weatherConditionItem)
                     .addProperty(dateProperty, dateItem)
                     .addProperty(observedAtProperty, timeItem)
-                    .addLiteral(precipitationProperty, precipitationItem);
-
+                    .addLiteral(precipitationProperty, precipitationItem)
+                    .addProperty(endsAtProperty, endTimeItem);
 
         }
         return model;
