@@ -44,6 +44,7 @@ public class GUIMainController implements Initializable {
     private ResourceBundle labels = ResourceBundle.getBundle("langProp", Locale.forLanguageTag("no"));
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         yrModel.createAndParseModel();
@@ -254,6 +255,7 @@ public class GUIMainController implements Initializable {
 
     }
 
+    @SuppressWarnings("Duplicates")
     public MensClothing setMensClothingRecommendation(List<Weather> wList, int index) {
         MensClothing mensClothing = null;
 
@@ -265,6 +267,22 @@ public class GUIMainController implements Initializable {
             mensClothing = clothingQueries.mensToObject("Clear", returnWeatherString(wList, index), getSeasons(wList, index));
         } else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
             mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger og torden") || wList.get(index).getWeatherType().equals("Regnbyger og torden") || wList.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
+            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette sluddbyger") || wList.get(index).getWeatherType().equals("Sluddbyger") || wList.get(index).getWeatherType().equals("Kraftige sluddbyger")){
+            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette snøbyger") || wList.get(index).getWeatherType().equals("Snøbyger") || wList.get(index).getWeatherType().equals("Kraftige snøbyger")){
+            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger") || wList.get(index).getWeatherType().equals("Kraftige regnbyger")){
+            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lett regn og torden") || wList.get(index).getWeatherType().equals("Regn og torden") || wList.get(index).getWeatherType().equals("Kraftig regn og torden")){
+            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Sludd") || wList.get(index).getWeatherType().equals("Lett sludd") || wList.get(index).getWeatherType().equals("Kraftig sludd")){
+            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lett snø") || wList.get(index).getWeatherType().equals("Snø") || wList.get(index).getWeatherType().equals("Kraftig snø")){
+            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Tåke")){
+            mensClothing = clothingQueries.mensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
         }
         return mensClothing;
     }
@@ -285,6 +303,7 @@ public class GUIMainController implements Initializable {
         return temp;
     }
 
+    @SuppressWarnings("Duplicates")
     public WomensClothing setWomensClothingRecommendation(List<Weather> wList, int index) {
        WomensClothing womensClothing = null;
 
@@ -292,10 +311,26 @@ public class GUIMainController implements Initializable {
             womensClothing = clothingQueries.womensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
         }else if (wList.get(index).getWeatherType().equals("Delvis skyet")) {
             womensClothing = clothingQueries.womensToObject("Partly Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet") || wList.get(index).getWeatherType().equals("Sol")) {
+        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet")) {
             womensClothing = clothingQueries.womensToObject("Clear", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
-           womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        } else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger og torden") || wList.get(index).getWeatherType().equals("Regnbyger og torden") || wList.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette sluddbyger") || wList.get(index).getWeatherType().equals("Sluddbyger") || wList.get(index).getWeatherType().equals("Kraftige sluddbyger")){
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette snøbyger") || wList.get(index).getWeatherType().equals("Snøbyger") || wList.get(index).getWeatherType().equals("Kraftige snøbyger")){
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger") || wList.get(index).getWeatherType().equals("Kraftige regnbyger")){
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lett regn og torden") || wList.get(index).getWeatherType().equals("Regn og torden") || wList.get(index).getWeatherType().equals("Kraftig regn og torden")){
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Sludd") || wList.get(index).getWeatherType().equals("Lett sludd") || wList.get(index).getWeatherType().equals("Kraftig sludd")){
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lett snø") || wList.get(index).getWeatherType().equals("Snø") || wList.get(index).getWeatherType().equals("Kraftig snø")){
+            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Tåke")){
+            womensClothing = clothingQueries.womensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
         }
         return womensClothing;
     }
@@ -304,12 +339,28 @@ public class GUIMainController implements Initializable {
         Accessories accessories = null;
         if (wList.get(index).getWeatherType().equals("Skyet")) {
             accessories = clothingQueries.accessoriesToObject("Cloudy", getSeasons(wList, index));
-        }else if( wList.get(index).getWeatherType().equals("Lettskyet") || wList.get(index).getWeatherType().equals("Delvis skyet")){
+        }else if (wList.get(index).getWeatherType().equals("Delvis skyet")) {
             accessories = clothingQueries.accessoriesToObject("Partly Cloudy", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Klarvær")) {
+        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet")) {
             accessories = clothingQueries.accessoriesToObject("Clear", getSeasons(wList, index));
         } else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
             accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger og torden") || wList.get(index).getWeatherType().equals("Regnbyger og torden") || wList.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
+            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette sluddbyger") || wList.get(index).getWeatherType().equals("Sluddbyger") || wList.get(index).getWeatherType().equals("Kraftige sluddbyger")){
+            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette snøbyger") || wList.get(index).getWeatherType().equals("Snøbyger") || wList.get(index).getWeatherType().equals("Kraftige snøbyger")){
+            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger") || wList.get(index).getWeatherType().equals("Kraftige regnbyger")){
+            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lett regn og torden") || wList.get(index).getWeatherType().equals("Regn og torden") || wList.get(index).getWeatherType().equals("Kraftig regn og torden")){
+            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Sludd") || wList.get(index).getWeatherType().equals("Lett sludd") || wList.get(index).getWeatherType().equals("Kraftig sludd")){
+            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Lett snø") || wList.get(index).getWeatherType().equals("Snø") || wList.get(index).getWeatherType().equals("Kraftig snø")){
+            accessories = clothingQueries.accessoriesToObject("Wet",  getSeasons(wList, index));
+        }else if (wList.get(index).getWeatherType().equals("Tåke")){
+            accessories = clothingQueries.accessoriesToObject("Cloudy", getSeasons(wList, index));
         }
         return accessories;
 
