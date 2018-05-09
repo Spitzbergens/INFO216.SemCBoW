@@ -1,6 +1,7 @@
 package GUI;
 
 import Clothing.ClothingModel;
+import ClothingRecommender.ClothingRec;
 import Models.*;
 import Queries.ClothingQueries;
 import Queries.WeatherQueries;
@@ -40,7 +41,8 @@ public class GUIMainController implements Initializable {
     private ClothingModel clothingModel = new ClothingModel();
     private RDFController controller = new RDFController();
     private WeatherQueries weatherQueries = new WeatherQueries(controller);
-    private ClothingQueries clothingQueries = new ClothingQueries(controller);
+
+   private ClothingRec clothingRec = new ClothingRec();
     private ResourceBundle labels = ResourceBundle.getBundle("langProp", Locale.forLanguageTag("no"));
 
 
@@ -99,9 +101,9 @@ public class GUIMainController implements Initializable {
 
         setImageIcon(list, 0);
 
-        MensClothing mensClothing = setMensClothingRecommendation(list, 0);
-        WomensClothing womensClothing = setWomensClothingRecommendation(list, 0);
-        Accessories accessories = setAccessoriesRecommendation(list, 0);
+        MensClothing mensClothing = clothingRec.setMensClothingRecommendation(list, 0);
+        WomensClothing womensClothing = clothingRec.setWomensClothingRecommendation(list, 0);
+        Accessories accessories = clothingRec.setAccessoriesRecommendation(list, 0);
 
         Text mensClothingText = null;
         Text womensClothingText = null;
@@ -157,9 +159,9 @@ public class GUIMainController implements Initializable {
         precipitation.setFill(Color.rgb(58, 58, 58));
 
         setImageIcon(list, 1);
-        MensClothing clothing = setMensClothingRecommendation(list, 1);
-        WomensClothing womensClothing = setWomensClothingRecommendation(list, 1);
-        Accessories accessories = setAccessoriesRecommendation(list, 1);
+        MensClothing clothing = clothingRec.setMensClothingRecommendation(list, 1);
+        WomensClothing womensClothing = clothingRec.setWomensClothingRecommendation(list, 1);
+        Accessories accessories = clothingRec.setAccessoriesRecommendation(list, 1);
 
         Text mensClothingText = null;
         Text womensClothingText = null;
@@ -214,12 +216,15 @@ public class GUIMainController implements Initializable {
 
         setImageIcon(list, 2);
 
-        MensClothing clothing = setMensClothingRecommendation(list, 2);
-        WomensClothing womensClothing = setWomensClothingRecommendation(list, 2);
-        Accessories accessories = setAccessoriesRecommendation(list, 2);
+
+
+        MensClothing clothing = clothingRec.setMensClothingRecommendation(list, 2);
+        WomensClothing womensClothing = clothingRec.setWomensClothingRecommendation(list, 2);
+        Accessories accessories = clothingRec.setAccessoriesRecommendation(list, 2);
 
         Text mensClothingText = null;
         Text womensClothingText = null;
+
 
         if (clothing.getGarment().equals(womensClothing.getGarment()) && clothing.getShoe().equals(womensClothing.getShoe())) {
             mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
@@ -236,133 +241,6 @@ public class GUIMainController implements Initializable {
 
         mensRec3.getChildren().add(mensClothingText);
         accRec3.getChildren().add(accessoriesText);
-
-    }
-
-    public String getSeasons(List<Weather> wList, int index) {
-
-        String seasons = null;
-        if (wList.get(index).getDate().substring(5, 7).equals("01") || wList.get(index).getDate().substring(5, 7).equals("02") || wList.get(index).getDate().substring(5, 7).equals("12")) {
-            seasons = "Winter";
-        } else if (wList.get(index).getDate().substring(5, 7).equals("04") || wList.get(index).getDate().substring(5, 7).equals("05") || wList.get(index).getDate().substring(5, 7).equals("03")) {
-            seasons = "Spring";
-        } else if (wList.get(index).getDate().substring(5, 7).equals("06") || wList.get(index).getDate().substring(5, 7).equals("07") || wList.get(index).getDate().substring(5, 7).equals("08")) {
-            seasons = "Summer";
-        } else if (wList.get(index).getDate().substring(5, 7).equals("09") || wList.get(index).getDate().substring(5, 7).equals("10") || wList.get(index).getDate().substring(5, 7).equals("11")) {
-            seasons = "Autumn";
-        }
-        return seasons;
-
-    }
-
-    @SuppressWarnings("Duplicates")
-    public MensClothing setMensClothingRecommendation(List<Weather> wList, int index) {
-        MensClothing mensClothing = null;
-
-        if (wList.get(index).getWeatherType().equals("Skyet")) {
-            mensClothing = clothingQueries.mensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Delvis skyet")) {
-            mensClothing = clothingQueries.mensToObject("Partly Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet")) {
-            mensClothing = clothingQueries.mensToObject("Clear", returnWeatherString(wList, index), getSeasons(wList, index));
-        } else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger og torden") || wList.get(index).getWeatherType().equals("Regnbyger og torden") || wList.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette sluddbyger") || wList.get(index).getWeatherType().equals("Sluddbyger") || wList.get(index).getWeatherType().equals("Kraftige sluddbyger")){
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette snøbyger") || wList.get(index).getWeatherType().equals("Snøbyger") || wList.get(index).getWeatherType().equals("Kraftige snøbyger")){
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger") || wList.get(index).getWeatherType().equals("Kraftige regnbyger")){
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lett regn og torden") || wList.get(index).getWeatherType().equals("Regn og torden") || wList.get(index).getWeatherType().equals("Kraftig regn og torden")){
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Sludd") || wList.get(index).getWeatherType().equals("Lett sludd") || wList.get(index).getWeatherType().equals("Kraftig sludd")){
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lett snø") || wList.get(index).getWeatherType().equals("Snø") || wList.get(index).getWeatherType().equals("Kraftig snø")){
-            mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Tåke")){
-            mensClothing = clothingQueries.mensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }
-        return mensClothing;
-    }
-
-
-    private String returnWeatherString(List<Weather> list, int index){
-        String temp = null;
-
-        if (list.get(index).getTemperature() <= 5){
-            temp = "Cold";
-        }else if (list.get(index).getTemperature() >= 6 && list.get(index).getTemperature() <= 12 ){
-            temp = "Moderately Cold";
-        }else if (list.get(index).getTemperature() >= 13 && list.get(index).getTemperature() <= 19){
-            temp = "Moderately Hot";
-        }else if (list.get(index).getTemperature() >= 20){
-            temp = "Hot";
-        }
-        return temp;
-    }
-
-    @SuppressWarnings("Duplicates")
-    public WomensClothing setWomensClothingRecommendation(List<Weather> wList, int index) {
-       WomensClothing womensClothing = null;
-
-        if (wList.get(index).getWeatherType().equals("Skyet")) {
-            womensClothing = clothingQueries.womensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Delvis skyet")) {
-            womensClothing = clothingQueries.womensToObject("Partly Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet")) {
-            womensClothing = clothingQueries.womensToObject("Clear", returnWeatherString(wList, index), getSeasons(wList, index));
-        } else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger og torden") || wList.get(index).getWeatherType().equals("Regnbyger og torden") || wList.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette sluddbyger") || wList.get(index).getWeatherType().equals("Sluddbyger") || wList.get(index).getWeatherType().equals("Kraftige sluddbyger")){
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette snøbyger") || wList.get(index).getWeatherType().equals("Snøbyger") || wList.get(index).getWeatherType().equals("Kraftige snøbyger")){
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger") || wList.get(index).getWeatherType().equals("Kraftige regnbyger")){
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lett regn og torden") || wList.get(index).getWeatherType().equals("Regn og torden") || wList.get(index).getWeatherType().equals("Kraftig regn og torden")){
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Sludd") || wList.get(index).getWeatherType().equals("Lett sludd") || wList.get(index).getWeatherType().equals("Kraftig sludd")){
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lett snø") || wList.get(index).getWeatherType().equals("Snø") || wList.get(index).getWeatherType().equals("Kraftig snø")){
-            womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(wList, index), getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Tåke")){
-            womensClothing = clothingQueries.womensToObject("Cloudy", returnWeatherString(wList, index), getSeasons(wList, index));
-        }
-        return womensClothing;
-    }
-
-    public Accessories setAccessoriesRecommendation(List<Weather> wList, int index) {
-        Accessories accessories = null;
-        if (wList.get(index).getWeatherType().equals("Skyet")) {
-            accessories = clothingQueries.accessoriesToObject("Cloudy", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Delvis skyet")) {
-            accessories = clothingQueries.accessoriesToObject("Partly Cloudy", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Klarvær") || wList.get(index).getWeatherType().equals("Lettskyet")) {
-            accessories = clothingQueries.accessoriesToObject("Clear", getSeasons(wList, index));
-        } else if (wList.get(index).getWeatherType().equals("Regn") || wList.get(index).getWeatherType().equals("Regnbyger") || wList.get(index).getWeatherType().equals("Kraftig regn") || wList.get(index).getWeatherType().equals("Lett regn")) {
-            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger og torden") || wList.get(index).getWeatherType().equals("Regnbyger og torden") || wList.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
-            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette sluddbyger") || wList.get(index).getWeatherType().equals("Sluddbyger") || wList.get(index).getWeatherType().equals("Kraftige sluddbyger")){
-            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette snøbyger") || wList.get(index).getWeatherType().equals("Snøbyger") || wList.get(index).getWeatherType().equals("Kraftige snøbyger")){
-            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lette regnbyger") || wList.get(index).getWeatherType().equals("Kraftige regnbyger")){
-            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lett regn og torden") || wList.get(index).getWeatherType().equals("Regn og torden") || wList.get(index).getWeatherType().equals("Kraftig regn og torden")){
-            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Sludd") || wList.get(index).getWeatherType().equals("Lett sludd") || wList.get(index).getWeatherType().equals("Kraftig sludd")){
-            accessories = clothingQueries.accessoriesToObject("Wet", getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Lett snø") || wList.get(index).getWeatherType().equals("Snø") || wList.get(index).getWeatherType().equals("Kraftig snø")){
-            accessories = clothingQueries.accessoriesToObject("Wet",  getSeasons(wList, index));
-        }else if (wList.get(index).getWeatherType().equals("Tåke")){
-            accessories = clothingQueries.accessoriesToObject("Cloudy", getSeasons(wList, index));
-        }
-        return accessories;
 
     }
 
@@ -398,9 +276,9 @@ public class GUIMainController implements Initializable {
         precipitation.setFill(Color.rgb(58, 58, 58));
 
         setImageIcon(list, 3);
-        MensClothing clothing = setMensClothingRecommendation(list, 3);
-        WomensClothing womensClothing = setWomensClothingRecommendation(list, 3);
-        Accessories accessories = setAccessoriesRecommendation(list, 3);
+        MensClothing clothing = clothingRec.setMensClothingRecommendation(list, 3);
+        WomensClothing womensClothing = clothingRec.setWomensClothingRecommendation(list, 3);
+        Accessories accessories = clothingRec.setAccessoriesRecommendation(list, 3);
 
         Text mensClothingText = null;
         Text womensClothingText = null;
@@ -429,31 +307,129 @@ public class GUIMainController implements Initializable {
 
     private void setImageIcon(List<Weather> list, int index) {
 
-        Image image = null;
+        String isEqual = list.get(index).getWeatherType();
 
-        if (list.get(index).getWeatherType().equals("Skyet")) {
-            image = setImage("GUI/Icons/dist/png/04.png");
-        } else if (list.get(index).getWeatherType().equals("Lettskyet")) {
-            image = setImage("GUI/Icons/dist/png/02d.png");
-        } else if (list.get(index).getWeatherType().equals("Klarvær") || list.get(index).getWeatherType().equals("Sol")) {
-            image = setImage("GUI/Icons/dist/png/01d.png");
-        } else if (list.get(index).getWeatherType().equals("Delvis skyet")) {
-            image = setImage("GUI/Icons/dist/png/03d.png");
-        } else if (list.get(index).getWeatherType().equals("Regn")
-                || list.get(index).getWeatherType().equals("Kraftig regn") || list.get(index).getWeatherType().equals("Lett regn")){
-            image = setImage("GUI/Icons/dist/png/09.png");
-        }else if (list.get(index).getWeatherType().equals("Regnbyger og torden") || list.get(index).getWeatherType().equals("Lette regnbyger og torden") || list.get(index).getWeatherType().equals("Kraftige regnbyger og torden")){
-            image = setImage(("GUI/Icons/dist/png/06d.png"));
-        }else if(list.get(index).getWeatherType().equals("Lette regnbyger") || list.get(index).getWeatherType().equals("Regnbyger") || list.get(index).getWeatherType().equals("Kraftige regnbyger")){
-            image = setImage("GUI/Icons/dist/png/05d.png");
-        }else if(list.get(index).getWeatherType().equals("Snøbyger") || list.get(index).getWeatherType().equals("Lette snøbyger") || list.get(index).getWeatherType().equals("Kraftige snøbyger")){
-            image = setImage("GUI/Icons/dist/png/08d.png");
-        }else if(list.get(index).getWeatherType().equals("Sluddbyger") || list.get(index).getWeatherType().equals("Lette sluddbyger") || list.get(index).getWeatherType().equals("Kraftige sluddbyger")){
-            image = setImage("GUI/Icons/dist/png/07d.png");
-        }else if (list.get(index).getWeatherType().equals("Regn og torden") || list.get(index).getWeatherType().equals("Lett regn og torden") || list.get(index).getWeatherType().equals("Kraftig regn og torden")){
-            image = setImage("GUI/Icons/dist/png/22.png");
-        }else if (list.get(index).getWeatherType().equals("Snø") || list.get(index).getWeatherType().equals("Lett snø") || list.get(index).getWeatherType().equals("Kraftig snø")){
-            image = setImage("GUI/Icons/dist/png/13.png");
+        Image image = null;
+        switch (isEqual){
+            case "Skyet":
+                image = setImage("GUI/Icons/dist/png/04.png");
+                break;
+            case "Delvis skyet":
+                image = setImage("GUI/Icons/dist/png/03d.png");
+                break;
+            case "Klarvær":
+                image = setImage("GUI/Icons/dist/png/01d.png");
+                break;
+            case "Lettskyet":
+                image = setImage("GUI/Icons/dist/png/02d.png");
+                break;
+            case "Lette regnbyger":
+                image = setImage("GUI/Icons/dist/png/40d.png");
+                break;
+            case "Regnbyger":
+                image = setImage("GUI/Icons/dist/png/05d.png");
+                break;
+            case "Kraftige regnbyger":
+                image = setImage("GUI/Icons/dist/png/41d.png");
+                break;
+            case "Lette regnbyger og torden":
+                image = setImage("GUI/Icons/dist/png/24d.png");
+                break;
+            case "Regnbyger og torden":
+                image = setImage("GUI/Icons/dist/png/06d.png");
+                break;
+            case "Kraftige regnbyger og torden":
+                image = setImage("GUI/Icons/dist/png/25d.png");
+                break;
+            case "Lette sluddbyger":
+                image = setImage("GUI/Icons/dist/png/42d.png");
+                break;
+            case "Sluddbyger":
+                image = setImage("GUI/Icons/dist/png/07d.png");
+                break;
+            case "Kraftige sluddbyger":
+                image = setImage("GUI/Icons/dist/png/43d.png");
+                break;
+            case "Lette sluddbyger og torden":
+                image = setImage("GUI/Icons/dist/png/26d.png");
+                break;
+            case "Sluddbyger og torden":
+                image = setImage("GUI/Icons/dist/png/20d.png");
+                break;
+            case "Kraftige sluddbyger og torden":
+                image = setImage("GUI/Icons/dist/png/27d.png");
+                break;
+            case "Snøbyger":
+                image = setImage("GUI/Icons/dist/png/08d.png");
+                break;
+            case "Kraftige snøbyger":
+                image = setImage("GUI/Icons/dist/png/45d.png");
+                break;
+            case "Lette snøbyger og torden":
+                image = setImage("GUI/Icons/dist/png/28d.png");
+                break;
+            case "Snøbyger og torden":
+                image = setImage("GUI/Icons/dist/png/21d.png");
+                break;
+            case "Kraftige snøbyger og torden":
+                image = setImage("GUI/Icons/dist/png/29d.png");
+                break;
+            case "Lett regn":
+                image = setImage("GUI/Icons/dist/png/46.png");
+                break;
+            case "Regn":
+                image = setImage("GUI/Icons/dist/png/09.png");
+                break;
+            case "Kraftig regn":
+                image = setImage("GUI/Icons/dist/png/10.png");
+                break;
+            case "Lett regn og torden":
+                image = setImage("GUI/Icons/dist/png/30.png");
+                break;
+            case "Regn og torden":
+                image = setImage("GUI/Icons/dist/png/22.png");
+            case "Kraftig regn og torden":
+                image = setImage("GUI/Icons/dist/png/11.png");
+                break;
+            case "Lett sludd":
+                image = setImage("GUI/Icons/dist/png/47.png");
+                break;
+            case "Sludd":
+                image = setImage("GUI/Icons/dist/png/12.png");
+                break;
+            case "Kraftig sludd":
+                image = setImage("GUI/Icons/dist/png/48.png");
+                break;
+            case "Lett sludd og torden":
+                image = setImage("GUI/Icons/dist/png/31.png");
+                break;
+            case "Sludd og torden":
+                image = setImage("GUI/Icons/dist/png/23.png");
+                break;
+            case "Kraftig sludd og torden":
+                image = setImage("GUI/Icons/dist/png/32.png");
+                break;
+            case "Lett snø":
+                image = setImage("GUI/Icons/dist/png/49.png");
+                break;
+            case "Snø":
+                image = setImage("GUI/Icons/dist/png/13.png");
+                break;
+            case "Kraftig snø":
+                image = setImage("GUI/Icons/dist/png/50.png");
+                break;
+            case "Lett snø og torden":
+                image = setImage("GUI/Icons/dist/png/33.png");
+                break;
+            case "Snø og torden":
+                image = setImage("GUI/Icons/dist/png/14.png");
+                break;
+            case "Kraftig snø og torden":
+                image = setImage("GUI/Icons/dist/png/34.png");
+                break;
+            case "Tåke":
+                image = setImage("GUI/Icons/dist/png/15.png");
+                break;
         }
 
         switch (index) {
@@ -466,6 +442,8 @@ public class GUIMainController implements Initializable {
             case 3:
                 imageId4.setImage(image);
         }
+
+
     }
 
 

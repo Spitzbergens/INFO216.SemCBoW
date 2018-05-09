@@ -20,7 +20,7 @@ public class ClothingModel {
         ClothingQueries queries = new ClothingQueries(controller);
         Model clothingModel = model.readModel();
         controller.addModel(clothingModel);
-        MensClothing mensClothing = queries.mensToObject("Wet", "Hot", "Summer");
+      MensClothing mensClothing = queries.mensToObject("Clear", "Moderately Cold", "Spring");
         WomensClothing womensClothing = queries.womensToObject("Clear","Moderately Hot",  "Spring");
 
 

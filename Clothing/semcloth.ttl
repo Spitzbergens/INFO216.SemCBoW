@@ -1403,7 +1403,6 @@ sc:Scarf rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#Shirt
 sc:Shirt rdf:type owl:NamedIndividual ;
          sc:isSuitableForDressingCode dbr:Casual ,
-                                      sc:Cloudy ,
                                       sc:Sport ;
          sc:isSuitableToBeDressedByGenre dbr:Male ;
          sc:isSuitableToBeDressedInSeason dbr:Spring ,
@@ -1445,6 +1444,7 @@ sc:Sneakers rdf:type owl:NamedIndividual ;
                                               sc:Cloudy ,
                                               sc:Dry ,
                                               sc:Hot ,
+                                              sc:ModeratelyCold ,
                                               sc:ModeratelyHot ,
                                               sc:PartlyCloudy ,
                                               sc:Wet ;
@@ -1486,7 +1486,8 @@ sc:Sunglasses rdf:type owl:NamedIndividual ;
 
 
 ###  http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#T-shirt
-sc:T-shirt rdf:type owl:NamedIndividual ;
+sc:T-shirt rdf:type owl:NamedIndividual ,
+                    sc:TShirt ;
            sc:isSuitableToBeDressedByGenre dbr:Female ,
                                            dbr:Male ;
            sc:isSuitableToBeDressedInSeason dbr:Spring ,
