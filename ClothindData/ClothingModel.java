@@ -19,23 +19,11 @@ public class ClothingModel {
         readModel();
     }
 
-    public static void main(String[] args) {
-        ClothingModel model = new ClothingModel();
-        RDFController controller = new RDFController();
-        ClothingQueries queries = new ClothingQueries(controller);
-        Model clothingModel = model.readModel();
-        controller.addModel(clothingModel);
-        MensClothing mensClothing = queries.mensToObject("Clear", "Hot", "Summer");
-        WomensClothing womensClothing = queries.womensToObject("Clear","Moderately Hot",  "Spring");
 
-
-        System.out.println(mensClothing.getGarment());
-        System.out.println(womensClothing.getGarment());
-        System.out.println(womensClothing.getShoe());
-
-
-    }
-
+    /**
+     * Reads the model
+     * @return the model
+     */
     public Model readModel() {
         Model model = ModelFactory.createDefaultModel();
             model.read(new File(file).toURI().toString(), "Turtle");

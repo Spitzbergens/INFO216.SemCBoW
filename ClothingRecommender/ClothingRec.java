@@ -9,7 +9,6 @@ import Queries.ClothingQueries;
 import RDF.RDFController;
 import org.apache.jena.rdf.model.Model;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class ClothingRec {
@@ -25,6 +24,14 @@ public class ClothingRec {
         controller.addModel(clothingModel);
     }
 
+    /**
+     * Method for setting clothing recommendations, based on the weather on a given index.
+     * if getWeatherType() at that index is equal to "Skyet", we set mensToObject(weatherCondition, tempString, seasons)
+     * to Cloudy, while the other two parameters get their input from other methods reading the weatherModel.
+     * @param list a list of weather conditions
+     * @param index index where index 0 is the current day, and 1 is the next day and so on.
+     * @return a mensClothing-object representing recommendations.
+     */
     @SuppressWarnings("Duplicates")
     public MensClothing setMensClothingRecommendation(List<Weather> list, int index) {
         MensClothing mensClothing = null;
@@ -33,14 +40,14 @@ public class ClothingRec {
 
         switch (isEqual){
             case "Skyet":
-                mensClothing = clothingQueries.mensToObject("Cloudy", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Cloudy", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Delvis skyet":
-                mensClothing = clothingQueries.mensToObject("Partly Cloudy", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Partly Cloudy", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Klarvær":
             case "Lettskyet":
-                mensClothing = clothingQueries.mensToObject("Clear", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Clear", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lette regnbyger":
             case "Regnbyger":
@@ -48,7 +55,7 @@ public class ClothingRec {
             case "Lette regnbyger og torden":
             case "Regnbyger og torden":
             case "Kraftige regnbyger og torden":
-                mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lette sluddbyger":
             case "Sluddbyger":
@@ -56,7 +63,7 @@ public class ClothingRec {
             case "Lette sluddbyger og torden":
             case "Sluddbyger og torden":
             case "Kraftige sluddbyger og torden":
-                mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lette snøbyger":
             case "Snøbyger":
@@ -64,7 +71,7 @@ public class ClothingRec {
             case "Lette snøbyger og torden":
             case "Snøbyger og torden":
             case "Kraftige snøbyger og torden":
-                mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lett regn":
             case "Regn":
@@ -72,7 +79,7 @@ public class ClothingRec {
             case "Lett regn og torden":
             case "Regn og torden":
             case "Kraftig regn og torden":
-                mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lett sludd":
             case "Sludd":
@@ -80,7 +87,7 @@ public class ClothingRec {
             case "Lett sludd og torden":
             case "SLudd og torden":
             case "Kraftig sludd og torden":
-                mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lett snø":
             case "Snø":
@@ -88,10 +95,10 @@ public class ClothingRec {
             case "Lett snø og torden":
             case "Snø og torden":
             case "Kraftig snø og torden":
-                mensClothing = clothingQueries.mensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Tåke":
-                mensClothing = clothingQueries.mensToObject("Cloudy", returnWeatherString(list, index), getSeasons(list, index));
+                mensClothing = clothingQueries.mensToObject("Cloudy", getTempString(list, index), getSeasons(list, index));
                 break;
         }
 
@@ -99,7 +106,15 @@ public class ClothingRec {
         return mensClothing;
     }
 
-    private String returnWeatherString(List<Weather> list, int index){
+    /**
+     * Returns a string based on the temperature given from the weather model, and sets a String corresponding
+     * to that temperature, which is set in the clothing ontology.
+     * @param list List of weather conditions
+     * @param index weather on a given index.
+     * @return a string with a weather condition.
+     */
+
+    private String getTempString(List<Weather> list, int index){
         String temp = null;
 
         if (list.get(index).getTemperature() <= 5){
@@ -114,6 +129,16 @@ public class ClothingRec {
         return temp;
     }
 
+
+
+    /**
+     * Method for setting clothing recommendations, based on the weather on a given index.
+     * if getWeatherType() at that index is equal to "Skyet", we set mensToObject(weatherCondition, tempString, seasons)
+     * to Cloudy, while the other two parameters get their input from other methods reading the weatherModel.
+     * @param list a list of weather conditions
+     * @param index index where index 0 is the current day, and 1 is the next day and so on.
+     * @return a womensClothing-object representing recommendations.
+     */
     @SuppressWarnings("Duplicates")
     public WomensClothing setWomensClothingRecommendation(List<Weather> list, int index) {
         WomensClothing womensClothing = null;
@@ -122,14 +147,14 @@ public class ClothingRec {
 
         switch (isEqual){
             case "Skyet":
-                womensClothing = clothingQueries.womensToObject("Cloudy", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Cloudy", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Delvis skyet":
-                womensClothing = clothingQueries.womensToObject("Partly Cloudy", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Partly Cloudy", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Klarvær":
             case "Lettskyet":
-                womensClothing = clothingQueries.womensToObject("Clear", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Clear", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lette regnbyger":
             case "Regnbyger":
@@ -137,7 +162,7 @@ public class ClothingRec {
             case "Lette regnbyger og torden":
             case "Regnbyger og torden":
             case "Kraftige regnbyger og torden":
-                womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lette sluddbyger":
             case "Sluddbyger":
@@ -145,7 +170,7 @@ public class ClothingRec {
             case "Lette sluddbyger og torden":
             case "Sluddbyger og torden":
             case "Kraftige sluddbyger og torden":
-                womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lette snøbyger":
             case "Snøbyger":
@@ -153,7 +178,7 @@ public class ClothingRec {
             case "Lette snøbyger og torden":
             case "Snøbyger og torden":
             case "Kraftige snøbyger og torden":
-                womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lett regn":
             case "Regn":
@@ -161,7 +186,7 @@ public class ClothingRec {
             case "Lett regn og torden":
             case "Regn og torden":
             case "Kraftig regn og torden":
-                womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lett sludd":
             case "Sludd":
@@ -169,7 +194,7 @@ public class ClothingRec {
             case "Lett sludd og torden":
             case "SLudd og torden":
             case "Kraftig sludd og torden":
-                womensClothing = clothingQueries.womensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Lett snø":
             case "Snø":
@@ -177,14 +202,24 @@ public class ClothingRec {
             case "Lett snø og torden":
             case "Snø og torden":
             case "Kraftig snø og torden":
-                womensClothing= clothingQueries.womensToObject("Wet", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing= clothingQueries.womensToObject("Wet", getTempString(list, index), getSeasons(list, index));
                 break;
             case "Tåke":
-                womensClothing = clothingQueries.womensToObject("Cloudy", returnWeatherString(list, index), getSeasons(list, index));
+                womensClothing = clothingQueries.womensToObject("Cloudy", getTempString(list, index), getSeasons(list, index));
                 break;
         }
         return womensClothing;
     }
+
+
+    /**
+     * Method for setting accessories recommendations, based on the weather on a given index.
+     * if getWeatherType() at that index is equal to "Skyet", we set mensToObject(weatherCondition, tempString, seasons)
+     * to Cloudy, while the other two parameters get their input from other methods reading the weatherModel.
+     * @param list a list of weather conditions
+     * @param index index where index 0 is the current day, and 1 is the next day and so on.
+     * @return a mensClothing-object representing recommendations.
+     */
 
     @SuppressWarnings("Duplicates")
     public Accessories setAccessoriesRecommendation(List<Weather> list, int index) {
@@ -259,6 +294,14 @@ public class ClothingRec {
         return accessories;
 
     }
+
+    /**
+     * Returns a string representing a season based on dates gathered from the weather model. If the substring from getDate is equal to 01, 02 or 12
+     * we'll call that winter, which is a property of dbr:Season defined in the semcloth-ontology.
+     * @param wList weather list
+     * @param index weahter index
+     * @return returning a season as a string.
+     */
 
     public String getSeasons(List<Weather> wList, int index) {
 

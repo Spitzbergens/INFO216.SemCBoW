@@ -54,9 +54,12 @@ public class GUIMainController implements Initializable {
         controller.addModel(weatherModel);
         controller.addModel(cloModel);
         displayElements(weatherQueries.getWeatherListWeek());
-
-
     }
+
+    /**
+     * Setting information to four different columns in the GUI.
+     * @param list a list of weather, which will be controlled by the query getWeatherListWeek(), which returns different dates.
+     */
 
     public void displayElements(List<Weather> list) {
         setInfoToCol1(list);
@@ -64,6 +67,14 @@ public class GUIMainController implements Initializable {
         setInfoToCol3(list);
         setInfoToCol4(list);
     }
+
+    /**
+     * Sets information to column 1.
+     * Sets text based on a weather-object at a given index in the list.
+     * Sets information about clothing recommendations based on the same
+     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * @param list List of weather-conditons.
+     */
 
     @SuppressWarnings("Duplicates")
     public void setInfoToCol1(List<Weather> list) {
@@ -124,6 +135,13 @@ public class GUIMainController implements Initializable {
 
     }
 
+    /**
+     * Sets information to column 1.
+     * Sets text based on a weather-object at a given index in the list.
+     * Sets information about clothing recommendations based on the same
+     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * @param list List of weather-conditons.
+     */
     @SuppressWarnings("Duplicates")
     public void setInfoToCol2(List<Weather> list) {
 
@@ -181,6 +199,14 @@ public class GUIMainController implements Initializable {
         accRec2.getChildren().add(accessoriesText);
     }
 
+
+    /**
+     * Sets information to column 1.
+     * Sets text based on a weather-object at a given index in the list.
+     * Sets information about clothing recommendations based on the same
+     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * @param list List of weather-conditons.
+     */
     @SuppressWarnings("Duplicates")
     public void setInfoToCol3(List<Weather> list) {
 
@@ -242,6 +268,13 @@ public class GUIMainController implements Initializable {
 
     }
 
+    /**
+     * Sets information to column 1.
+     * Sets text based on a weather-object at a given index in the list.
+     * Sets information about clothing recommendations based on the same
+     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * @param list List of weather-conditons.
+     */
     @SuppressWarnings("Duplicates")
     public void setInfoToCol4(List<Weather> list) {
 
@@ -298,10 +331,24 @@ public class GUIMainController implements Initializable {
         accRec4.getChildren().add(accessoriesText);
     }
 
+    /**
+     * creates an returns a new image object, taking inn a URL.
+     * @param url URL of the image
+     * @return The image
+     */
+
     public Image setImage(String url) {
         Image image = new Image(url);
         return image;
     }
+
+    /**
+     * Sets an image based on weather at a given index. Goes through a switch-block to check
+     * which weather-condition lies at a given index, and sets the correct icon
+     * based on the result.
+     * @param list list of weather-conditons
+     * @param index weather conditions which lies as a given index.
+     */
 
     private void setImageIcon(List<Weather> list, int index) {
 
@@ -443,9 +490,6 @@ public class GUIMainController implements Initializable {
 
 
     }
-
-
-
 
 }
 

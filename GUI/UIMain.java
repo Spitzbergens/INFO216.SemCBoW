@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class UIMain extends Application {
+public class UIMain extends GUIMainController {
 
     @FXML
     private Parent parent;
@@ -18,6 +18,11 @@ public class UIMain extends Application {
         launch(args);
     }
 
+    /**
+     * Start method of the program.
+     * @param primaryStage the stage.
+     * @throws IOException throws exception
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
 
