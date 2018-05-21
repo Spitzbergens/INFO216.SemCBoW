@@ -1,6 +1,6 @@
 package ClothingRecommender;
 
-import Clothing.ClothingModel;
+import ClothindData.ClothingModel;
 import Models.Accessories;
 import Models.MensClothing;
 import Models.Weather;

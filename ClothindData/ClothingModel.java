@@ -1,4 +1,4 @@
-package Clothing;
+package ClothindData;
 
 import Models.MensClothing;
 import Models.WomensClothing;
@@ -7,8 +7,12 @@ import RDF.RDFController;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 
+import java.io.File;
+
 
 public class ClothingModel {
+
+    private String file = "src/ClothindData/semcloth.ttl";
 
     public ClothingModel() {
         readModel();
@@ -20,7 +24,7 @@ public class ClothingModel {
         ClothingQueries queries = new ClothingQueries(controller);
         Model clothingModel = model.readModel();
         controller.addModel(clothingModel);
-      MensClothing mensClothing = queries.mensToObject("Clear", "Moderately Cold", "Spring");
+        MensClothing mensClothing = queries.mensToObject("Clear", "Moderately Cold", "Spring");
         WomensClothing womensClothing = queries.womensToObject("Clear","Moderately Hot",  "Spring");
 
 
@@ -33,7 +37,7 @@ public class ClothingModel {
 
     public Model readModel() {
         Model model = ModelFactory.createDefaultModel();
-        model.read("Clothing/semcloth.ttl", "Turtle");
+            model.read(new File(file).toURI().toString(), "Turtle");
         return model;
     }
 }

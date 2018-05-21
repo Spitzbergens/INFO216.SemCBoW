@@ -1,9 +1,8 @@
 package GUI;
 
-import Clothing.ClothingModel;
+import ClothindData.ClothingModel;
 import ClothingRecommender.ClothingRec;
 import Models.*;
-import Queries.ClothingQueries;
 import Queries.WeatherQueries;
 import RDF.RDFController;
 import YrData.YrModel;
@@ -12,13 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.apache.jena.rdf.model.Model;
 
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;

@@ -14,7 +14,7 @@ SELECT ?accessoryLabel ?conditionLabel ?seasonLabel WHERE {
 SELECT ?mensClothing ?shoeLabel ?conditionLabel ?seasonLabel
                 WHERE
 
-                  ?garment rdfs:subClassOf dbr:Clothing;
+                  ?garment rdfs:subClassOf dbr:ClothindData;
                      sc:isSuitableToBeDressedInSeason ?season;
                             rdfs:label ?mensClothing;
                             sc:isSuitableToBeDressedOnWeather ?condition;
@@ -67,7 +67,7 @@ SELECT ?mensClothing ?shoeLabel ?conditionLabel ?seasonLabel
 
             SELECT ?mensClothing ?shoeLabel ?conditionLabel ?heatConditionLabel ?seasonLabel
             WHERE{
-                  ?garment rdfs:subClassOf dbr:Clothing;
+                  ?garment rdfs:subClassOf dbr:ClothindData;
                             sc:isSuitableToBeDressedInSeason ?season;
                             rdfs:label ?mensClothing;
                             sc:isSuitableToBeDressedOnWeather ?condition;

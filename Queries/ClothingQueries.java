@@ -54,7 +54,7 @@ public class ClothingQueries {
         String query = "SELECT ?mensClothing ?shoeLabel ?conditionLabel ?tempConditionLabel ?seasonLabel " +
                 "WHERE { " +
                 "  " +
-                "  ?garment rdfs:subClassOf dbr:Clothing;         " +
+                "  ?garment rdfs:subClassOf dbr:ClothindData;         " +
                 "     sc:isSuitableToBeDressedInSeason ?season; " +
                 "            rdfs:label ?mensClothing; " +
                 "            sc:isSuitableToBeDressedOnWeather ?condition; " +
@@ -82,7 +82,7 @@ public class ClothingQueries {
         String query = "SELECT ?womensClothing ?shoeLabel ?conditionLabel ?tempConditionLabel ?seasonLabel " +
                 "WHERE { " +
                 "  " +
-                "  ?garment rdfs:subClassOf dbr:Clothing;         " +
+                "  ?garment rdfs:subClassOf dbr:ClothindData;         " +
                 "     sc:isSuitableToBeDressedInSeason ?season; " +
                 "            rdfs:label ?womensClothing; " +
                 "            sc:isSuitableToBeDressedOnWeather ?condition; " +

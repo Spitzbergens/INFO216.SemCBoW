@@ -29,7 +29,6 @@ public class Yr {
     private ArrayList<String> timeAndDateEnd = new ArrayList<>();
     private ArrayList<String> timeObserved = new ArrayList<>();
     private ArrayList<String> toPeriod = new ArrayList<>();
-    private ArrayList<String> fromPeriod = new ArrayList<>();
     private ArrayList<String> windspeedType = new ArrayList<String>();
     private ArrayList<String> windSpeedValue = new ArrayList<>();
     private ArrayList<String> temperature = new ArrayList<String>();
@@ -42,6 +41,8 @@ public class Yr {
         getAPI();
         constructList();
     }
+
+    // https://www.researchgate.net/post/How_can_one_load_xml_file_inside_of_java_class_file_in_a_netbeans_project
 
     public void getAPI() {
         System.out.println("YR API checking for updates.. ");
@@ -133,73 +134,25 @@ public class Yr {
         this.precipitation = precipitation;
     }
 
-    public ArrayList<String> getPrecipitationMax() {
-        return precipitationMax;
-    }
-
-    public void setPrecipitationMax(ArrayList<String> precipitationMax) {
-        this.precipitationMax = precipitationMax;
-    }
-
     public ArrayList<String> getNametag() {
         return weatherType;
     }
 
-    /**
-     * the fromtab is and ArrayList
-     * filled with a ceretain date.
-     * The weather cast consists of two times and dates.
-     * Time and date from, name of weather, time and date to.
-     * to specify the duration of the weather.
-     * The time and date TO is the next time and date
-     * in line in this array.
-     *
-     * @return
-     */
     public ArrayList<String> getFromtag() {
         return dateObserved;
     }
 
-    /**
-     * The windspeed name is an arraylist filled with the
-     * names of the windtypes that occur,
-     * such as "Orkan", "Storm", etc.
-     *
-     * @return
-     */
     public ArrayList<String> getWindSpeedName() {
         return windspeedType;
     }
 
-
-    /**
-     * The temprature arraylist is an array
-     * containting all the temeratures of the day
-     * in celsius.
-     *
-     * @return
-     */
     public ArrayList<String> getTemprature() {
         return temperature;
     }
 
-
-    /**
-     * Getter for idList, used for giving values in table a unique values.
-     *
-     * @return idList
-     */
     public ArrayList<Integer> getIdList() {
         return idList;
     }
-
-    /**
-     * Getter for english version of nameTag list.
-     * Contains translated names of all weather types.
-     * To use in ontology.
-     *
-     * @return nametagEng - ArrayList<String>
-     */
 
     public ArrayList<String> getWindSpeedValue() {
         return windSpeedValue;
@@ -213,32 +166,13 @@ public class Yr {
         return toPeriod;
     }
 
-    public void setToPeriod(ArrayList<String> toPeriod) {
-        this.toPeriod = toPeriod;
-    }
-
-    public ArrayList<String> getFromPeriod() {
-        return fromPeriod;
-    }
-
-    public void setFromPeriod(ArrayList<String> fromPeriod) {
-        this.fromPeriod = fromPeriod;
-    }
-
     public ArrayList<String> getTimeAndDateStart() {
         return timeAndDateStart;
-    }
-
-    public void setTimeAndDateStart(ArrayList<String> timeAndDateStart) {
-        this.timeAndDateStart = timeAndDateStart;
     }
 
     public ArrayList<String> getTimeAndDateEnd() {
         return timeAndDateEnd;
     }
 
-    public void setTimeAndDateEnd(ArrayList<String> timeAndDateEnd) {
-        this.timeAndDateEnd = timeAndDateEnd;
-    }
 }
 

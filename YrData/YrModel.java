@@ -61,11 +61,6 @@ public class YrModel {
         System.out.println(list.get(0).getDate() + list.get(0).getDateTimeStart());
         System.out.println(list.get(1).getDate() + list.get(1).getDateTimeStart());
 
-
-
-
-
-
     }
 
 
@@ -96,7 +91,6 @@ public class YrModel {
         Property dateProperty = model.createProperty(schemaDate + "inDateTime");
         Property precipitationProperty = model.createProperty(ontoURI + "hasPrecipitation");
         Property endsAtProperty = model.createProperty(ontoURI + "hasEndTime");
-        Property dateTimeStartProperty = model.createProperty(ontoURI + "inDateTime");
         Resource weatherResource = model.createResource(ontoURI + "WeatherCondition");
 
 
