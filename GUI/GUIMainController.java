@@ -160,11 +160,12 @@ public class GUIMainController implements Initializable {
         WomensClothing womensClothing = clothingRec.setWomensClothingRecommendation(list, 1);
         Accessories accessories = clothingRec.setAccessoriesRecommendation(list, 1);
 
+
         Text mensClothingText = null;
         Text womensClothingText = null;
 
         if (clothing.getGarment().equals(womensClothing.getGarment()) && clothing.getShoe().equals(womensClothing.getShoe())) {
-            mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +
+            mensClothingText = new Text("Forslag: " + labels.getString(clothing.getGarment()).toLowerCase() +"\n" +
                     "Skotøy: " + labels.getString(clothing.getShoe()).toLowerCase());
         } else {
             mensClothingText = new Text("Forslag for menn: " + labels.getString(clothing.getGarment()).toLowerCase() + "\n" +

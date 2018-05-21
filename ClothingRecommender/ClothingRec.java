@@ -9,6 +9,7 @@ import Queries.ClothingQueries;
 import RDF.RDFController;
 import org.apache.jena.rdf.model.Model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ClothingRec {
@@ -105,9 +106,9 @@ public class ClothingRec {
             temp = "Cold";
         }else if (list.get(index).getTemperature() >= 6 && list.get(index).getTemperature() <= 12 ){
             temp = "Moderately Cold";
-        }else if (list.get(index).getTemperature() >= 13 && list.get(index).getTemperature() <= 18){
+        }else if (list.get(index).getTemperature() >= 13 && list.get(index).getTemperature() <= 17){
             temp = "Moderately Hot";
-        }else if (list.get(index).getTemperature() >= 19){
+        }else if (list.get(index).getTemperature() >= 18){
             temp = "Hot";
         }
         return temp;

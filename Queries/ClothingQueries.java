@@ -54,7 +54,7 @@ public class ClothingQueries {
         String query = "SELECT ?mensClothing ?shoeLabel ?conditionLabel ?tempConditionLabel ?seasonLabel " +
                 "WHERE { " +
                 "  " +
-                "  ?garment rdfs:subClassOf dbr:ClothindData;         " +
+                "  ?garment rdfs:subClassOf dbr:Clothing;         " +
                 "     sc:isSuitableToBeDressedInSeason ?season; " +
                 "            rdfs:label ?mensClothing; " +
                 "            sc:isSuitableToBeDressedOnWeather ?condition; " +
@@ -73,7 +73,7 @@ public class ClothingQueries {
                 "  ?tempCondition rdfs:label ?tempConditionLabel. " +
                 " " +
                 "    FILTER (?conditionLabel = \"" + condition + "\" && ?tempConditionLabel = \"" + tempCondition + "\" && ?seasonLabel = \"" + season + "\") " +
-                "} LIMIT 1";
+                "} LIMIT 2";
 
         return controller.runQuery(query);
     }
@@ -82,7 +82,7 @@ public class ClothingQueries {
         String query = "SELECT ?womensClothing ?shoeLabel ?conditionLabel ?tempConditionLabel ?seasonLabel " +
                 "WHERE { " +
                 "  " +
-                "  ?garment rdfs:subClassOf dbr:ClothindData;         " +
+                "  ?garment rdfs:subClassOf dbr:Clothing;         " +
                 "     sc:isSuitableToBeDressedInSeason ?season; " +
                 "            rdfs:label ?womensClothing; " +
                 "            sc:isSuitableToBeDressedOnWeather ?condition; " +
@@ -102,7 +102,7 @@ public class ClothingQueries {
                 " " +
                 "    FILTER (?conditionLabel = \"" + condition + "\" && ?tempConditionLabel = \"" + tempCondition + "\" && ?seasonLabel = \"" + season + "\") " +
                 "}" +
-                "LIMIT 1";
+                 "LIMIT 2";
 
         return controller.runQuery(query);
 
@@ -136,6 +136,7 @@ public class ClothingQueries {
         }
         return list;
     }
+
 
     public MensClothing mensToObject(String weatherCondition, String tempCondition,  String season) {
         MensClothing mensClothing = null;

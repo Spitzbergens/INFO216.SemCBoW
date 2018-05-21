@@ -8,6 +8,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
 
 
 public class ClothingModel {
@@ -24,11 +25,11 @@ public class ClothingModel {
         ClothingQueries queries = new ClothingQueries(controller);
         Model clothingModel = model.readModel();
         controller.addModel(clothingModel);
-        MensClothing mensClothing = queries.mensToObject("Clear", "Moderately Cold", "Spring");
+        MensClothing mensClothing = queries.mensToObject("Clear", "Hot", "Summer");
         WomensClothing womensClothing = queries.womensToObject("Clear","Moderately Hot",  "Spring");
 
 
-        System.out.println("Menn: " + mensClothing.getGarment());
+        System.out.println(mensClothing.getGarment());
         System.out.println(womensClothing.getGarment());
         System.out.println(womensClothing.getShoe());
 
