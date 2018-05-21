@@ -3,214 +3,185 @@
   <ID>JAVA</ID>
   <OriginalElement>ClothindData.ClothingModel</OriginalElement>
   <nodes>
-    <node x="118.61538461538461" y="1164.076923076923">GUI.UIMain</node>
-    <node x="1887.05" y="55.0">Models.Accessories</node>
-    <node x="861.05" y="33.0">Models.MensClothing</node>
-    <node x="531.4510964912279" y="1091.0">GUI.GUIMainController</node>
-    <node x="1176.5344298245611" y="829.0">ClothingRecommender.ClothingRec</node>
-    <node x="360.95109649122776" y="410.0">YrData.Yr</node>
-    <node x="0.0" y="0.0">Models.Weather</node>
-    <node x="1265.05" y="44.0">Models.Clothing</node>
-    <node x="1507.05" y="44.0">Models.WomensClothing</node>
-    <node x="606.05" y="77.0">RDF.RDFController</node>
-    <node x="2026.3015194235586" y="542.5">ClothindData.ClothingModel</node>
-    <node x="51.95109649122776" y="498.0">Queries.WeatherQueries</node>
-    <node x="1130.6499999999999" y="443.5">Queries.ClothingQueries</node>
-    <node x="308.67499999999995" y="829.0">YrData.YrModel</node>
+    <node x="0.0" y="1206.0">GUI.UIMain</node>
+    <node x="354.5" y="0.0">Models.MensClothing</node>
+    <node x="758.5000000000001" y="22.0">Models.Accessories</node>
+    <node x="873.9687500000002" y="955.0">GUI.GUIMainController</node>
+    <node x="758.9687500000002" y="693.0">ClothingRecommender.ClothingRec</node>
+    <node x="0.0" y="274.0">YrData.Yr</node>
+    <node x="1446.818470982143" y="318.5">Models.Weather</node>
+    <node x="1067.4250000000002" y="11.0">Models.WomensClothing</node>
+    <node x="1622.8345703125003" y="44.0">RDF.RDFController</node>
+    <node x="309.0473493303575" y="406.5">ClothindData.ClothingModel</node>
+    <node x="1679.75" y="703.5">Queries.WeatherQueries</node>
+    <node x="814.4687500000001" y="329.5">Queries.ClothingQueries</node>
+    <node x="13.26582031250041" y="737.5">YrData.YrModel</node>
   </nodes>
   <notes />
   <edges>
     <edge source="ClothingRecommender.ClothingRec" target="Models.Weather">
-      <point x="-239.85000000000025" y="-81.0" />
-      <point x="1203.184429824561" y="809.0" />
-      <point x="829.5437499999997" y="809.0" />
-      <point x="829.5437499999997" y="330.0" />
-      <point x="450.0833333333335" y="330.0" />
-      <point x="204.58333333333348" y="125.0" />
+      <point x="239.85000000000002" y="-81.0" />
+      <point x="1265.3187500000001" y="673.0" />
+      <point x="1495.918470982143" y="673.0" />
+      <point x="-196.4000000000001" y="125.0" />
     </edge>
     <edge source="GUI.GUIMainController" target="ClothindData.ClothingModel">
-      <point x="97.39285714285711" y="-103.0" />
-      <point x="780.343953634085" y="1051.0" />
-      <point x="2180.2390194235586" y="1051.0" />
-      <point x="2180.2390194235586" y="809.0" />
-      <point x="2186.4265194235586" y="809.0" />
-      <point x="68.625" y="37.0" />
-    </edge>
-    <edge source="Queries.ClothingQueries" target="Models.Clothing">
-      <point x="21.100000000000023" y="-136.0" />
-      <point x="1362.75" y="350.0" />
-      <point x="1431.55" y="350.0" />
-      <point x="55.5" y="81.0" />
+      <point x="-54.10714285714289" y="-103.0" />
+      <point x="971.3616071428573" y="895.0" />
+      <point x="362.625" y="895.0" />
+      <point x="362.625" y="673.0" />
+      <point x="331.9223493303575" y="673.0" />
+      <point x="-68.625" y="37.0" />
     </edge>
     <edge source="ClothingRecommender.ClothingRec" target="RDF.RDFController">
-      <point x="-133.2500000000001" y="-81.0" />
-      <point x="1309.7844298245611" y="789.0" />
-      <point x="910.4890194235584" y="789.0" />
-      <point x="910.4890194235584" y="310.0" />
-      <point x="782.3" y="310.0" />
-      <point x="58.75" y="48.0" />
+      <point x="186.54999999999995" y="-81.0" />
+      <point x="1212.0187500000002" y="663.0" />
+      <point x="1420.8000000000002" y="663.0" />
+      <point x="1420.8000000000002" y="254.0" />
+      <point x="1725.6470703125003" y="254.0" />
+      <point x="-14.6875" y="48.0" />
     </edge>
     <edge source="Queries.ClothingQueries" target="Models.Accessories">
-      <point x="147.70000000000005" y="-136.0" />
-      <point x="1489.35" y="380.0" />
-      <point x="1922.425" y="380.0" />
-      <point x="-106.125" y="70.0" />
+      <point x="-26.375" y="-114.0" />
+      <point x="999.0937500000001" y="254.0" />
+      <point x="1006.1250000000001" y="254.0" />
+      <point x="106.125" y="70.0" />
     </edge>
     <edge source="Queries.ClothingQueries" target="Models.WomensClothing">
-      <point x="105.5" y="-136.0" />
-      <point x="1447.1499999999999" y="370.0" />
-      <point x="1642.05" y="370.0" />
-      <point x="-45.0" y="81.0" />
+      <point x="26.375" y="-114.0" />
+      <point x="1051.84375" y="204.0" />
+      <point x="1112.4250000000002" y="204.0" />
+      <point x="-135.0" y="81.0" />
     </edge>
     <edge source="Queries.WeatherQueries" target="RDF.RDFController">
-      <point x="115.19999999999982" y="-81.5" />
-      <point x="311.1510964912276" y="350.0" />
-      <point x="641.3" y="350.0" />
-      <point x="-82.25" y="48.0" />
+      <point x="115.20000000000005" y="-70.5" />
+      <point x="1938.95" y="673.0" />
+      <point x="1991.25" y="673.0" />
+      <point x="1991.25" y="244.0" />
+      <point x="1784.3970703125003" y="244.0" />
+      <point x="44.0625" y="48.0" />
     </edge>
     <edge source="ClothingRecommender.ClothingRec" target="ClothindData.ClothingModel">
-      <point x="239.8499999999998" y="-81.0" />
-      <point x="1682.884429824561" y="809.0" />
-      <point x="2094.9265194235586" y="809.0" />
-      <point x="-22.875" y="37.0" />
+      <point x="-186.55000000000007" y="-81.0" />
+      <point x="838.91875" y="663.0" />
+      <point x="469.1723493303575" y="663.0" />
+      <point x="68.625" y="37.0" />
     </edge>
     <edge source="GUI.GUIMainController" target="Queries.WeatherQueries">
-      <point x="-119.03571428571422" y="-103.0" />
-      <point x="563.9153822055137" y="1061.0" />
-      <point x="103.04999999999995" y="1061.0" />
-      <point x="103.04999999999995" y="809.0" />
-      <point x="87.95109649122776" y="809.0" />
-      <point x="-108.0" y="81.5" />
-    </edge>
-    <edge source="GUI.GUIMainController" target="RDF.RDFController">
-      <point x="-10.821428571428669" y="-103.0" />
-      <point x="672.1296679197992" y="1071.0" />
-      <point x="677.4510964912278" y="1071.0" />
-      <point x="677.4510964912278" y="390.0" />
-      <point x="735.3" y="390.0" />
-      <point x="11.75" y="48.0" />
+      <point x="97.39285714285711" y="-103.0" />
+      <point x="1122.8616071428573" y="915.0" />
+      <point x="1895.75" y="915.0" />
+      <point x="72.0" y="70.5" />
     </edge>
     <edge source="Queries.ClothingQueries" target="RDF.RDFController">
-      <point x="-189.89999999999986" y="-136.0" />
-      <point x="1151.75" y="300.0" />
-      <point x="805.8" y="300.0" />
-      <point x="82.25" y="48.0" />
+      <point x="184.625" y="-114.0" />
+      <point x="1210.09375" y="234.0" />
+      <point x="1666.8970703125003" y="234.0" />
+      <point x="-73.4375" y="48.0" />
+    </edge>
+    <edge source="GUI.GUIMainController" target="RDF.RDFController">
+      <point x="119.03571428571422" y="-103.0" />
+      <point x="1144.5044642857144" y="925.0" />
+      <point x="2002.25" y="925.0" />
+      <point x="2002.25" y="234.0" />
+      <point x="1813.7720703125003" y="234.0" />
+      <point x="73.4375" y="48.0" />
     </edge>
     <edge source="Queries.WeatherQueries" target="Models.Weather">
-      <point x="0.0" y="-81.5" />
-      <point x="195.95109649122776" y="330.0" />
-      <point x="286.4166666666665" y="330.0" />
-      <point x="40.916666666666515" y="125.0" />
+      <point x="-115.20000000000005" y="-70.5" />
+      <point x="1708.55" y="673.0" />
+      <point x="1692.318470982143" y="673.0" />
+      <point x="0.0" y="125.0" />
     </edge>
     <edge source="GUI.GUIMainController" target="Models.Weather">
-      <point x="-140.67857142857156" y="-103.0" />
-      <point x="542.2725250626563" y="1071.0" />
-      <point x="41.45109649122787" y="1071.0" />
-      <point x="-204.58333333333326" y="125.0" />
+      <point x="54.10714285714289" y="-103.0" />
+      <point x="1079.5758928571431" y="895.0" />
+      <point x="1641.8684709821428" y="895.0" />
+      <point x="1641.8684709821428" y="673.0" />
+      <point x="1594.1184709821428" y="673.0" />
+      <point x="-98.20000000000005" y="125.0" />
     </edge>
     <edge source="ClothingRecommender.ClothingRec" target="Models.Accessories">
-      <point x="133.2499999999999" y="-81.0" />
-      <point x="1576.2844298245611" y="789.0" />
-      <point x="2006.3640194235584" y="789.0" />
-      <point x="2006.3640194235584" y="390.0" />
-      <point x="2063.925" y="390.0" />
-      <point x="35.375" y="70.0" />
+      <point x="-79.95000000000005" y="-81.0" />
+      <point x="945.5187500000002" y="643.0" />
+      <point x="803.96875" y="643.0" />
+      <point x="803.96875" y="254.0" />
+      <point x="864.6250000000001" y="254.0" />
+      <point x="-35.375" y="70.0" />
     </edge>
     <edge source="GUI.GUIMainController" target="Models.WomensClothing">
-      <point x="119.03571428571422" y="-103.0" />
-      <point x="801.9868107769421" y="1061.0" />
-      <point x="2219.8015194235586" y="1061.0" />
-      <point x="2219.8015194235586" y="370.0" />
-      <point x="1822.05" y="370.0" />
+      <point x="32.46428571428578" y="-103.0" />
+      <point x="1057.933035714286" y="885.0" />
+      <point x="1436.318470982143" y="885.0" />
+      <point x="1436.318470982143" y="214.0" />
+      <point x="1382.4250000000002" y="214.0" />
       <point x="135.0" y="81.0" />
     </edge>
     <edge source="GUI.GUIMainController" target="Models.MensClothing">
-      <point x="10.821428571428442" y="-103.0" />
-      <point x="693.7725250626563" y="1011.0" />
-      <point x="805.4687499999998" y="1011.0" />
-      <point x="805.4687499999998" y="390.0" />
-      <point x="909.05" y="390.0" />
+      <point x="-97.39285714285711" y="-103.0" />
+      <point x="928.0758928571431" y="915.0" />
+      <point x="283.5" y="915.0" />
+      <point x="283.5" y="244.0" />
+      <point x="402.5" y="244.0" />
       <point x="-144.0" y="92.0" />
     </edge>
     <edge source="YrData.YrModel" target="YrData.Yr">
-      <point x="38.0" y="-81.0" />
-      <point x="479.67499999999995" y="789.0" />
-      <point x="565.7010964912278" y="789.0" />
-      <point x="68.25" y="169.5" />
-    </edge>
-    <edge source="YrData.YrModel" target="Models.Weather">
-      <point x="-38.0" y="-81.0" />
-      <point x="403.67499999999995" y="789.0" />
-      <point x="350.45109649122776" y="789.0" />
-      <point x="350.45109649122776" y="330.0" />
-      <point x="368.25" y="330.0" />
-      <point x="122.75" y="125.0" />
+      <point x="-63.25" y="-36.5" />
+      <point x="76.51582031250041" y="673.0" />
+      <point x="68.25" y="673.0" />
+      <point x="-68.25" y="169.5" />
     </edge>
     <edge source="Queries.ClothingQueries" target="Models.MensClothing">
-      <point x="-63.299999999999955" y="-136.0" />
-      <point x="1278.35" y="270.0" />
-      <point x="1197.05" y="270.0" />
-      <point x="144.0" y="92.0" />
+      <point x="-184.625" y="-114.0" />
+      <point x="840.8437500000001" y="244.0" />
+      <point x="594.5" y="244.0" />
+      <point x="48.0" y="92.0" />
     </edge>
     <edge source="ClothingRecommender.ClothingRec" target="Models.WomensClothing">
-      <point x="79.94999999999982" y="-81.0" />
-      <point x="1522.984429824561" y="779.0" />
-      <point x="1732.05" y="779.0" />
+      <point x="79.94999999999993" y="-81.0" />
+      <point x="1105.41875" y="643.0" />
+      <point x="1320.9250000000002" y="643.0" />
+      <point x="1320.9250000000002" y="214.0" />
+      <point x="1292.4250000000002" y="214.0" />
       <point x="45.0" y="81.0" />
     </edge>
     <edge source="ClothingRecommender.ClothingRec" target="Models.MensClothing">
-      <point x="-79.95000000000016" y="-81.0" />
-      <point x="1363.084429824561" y="779.0" />
-      <point x="979.05" y="779.0" />
-      <point x="979.05" y="390.0" />
-      <point x="1005.05" y="390.0" />
+      <point x="-133.25" y="-81.0" />
+      <point x="892.2187500000002" y="653.0" />
+      <point x="511.9848493303575" y="653.0" />
+      <point x="511.9848493303575" y="244.0" />
+      <point x="498.5" y="244.0" />
       <point x="-48.0" y="92.0" />
     </edge>
     <edge source="GUI.GUIMainController" target="YrData.YrModel">
-      <point x="-54.10714285714289" y="-103.0" />
-      <point x="628.843953634085" y="1031.0" />
-      <point x="508.17499999999995" y="1031.0" />
-      <point x="66.5" y="81.0" />
+      <point x="-119.03571428571422" y="-103.0" />
+      <point x="906.433035714286" y="925.0" />
+      <point x="203.0158203125004" y="925.0" />
+      <point x="63.25" y="36.5" />
     </edge>
     <edge source="GUI.GUIMainController" target="ClothingRecommender.ClothingRec">
-      <point x="32.46428571428578" y="-103.0" />
-      <point x="715.4153822055137" y="1021.0" />
-      <point x="1309.7844298245611" y="1021.0" />
-      <point x="-133.25" y="81.0" />
+      <point x="10.821428571428442" y="-103.0" />
+      <point x="1036.2901785714287" y="875.0" />
+      <point x="1158.7187500000002" y="875.0" />
+      <point x="133.25" y="81.0" />
     </edge>
     <edge source="GUI.GUIMainController" target="Models.Accessories">
-      <point x="140.67857142857133" y="-103.0" />
-      <point x="823.6296679197992" y="1071.0" />
-      <point x="2278.925" y="1071.0" />
-      <point x="2278.925" y="360.0" />
-      <point x="2134.675" y="360.0" />
-      <point x="106.125" y="70.0" />
-    </edge>
-    <edge source="YrData.YrModel" target="RDF.RDFController">
-      <point x="76.0" y="-81.0" />
-      <point x="517.675" y="799.0" />
-      <point x="644.4510964912278" y="799.0" />
-      <point x="644.4510964912278" y="360.0" />
-      <point x="664.8" y="360.0" />
-      <point x="-58.75" y="48.0" />
+      <point x="-75.75" y="-103.0" />
+      <point x="949.7187500000002" y="905.0" />
+      <point x="298.5473493303575" y="905.0" />
+      <point x="298.5473493303575" y="254.0" />
+      <point x="793.8750000000001" y="254.0" />
+      <point x="-106.125" y="70.0" />
     </edge>
     <edge source="ClothingRecommender.ClothingRec" target="Queries.ClothingQueries">
-      <point x="-26.650000000000205" y="-81.0" />
-      <point x="1416.384429824561" y="769.0" />
-      <point x="1236.1499999999999" y="769.0" />
-      <point x="-105.5" y="136.0" />
-    </edge>
-    <edge source="YrData.YrModel" target="Queries.WeatherQueries">
-      <point x="-76.0" y="-81.0" />
-      <point x="365.67499999999995" y="799.0" />
-      <point x="303.95109649122776" y="799.0" />
-      <point x="108.0" y="81.5" />
+      <point x="26.649999999999977" y="-81.0" />
+      <point x="1052.11875" y="633.0" />
+      <point x="1130.96875" y="633.0" />
+      <point x="105.5" y="114.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.37094682230869" x="1147.0" y="678.0" />
-  <SelectedNodes>
-    <node>GUI.UIMain</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="0.4916885389326334" x="839.5035587188612" y="758.5" />
+  <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
     <Category>Methods</Category>

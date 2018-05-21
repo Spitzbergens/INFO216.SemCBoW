@@ -1,20 +1,18 @@
 package ClothindData;
 
-import Models.MensClothing;
-import Models.WomensClothing;
-import Queries.ClothingQueries;
-import RDF.RDFController;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
 
 
 public class ClothingModel {
 
     private String file = "src/ClothindData/semcloth.ttl";
 
+    /**
+     * Constructor reading the clothing model.
+     */
     public ClothingModel() {
         readModel();
     }

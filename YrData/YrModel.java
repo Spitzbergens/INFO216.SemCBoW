@@ -1,20 +1,14 @@
 package YrData;
 
-import Models.Weather;
-import Queries.WeatherQueries;
-import RDF.RDFController;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.json.*;
-import org.json.simple.JSONObject;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.apache.jena.rdf.model.ModelFactory.createDefaultModel;
 import static org.apache.jena.rdf.model.ModelFactory.createOntologyModel;
@@ -42,27 +36,8 @@ public class YrModel {
 
 
     /**
-     * Brukes for testing
-     *
-     * @param args
+     * Creates an ontology Model from the model, and writing the model to a file.
      */
-    public static void main(String[] args) {
-        YrModel model = new YrModel();
-        model.createAndParseModel();
-        model.writeToFile();
-
-        RDFController controller = new RDFController();
-        WeatherQueries queries = new WeatherQueries(controller);
-        Model weatherModel = model.createAndParseModel();
-        controller.addModel(weatherModel);
-
-        List<Weather> list = queries.getWeatherListWeek();
-
-        System.out.println(list.get(0).getDate() + list.get(0).getDateTimeStart());
-        System.out.println(list.get(1).getDate() + list.get(1).getDateTimeStart());
-
-    }
-
 
     public void writeToFile() {
         OntModel ontmodel = createOntologyModel(OntModelSpec.OWL_MEM, model);
@@ -75,6 +50,13 @@ public class YrModel {
     }
 
 
+    /**
+     * Parsing and creating the model. Setting up prefixes to be used on the properties and the weather resource.
+     * and gathering values from the ArrayLists specified in the field. Then creating the resource and adding properties
+     * and literals.
+     *
+     * @return the model.
+     */
     public Model createAndParseModel() {
 
         String ontoURI = "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#";
@@ -119,31 +101,5 @@ public class YrModel {
         }
         return model;
     }
-
-
-    public ArrayList<String> getTemp() {
-        return temp;
-    }
-
-    public void setTemp(ArrayList<String> temp) {
-        this.temp = temp;
-    }
-
-    public ArrayList<String> getWindSpeedValue() {
-        return windSpeedValue;
-    }
-
-    public void setWindSpeedValue(ArrayList<String> windSpeedValue) {
-        this.windSpeedValue = windSpeedValue;
-    }
-
-    public ArrayList<String> getWindSpeedName() {
-        return windSpeedName;
-    }
-
-    public void setWindSpeedName(ArrayList<String> windSpeedName) {
-        this.windSpeedName = windSpeedName;
-    }
-
 
 }

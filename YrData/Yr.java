@@ -10,14 +10,15 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Objects;
 
 public class Yr {
 
@@ -37,6 +38,9 @@ public class Yr {
     private ArrayList<Integer> idList = new ArrayList<Integer>();
 
 
+    /**
+     * Constructor gets the API and constructing the ArrayLists
+     */
     public Yr() {
         getAPI();
         constructList();
@@ -44,10 +48,14 @@ public class Yr {
 
     // https://www.researchgate.net/post/How_can_one_load_xml_file_inside_of_java_class_file_in_a_netbeans_project
 
+    /**
+     * First checking if caching different is above 10 minutes, following Yr's demand on caching.
+     * Reading the URL and transfers the content into the readable byte channel and writing an XML-file.
+     */
     public void getAPI() {
         System.out.println("YR API checking for updates.. ");
 
-        // YRs krav til caching på 10 minutt
+
         if (difference > 60000 * 10) {
             try {
                 URL weatherAPI = new URL("http://www.yr.no/sted/Norge/Hordaland/Bergen/Bergen/varsel.xml");
@@ -63,6 +71,14 @@ public class Yr {
         }
 
     }
+
+    /**
+     * Constructing Arraylists from the XML-file/API. Creating a new documentBuilder that parses the file.
+     * Creating an element of each tag with the name Tabular
+     * Creates a nodelist from the "time" tag, which is used to iterate through the document.
+     * Creating a node from each relevant tag, and then an own element. And then uses a selection of
+     * each tags attributes to be but in their own ArrayLists, which is used to create the model.
+     */
 
     public void constructList() {
         System.out.println("Constructing list from API");
@@ -85,7 +101,7 @@ public class Yr {
             e.printStackTrace();
         }
 
-        Element nodelist = (Element) doc.getElementsByTagName("tabular").item(0);
+        Element nodelist = (Element) Objects.requireNonNull(doc).getElementsByTagName("tabular").item(0);
 
         NodeList timeNodeList = nodelist.getElementsByTagName("time");
 
@@ -126,6 +142,9 @@ public class Yr {
         System.out.println("All OK");
     }
 
+    /**
+     * Getters and settes for each field, which is used to create the model.
+     */
     public ArrayList<String> getPrecipitation() {
         return precipitation;
     }

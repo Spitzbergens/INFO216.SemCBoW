@@ -9,7 +9,15 @@ public class MensClothing {
     private String shoe;
 
 
-
+    /**
+     * Constructor for creating a MensClothing object
+     *
+     * @param garment       a garmetn
+     * @param fitsCondition a condition
+     * @param fitsSeason    a season
+     * @param fitsTemp      a temperature
+     * @param shoe          a shoe
+     */
     public MensClothing(String garment, String fitsCondition, String fitsSeason, String fitsTemp, String shoe) {
         this.garment = garment;
         this.fitsCondition = fitsCondition;
@@ -22,6 +30,10 @@ public class MensClothing {
     public MensClothing() {
 
     }
+
+    /**
+     * Getters and setters for the MensClothing model
+     */
 
     public String getFitsTemp() {
         return fitsTemp;

@@ -21,6 +21,9 @@ public class WomensClothing {
         return garment;
     }
 
+    /**
+     * Getters and setters for the womensClothing model
+     */
     public void setGarment(String garment) {
         this.garment = garment;
     }
@@ -31,10 +34,6 @@ public class WomensClothing {
 
     public void setFitsCondition(String fitsCondition) {
         this.fitsCondition = fitsCondition;
-    }
-
-    public String getFitsSeason() {
-        return fitsSeason;
     }
 
     public void setFitsSeason(String fitsSeason) {

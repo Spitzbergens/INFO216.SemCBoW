@@ -11,6 +11,18 @@ public class Weather {
     private String date;
     private Double precipitation;
 
+    /**
+     * Constructor creating for a weather condition object
+     *
+     * @param temperature   a temperature
+     * @param windSpeed     a windspeed
+     * @param wind          a type of wind
+     * @param weatherType   a weather condition
+     * @param dateTimeStart the start time of a weather conidtion
+     * @param dateTimeEnd   a end time of a weather condition
+     * @param date          a date in which a weather condition occcurs.
+     * @param precipitation the amount of precipitation
+     */
 
     public Weather(Integer temperature, Float windSpeed, String wind, String weatherType, String dateTimeStart, String dateTimeEnd, String date, Double
             precipitation) {
@@ -37,6 +49,10 @@ public class Weather {
     public Weather() {
 
     }
+
+    /**
+     * Getters and setters for the Weather model
+     */
 
     public Double getPrecipitation() {
         return precipitation;

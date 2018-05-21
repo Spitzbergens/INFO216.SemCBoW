@@ -21,19 +21,22 @@ public class RDFController {
             "PREFIX dbp: <http://dbpedia.org/property/> " +
             "PREFIX dbpedia: <http://dbpedia.org/> " +
             "PREFIX xml: <http://www.w3.org/XML/1998/namespace> " +
-            "PREFIX skos: <http://www.w3.org/2004/02/skos/core#> " +
             "PREFIX sc: <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#> " +
-            "PREFIX gr: <http://purl.org/goodrelations/v1#>" +
-            "PREFIX muto: <http://purl.org/muto/core#> " +
-            "PREFIX sioc: <http://rdfs.org/sioc/ns#> " +
             "BASE <http://www.semanticweb.org/ontologies/2015/02/semcloth.owl> ";
 
-
+    /**
+     * Creating a model
+     */
     public RDFController() {
         this.model = ModelFactory.createDefaultModel();
     }
 
 
+    /**
+     * Adds a model to the model in the field.
+     *
+     * @param model the model to be added.
+     */
     public void addModel(Model model) {
         this.model.add(model);
     }
@@ -50,10 +53,6 @@ public class RDFController {
         QueryExecution qe = QueryExecutionFactory.create(query, model);
         ResultSet results = qe.execSelect();
 
-        /**
-         * Bruk denne for å skrive resultatet av en spørring til terminal.
-         * Kommenter ut hvis ikke.
-         */
         //ResultSetFormatter.out(results);
 
         return results;

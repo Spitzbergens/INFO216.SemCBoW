@@ -2,7 +2,10 @@ package GUI;
 
 import ClothindData.ClothingModel;
 import ClothingRecommender.ClothingRec;
-import Models.*;
+import Models.Accessories;
+import Models.MensClothing;
+import Models.Weather;
+import Models.WomensClothing;
 import Queries.WeatherQueries;
 import RDF.RDFController;
 import YrData.YrModel;
@@ -43,6 +46,10 @@ public class GUIMainController implements Initializable {
     private ResourceBundle labels = ResourceBundle.getBundle("langProp", Locale.forLanguageTag("no"));
 
 
+    /*
+    Initializes the GUI. Creating and writing the weathermodel, reading the clothing model and creating the weathermodel
+    * Finally Adding the models and displaying elements by querying them and creating lists out of them.
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

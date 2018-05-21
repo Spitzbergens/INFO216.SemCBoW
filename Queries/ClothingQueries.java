@@ -1,25 +1,30 @@
 package Queries;
 
 import Models.Accessories;
-import Models.Clothing;
 import Models.MensClothing;
 import Models.WomensClothing;
 import RDF.RDFController;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class ClothingQueries {
 
     private RDFController controller;
 
 
+    /**
+     * Constructor for creating a new RDFcontroller
+     *
+     * @param controller
+     */
     public ClothingQueries(RDFController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Just a query used for testing and viewing clothing and their matching weather condition.
+     * @return Resultset
+     */
     public ResultSet queryAll() {
         String query = "SELECT ?s ?o " +
                 "WHERE { " +
@@ -29,8 +34,9 @@ public class ClothingQueries {
     }
 
     /**
+     * Querying all information on a weather phenomenon related to clothing, retrieving a weatherlabel, seasonlabel, conditionlabel and warmth.
      * @param condition, F.eks "Cold", "Hot", "Clear", "Wet", "Dry", "Cloudy"
-     * @return
+     * @return a resultset
      */
     public ResultSet queryClothingForWeather(String condition) {
         String query = "SELECT ?label ?seasonlabel ?conditionLabel ?warmth " +
@@ -50,7 +56,16 @@ public class ClothingQueries {
         return controller.runQuery(query);
     }
 
-    public ResultSet queryMensClothing(String condition, String tempCondition, String season) {
+    /**
+     * Querying the semcloth for clothing items and shoes.  and filtering on three parameters, Condition, tempCondition and season.
+     *
+     * @param condition     For example: "Cloudy, clear, partly cloudy, dry or wet. "
+     * @param tempCondition For example: "Hot, "Cold", "Moderately cold", "Moderately hot"
+     * @param season        For example: "Summer", "Autumn", "Summer", "Winter"
+     * @return the resultset
+     */
+
+    private ResultSet queryMensClothing(String condition, String tempCondition, String season) {
         String query = "SELECT ?mensClothing ?shoeLabel ?conditionLabel ?tempConditionLabel ?seasonLabel " +
                 "WHERE { " +
                 "  " +
@@ -78,7 +93,16 @@ public class ClothingQueries {
         return controller.runQuery(query);
     }
 
-    public ResultSet queryWomensClothing(String condition, String tempCondition, String season) {
+    /**
+     * Querying the semcloth for clothing items and shoes.  and filtering on three parameters, Condition, tempCondition and season.
+     *
+     * @param condition     For example: "Cloudy, clear, partly cloudy, dry or wet. "
+     * @param tempCondition For example: "Hot, "Cold", "Moderately cold", "Moderately hot"
+     * @param season        For example: "Summer", "Autumn", "Summer", "Winter"
+     * @return the resultset
+     */
+
+    private ResultSet queryWomensClothing(String condition, String tempCondition, String season) {
         String query = "SELECT ?womensClothing ?shoeLabel ?conditionLabel ?tempConditionLabel ?seasonLabel " +
                 "WHERE { " +
                 "  " +
@@ -102,11 +126,19 @@ public class ClothingQueries {
                 " " +
                 "    FILTER (?conditionLabel = \"" + condition + "\" && ?tempConditionLabel = \"" + tempCondition + "\" && ?seasonLabel = \"" + season + "\") " +
                 "}" +
-                 "LIMIT 2";
+                "LIMIT 2";
 
         return controller.runQuery(query);
 
     }
+
+    /**
+     * Querying the semcloth for clothing items and shoes.  and filtering on three parameters, Condition, tempCondition and season.
+     * @param weatherCondition For example: "Cloudy, clear, partly cloudy, dry or wet. "
+     * @param season For example: "Summer", "Autumn", "Summer", "Winter"
+     * @return the resultset
+     *
+     */
 
     public ResultSet queryAccessories(String weatherCondition, String season) {
         String query = "SELECT ?accessoryLabel ?conditionLabel ?seasonLabel " +
@@ -126,19 +158,16 @@ public class ClothingQueries {
         return controller.runQuery(query);
     }
 
-    public List<Clothing> getClothingByWeather(String weatherCondition) {
-        List<Clothing> list = new LinkedList<>();
-        ResultSet ObjectSet = queryClothingForWeather(weatherCondition);
-        while (ObjectSet.hasNext()) {
-            ObjectSet.next();
-            Clothing clothing = queryToObject(weatherCondition);
-            list.add(clothing);
-        }
-        return list;
-    }
-
-
-    public MensClothing mensToObject(String weatherCondition, String tempCondition,  String season) {
+    /**
+     * Returning the query-resultset as an object which will be displayed.
+     * Using the parameters weatherCondition, TempCondition and Season.
+     *
+     * @param weatherCondition For example: "Cloudy, clear, partly cloudy, dry or wet. "
+     * @param tempCondition For example: "Hot, "Cold", "Moderately cold", "Moderately hot"
+     * @param season For example: "Summer", "Autumn", "Summer", "Winter"
+     * @return the mensClothing object.
+     */
+    public MensClothing mensToObject(String weatherCondition, String tempCondition, String season) {
         MensClothing mensClothing = null;
         ResultSet clothingSet = queryMensClothing(weatherCondition, tempCondition, season);
         QuerySolution qs = null;
@@ -159,7 +188,16 @@ public class ClothingQueries {
         return mensClothing;
     }
 
-    public WomensClothing womensToObject(String weatherCondition, String tempCondition,  String season) {
+    /**
+     * Returning the query-resultset as an object which will be displayed.
+     * Using the parameters weatherCondition, TempCondition and Season.
+     *
+     * @param weatherCondition For example: "Cloudy, clear, partly cloudy, dry or wet. "
+     * @param tempCondition For example: "Hot, "Cold", "Moderately cold", "Moderately hot"
+     * @param season For example: "Summer", "Autumn", "Summer", "Winter"
+     * @return
+     */
+    public WomensClothing womensToObject(String weatherCondition, String tempCondition, String season) {
         WomensClothing womensClothing = null;
         ResultSet clothingSet = queryWomensClothing(weatherCondition, tempCondition, season);
         QuerySolution qs = null;
@@ -178,6 +216,15 @@ public class ClothingQueries {
         }
         return womensClothing;
     }
+
+    /**
+     * Returning the query-resultset as an object which will be displayed.
+     * Using the parameters weatherCondition, TempCondition and Season.
+     *
+     * @param weatherCondition For example: "Cloudy, clear, partly cloudy, dry or wet. "
+     * @param season For example: "Summer", "Autumn", "Summer", "Winter"
+     * @return
+     */
 
     public Accessories accessoriesToObject(String weatherCondition, String season) {
         Accessories accessories = null;
@@ -198,22 +245,4 @@ public class ClothingQueries {
         return accessories;
     }
 
-    public Clothing queryToObject(String weatherCondition) {
-        Clothing clothing = null;
-        ResultSet clothingSet = queryClothingForWeather(weatherCondition);
-        QuerySolution qs = null;
-        if (clothingSet.hasNext()) {
-            try {
-                qs = clothingSet.nextSolution();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-            clothing = new Clothing();
-            clothing.setClothingName(qs.getLiteral("label").toString());
-            clothing.setWarmthValue(qs.getLiteral("warmth").getInt());
-            clothing.setFitsCondition(qs.getLiteral("conditionLabel").toString());
-            clothing.setFitsSeasons(qs.getLiteral("seasonlabel").toString());
-        }
-        return clothing;
-    }
 }

@@ -18,7 +18,9 @@ public class ClothingRec {
     private  RDFController controller = new RDFController();
     private ClothingQueries clothingQueries = new ClothingQueries(controller);
 
-
+    /**
+     * Constructor reading the clothing model and adding the model to the RDF controller.
+     */
     public ClothingRec(){
         Model clothingModel = model.readModel();
         controller.addModel(clothingModel);

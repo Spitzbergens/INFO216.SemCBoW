@@ -5,7 +5,9 @@ import RDF.RDFController;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class WeatherQueries {
 
@@ -13,26 +15,19 @@ public class WeatherQueries {
     public ArrayList<Weather> weatherList = new ArrayList<>();
 
 
+    /**
+     * Consturctor for creating a new RDFController
+     *
+     * @param controller the RDFController
+     */
     public WeatherQueries(RDFController controller) {
         this.controller = controller;
     }
 
-    public ResultSet getWeeklyWeather() {
-
-        String query = "SELECT ?dateTime ?time ?temperature ?windCondition ?windSpeed ?weatherCondition " +
-                "WHERE {" +
-                "?date a we:WeatherCondition." +
-                "?date we:windType ?windType;" +
-                "      we:hasTemperature ?temperature;" +
-                "      we:hasObservationTime ?time;" +
-                "      we:hasWeatherCondition ?condition; " +
-                "      we:hasWind ?windSpeed;" +
-                "      schema:inDateTime ?dateTime" +
-                "} ORDER BY ?date ?time ";
-
-        return controller.runQuery(query);
-
-    }
+    /**
+     * Querying weather by day, and filtering on date.
+     * @return A resultset.
+     */
 
     public ResultSet getWeatherByDay(String date) {
         String query = "SELECT DISTINCT ?startTime ?endTime ?temperature ?condition ?windSpeed ?windType ?precipitation ?dateTime\n" +
@@ -54,6 +49,11 @@ public class WeatherQueries {
         return controller.runQuery(query);
     }
 
+    /**
+     * Querying for dates and grouping them.
+     * @return the resultset.
+     */
+
     public ResultSet getWeatherDates() {
         String query = "SELECT DISTINCT ?datetime " +
                 "WHERE { " +
@@ -63,6 +63,11 @@ public class WeatherQueries {
         return controller.runQuery(query);
     }
 
+    /**
+     * Querying for weatherdates, and iterating through the ResultSet, getting the newest
+     * dates and adding them to a list as an own weather-object.
+     * @return The list of weatherObject
+     */
     public List<Weather> getWeatherListWeek() {
 
         List<Weather> list = new LinkedList<>();
@@ -74,6 +79,13 @@ public class WeatherQueries {
         }
         return list;
     }
+
+    /**
+     * Quering for weather by day, and iterating through the resultset, and finally creating an object
+     * from each query solution.
+     * @param date Date for a day
+     * @return
+     */
 
     public Weather queryToObject(String date) {
 
