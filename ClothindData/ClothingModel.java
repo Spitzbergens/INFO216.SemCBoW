@@ -8,7 +8,7 @@ import java.io.File;
 
 public class ClothingModel {
 
-    private String file = "ClothindData/semcloth.ttl";
+    private String file = "src/ClothindData/semcloth.ttl";
 
     /**
      * Constructor reading the clothing model.
@@ -24,7 +24,8 @@ public class ClothingModel {
      */
     public Model readModel() {
         Model model = ModelFactory.createDefaultModel();
-            model.read(new File(file).toURI().toString(), "Turtle");
+
+        model.read(new File(file).toURI().toString(), "Turtle");
         return model;
     }
 }

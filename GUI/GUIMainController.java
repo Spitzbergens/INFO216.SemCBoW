@@ -79,7 +79,10 @@ public class GUIMainController implements Initializable {
      * Sets information to column 1.
      * Sets text based on a weather-object at a given index in the list.
      * Sets information about clothing recommendations based on the same
-     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * weather conditions. Sets icons based on weather conditions in the list of that index.
+     * If the recommendations are the same for both men and women, there will
+     * only be shown one recommendation
+     *
      * @param list List of weather-conditons.
      */
 
@@ -146,7 +149,9 @@ public class GUIMainController implements Initializable {
      * Sets information to column 1.
      * Sets text based on a weather-object at a given index in the list.
      * Sets information about clothing recommendations based on the same
-     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * weather conditions. Sets icons based on weather conditions in the list of that index.
+     * If the recommendations are the same for both men and women, there will
+     * only be shown one recommendation
      * @param list List of weather-conditons.
      */
     @SuppressWarnings("Duplicates")
@@ -211,7 +216,9 @@ public class GUIMainController implements Initializable {
      * Sets information to column 1.
      * Sets text based on a weather-object at a given index in the list.
      * Sets information about clothing recommendations based on the same
-     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * weather conditions. Sets icons based on weather conditions in the list of that index.
+     * If the recommendations are the same for both men and women, there will
+     * only be shown one recommendation
      * @param list List of weather-conditons.
      */
     @SuppressWarnings("Duplicates")
@@ -279,7 +286,9 @@ public class GUIMainController implements Initializable {
      * Sets information to column 1.
      * Sets text based on a weather-object at a given index in the list.
      * Sets information about clothing recommendations based on the same
-     * weather conditions. Sets icons based on weather conditions in the list of that index..
+     * weather conditions. Sets icons based on weather conditions in the list of that index.
+     * If the recommendations are the same for both men and women, there will
+     * only be shown one recommendation
      * @param list List of weather-conditons.
      */
     @SuppressWarnings("Duplicates")

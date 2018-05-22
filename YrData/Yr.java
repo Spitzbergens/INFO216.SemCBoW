@@ -22,7 +22,7 @@ import java.util.Objects;
 
 public class Yr {
 
-    private File file = new File("varsel.xml");
+    private File file = new File("./varsel.xml");
     long difference = new Date().getTime() - file.lastModified();
     private ArrayList<String> weatherType = new ArrayList<String>();
     private ArrayList<String> dateObserved = new ArrayList<String>();
