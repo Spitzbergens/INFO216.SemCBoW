@@ -46,10 +46,8 @@ public class Yr {
         constructList();
     }
 
-    // https://www.researchgate.net/post/How_can_one_load_xml_file_inside_of_java_class_file_in_a_netbeans_project
-
     /**
-     * First checking if caching different is above 10 minutes, following Yr's demand on caching.
+     * First checking if caching difference is above 10 minutes, following Yr's demand on caching.
      * Reading the URL and transfers the content into the readable byte channel and writing an XML-file.
      */
     public void getAPI() {
@@ -74,7 +72,7 @@ public class Yr {
 
     /**
      * Constructing Arraylists from the XML-file/API. Creating a new documentBuilder that parses the file.
-     * Creating an element of each tag with the name Tabular
+     * Creating an element of each tag with the tag-name Tabular
      * Creates a nodelist from the "time" tag, which is used to iterate through the document.
      * Creating a node from each relevant tag, and then an own element. And then uses a selection of
      * each tags attributes to be but in their own ArrayLists, which is used to create the model.
