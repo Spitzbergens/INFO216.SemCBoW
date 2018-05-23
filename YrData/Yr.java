@@ -92,10 +92,9 @@ public class Yr {
         Document doc = null;
 
         try {
+            assert dBuilder != null;
             doc = dBuilder.parse(file);
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SAXException | IOException e) {
             e.printStackTrace();
         }
 

@@ -4,6 +4,8 @@ import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 
+import java.util.Objects;
+
 public class RDFController {
 
     private Model model;
@@ -45,12 +47,10 @@ public class RDFController {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-        ResultSet results = qe.execSelect();
+        QueryExecution qe = QueryExecutionFactory.create(Objects.requireNonNull(query), model);
 
         //ResultSetFormatter.out(results);
-
-        return results;
+        return qe.execSelect();
     }
 
 }
