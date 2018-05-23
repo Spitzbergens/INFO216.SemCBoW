@@ -25,7 +25,7 @@ public class ClothingModel {
     public Model readModel() {
         Model model = ModelFactory.createDefaultModel();
 
-        model.read(new File(file).toURI().toString(), "Turtle");
+        model.read(new File(file).toURI().toString(), "http://www.semanticweb.org/ontologies/2015/02/semcloth.owl", "Turtle");
         return model;
     }
 }
