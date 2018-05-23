@@ -177,13 +177,11 @@ public class ClothingQueries {
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
-            // ??mensClothing ?shoeLabel ?conditionLabel ?tempConditionLabel ?seasonLabel
             mensClothing = new MensClothing();
             mensClothing.setGarment(qs.getLiteral("mensClothing").toString());
             mensClothing.setShoe(qs.getLiteral("shoeLabel").toString());
             mensClothing.setFitsCondition(qs.getLiteral("conditionLabel").toString());
             mensClothing.setFitsSeason(qs.getLiteral("seasonLabel").toString());
-
         }
         return mensClothing;
     }
@@ -236,7 +234,6 @@ public class ClothingQueries {
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
-            // ?accessoryLabel ?conditionLabel ?seasonLabel
             accessories = new Accessories();
             accessories.setAccessory(qs.getLiteral("accessoryLabel").toString());
             accessories.setFitsCondition(qs.getLiteral("conditionLabel").toString());

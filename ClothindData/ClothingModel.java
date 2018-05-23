@@ -24,10 +24,7 @@ public class ClothingModel {
      */
     public Model readModel() {
         Model model = ModelFactory.createDefaultModel();
-
         model.read(new File(file).toURI().toString(), "http://www.semanticweb.org/ontologies/2015/02/semcloth.owl", "Turtle");
         return model;
     }
 }
-
-//"/Users/Mats/IdeaProjects/INFO216.SemCBOW/src/ClothingOntology/semcloth.ttl"), "http://www.semanticweb.org/ontologies/2015/02/semcloth.owl#", "TURTLE"

@@ -42,7 +42,7 @@ public class GUIMainController implements Initializable {
     private RDFController controller = new RDFController();
     private WeatherQueries weatherQueries = new WeatherQueries(controller);
 
-   private ClothingRec clothingRec = new ClothingRec();
+    private ClothingRec clothingRec = new ClothingRec();
     private ResourceBundle labels = ResourceBundle.getBundle("langProp", Locale.forLanguageTag("no"));
 
 
@@ -137,10 +137,12 @@ public class GUIMainController implements Initializable {
             womensRec1.getChildren().add(womensClothingText);
         }
 
-        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
-
+        if (!suitableDayTime(list, 0) && accessories.getAccessory().equals("Sunglasses")) {
+            Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+            accRec1.getChildren().add(accessoriesText);
+        }
         mensRec1.getChildren().add(mensClothingText);
-        accRec1.getChildren().add(accessoriesText);
+
 
 
     }
@@ -205,10 +207,26 @@ public class GUIMainController implements Initializable {
             womensRec2.getChildren().add(womensClothingText);
         }
 
-        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
-
+        if (!suitableDayTime(list, 1) && accessories.getAccessory().equals("Sunglasses")) {
+            Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+            accRec2.getChildren().add(accessoriesText);
+        }
         mensRec2.getChildren().add(mensClothingText);
-        accRec2.getChildren().add(accessoriesText);
+
+    }
+
+    private Boolean suitableDayTime(List<Weather> list, int index) {
+
+        boolean result = false;
+        String isEqual = list.get(index).getDateTimeStart().substring(0, 2);
+        switch (isEqual) {
+            case "00":
+                result = true;
+                break;
+            case "02":
+                result = true;
+        }
+        return result;
     }
 
 
@@ -275,10 +293,13 @@ public class GUIMainController implements Initializable {
             womensRec3.getChildren().add(womensClothingText);
         }
 
-        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+        if (!suitableDayTime(list, 2) && accessories.getAccessory().equals("Sunglasses")) {
+            Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+            accRec3.getChildren().add(accessoriesText);
+        }
 
         mensRec3.getChildren().add(mensClothingText);
-        accRec3.getChildren().add(accessoriesText);
+
 
     }
 
@@ -341,10 +362,13 @@ public class GUIMainController implements Initializable {
             womensRec4.getChildren().add(womensClothingText);
         }
 
-        Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+        if (!suitableDayTime(list, 3) && accessories.getAccessory().equals("Sunglasses")) {
+            Text accessoriesText = new Text("Kan være lurt å ta med " + labels.getString(accessories.getAccessory()).toLowerCase());
+            accRec4.getChildren().add(accessoriesText);
+        }
 
         mensRec4.getChildren().add(mensClothingText);
-        accRec4.getChildren().add(accessoriesText);
+
     }
 
     /**
@@ -449,6 +473,7 @@ public class GUIMainController implements Initializable {
                 break;
             case "Regn og torden":
                 image = setImage("GUI/Icons/dist/png/22.png");
+                break;
             case "Kraftig regn og torden":
                 image = setImage("GUI/Icons/dist/png/11.png");
                 break;
