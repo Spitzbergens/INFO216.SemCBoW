@@ -23,7 +23,8 @@ import java.util.Objects;
 public class Yr {
 
     private File file = new File("./varsel.xml");
-    long difference = new Date().getTime() - file.lastModified();
+    Date date = new Date();
+    long cacheDifference = date.getTime() - file.lastModified();
     private ArrayList<String> weatherType = new ArrayList<String>();
     private ArrayList<String> dateObserved = new ArrayList<String>();
     private ArrayList<String> timeAndDateStart = new ArrayList<>();
@@ -35,7 +36,7 @@ public class Yr {
     private ArrayList<String> temperature = new ArrayList<String>();
     private ArrayList<String> precipitation = new ArrayList<>();
     private ArrayList<String> precipitationMax = new ArrayList<>();
-    private ArrayList<Integer> idList = new ArrayList<Integer>();
+    private ArrayList<Integer> listSize = new ArrayList<Integer>();
 
 
     /**
@@ -47,27 +48,24 @@ public class Yr {
     }
 
     /**
-     * First checking if caching difference is above 10 minutes, following Yr's demand on caching.
+     * First checking if caching cacheDifference is above 10 minutes, following Yr's demand on caching.
      * Reading the URL and transfers the content into the readable byte channel and writing an XML-file.
      */
     public void getAPI() {
-        System.out.println("YR API checking for updates.. ");
 
-
-        if (difference > 60000 * 10) {
+        if (cacheDifference > 60000 * 10) {
             try {
-                URL weatherAPI = new URL("http://www.yr.no/sted/Norge/Hordaland/Bergen/Bergen/varsel.xml");
-                ReadableByteChannel rbc = Channels.newChannel(weatherAPI.openStream());
-                FileOutputStream fos = new FileOutputStream(file);
-                fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+                URL yr = new URL("http://www.yr.no/sted/Norge/Hordaland/Bergen/Bergen/varsel.xml");
+                ReadableByteChannel byteChannel = Channels.newChannel(yr.openStream());
+                FileOutputStream outputStream = new FileOutputStream(file);
+                outputStream.getChannel().transferFrom(byteChannel, 0, Long.MAX_VALUE);
 
-            } catch (Exception e) {
-                System.out.println("Couldn't fint URL to API");
+            } catch (IOException e) {
+                e.getMessage();
             }
-        } else {
-            System.out.println("Updated");
         }
 
+        System.out.println("Updated");
     }
 
     /**
@@ -81,30 +79,29 @@ public class Yr {
     public void constructList() {
         System.out.println("Constructing list from API");
 
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = null;
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = null;
+        Document document = null;
 
         try {
-            dBuilder = dbf.newDocumentBuilder();
+            builder = documentBuilderFactory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        Document doc = null;
 
         try {
-            assert dBuilder != null;
-            doc = dBuilder.parse(file);
+            assert builder != null;
+            document = builder.parse(file);
         } catch (SAXException | IOException e) {
             e.printStackTrace();
         }
 
-        Element nodelist = (Element) Objects.requireNonNull(doc).getElementsByTagName("tabular").item(0);
+        Element list = (Element) Objects.requireNonNull(document).getElementsByTagName("tabular").item(0);
+        NodeList time = list.getElementsByTagName("time");
 
-        NodeList timeNodeList = nodelist.getElementsByTagName("time");
+        for (int i = 0; i < time.getLength(); i++) {
 
-        for (int i = 0; i < timeNodeList.getLength(); i++) {
-
-            Node node = timeNodeList.item(i);
+            Node node = time.item(i);
             Element eElement = (Element) node;
 
             Node symbolNode = eElement.getElementsByTagName("symbol").item(0);
@@ -133,7 +130,7 @@ public class Yr {
             temperature.add(tempElement.getAttribute("value"));
             windspeedType.add(windTypeElement.getAttribute("name"));
             windSpeedValue.add(windspeedElement.getAttribute("mps"));
-            idList.add(1 + i);
+            listSize.add(1 + i);
 
         }
         System.out.println("All OK");
@@ -166,8 +163,8 @@ public class Yr {
         return temperature;
     }
 
-    public ArrayList<Integer> getIdList() {
-        return idList;
+    public ArrayList<Integer> getListSize() {
+        return listSize;
     }
 
     public ArrayList<String> getWindSpeedValue() {

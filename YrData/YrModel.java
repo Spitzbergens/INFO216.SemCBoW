@@ -31,8 +31,8 @@ public class YrModel {
     private ArrayList<String> dateTimeEnd = yr.getTimeAndDateEnd();
 
     // Brukes kun for å hente størrelsen på listen
-    private ArrayList<Integer> idList = yr.getIdList();
-    int size = idList.size();
+    private ArrayList<Integer> listSize = yr.getListSize();
+    int size = listSize.size();
 
 
     /**
