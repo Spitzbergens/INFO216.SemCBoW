@@ -2,7 +2,9 @@
 
 ##### A project for the course "INFO216 Advanced Modelling" at UiB. Recommends clothing based on semantically lifted weather data in the Bergen area.
 
-#### Technologies used
-##### - Apache Jena
+#### Built with
 ##### - RDFS, OWL
-##### - Sparql
+##### - [Apache jena](https://jena.apache.org/)
+##### - [SPARQL](https://www.w3.org/TR/rdf-sparql-query/)
+
+![alt text](https://i.imgur.com/ecxzoeT.png)
